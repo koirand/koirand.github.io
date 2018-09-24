@@ -16,13 +16,7 @@
       <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2018/line-login-with-springboot/</guid>
-      <description>タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。
-ソースコード koirand/springboot-line-login: LINE login with Springboot Sample
-OAuth2での認証方法  第1回：Spring Security 5でサポートされるOAuth 2.0 LoginをSpring Bootで使ってみる
- 主にこの記事にOAuth2クライアントの実装を行った。OAuth2でログインするためには、spring-security-oauth2-clientモジュールを使う。OpenID Connectでの認証を行う場合は加えてspring-security-oauth2-joseが必要になるが、今回はOAuth2のみなので入れなかった。
-&amp;lt;!-- OAuth2 authentication--&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.security&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-security-oauth2-client&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; application.properties に以下の通りLINE用の設定を記載する。clientIDとclientSeretはLINE Developersで取得したものに書き換える。
-# Settings for LINE login spring.security.oauth2.client.registration.line.clientId={Set your client id} spring.security.oauth2.client.registration.line.clientSecret={Set your client secret} spring.security.oauth2.client.registration.line.authorizationGrantType=authorization_code spring.security.oauth2.client.registration.line.redirectUriTemplate={baseUrl}/login/oauth2/code/{registrationId} spring.security.oauth2.client.registration.line.scope=profile spring.security.oauth2.client.registration.line.clientName=LINE spring.security.oauth2.client.provider.line.authorizationUri=https://access.line.me/oauth2/v2.1/authorize spring.security.oauth2.client.provider.line.tokenUri=https://api.line.me/oauth2/v2.1/token spring.security.oauth2.client.provider.line.jwkSetUri=https://api.line.me/oauth2/v2.1/verify spring.security.oauth2.client.provider.line.userInfoUri=https://api.line.me/v2/profile spring.security.oauth2.client.provider.line.userNameAttribute=userId  Spring Securtyでは、GitHub、Google、Facebook、Oktaの４つのプロバイダに関しては、各設定値の初期値が既に設定されている。なのでapploication.propatiesにはclientIdとclientSecretだけを設定すれば動作する。例えばGitHubを追加するなら、以下の設定を追加するだけで良い。
-# Settings for GitHub login spring.security.oauth2.client.registration.github.clientId={Set your client id} spring.security.oauth2.client.registration.github.clientSecret={Set your client secret}  LINEは初期値が設定されていないので全ての設定が必要になる。scopeの種類や、各エンドポイントのURI、APIの仕様などは以下を参照。</description>
+      <description>タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。 ソースコード koirand/springboot-line-login: LINE login with Springboot Sample OAuth2での認証方法 第1回：Spring Security 5</description>
     </item>
     
     <item>
@@ -31,13 +25,7 @@ OAuth2での認証方法  第1回：Spring Security 5でサポートされるOAu
       <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2018/tokyo-metro-vim/</guid>
-      <description>VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキーマを作ってみたいと思った。東京に住んでるし東京をテーマとしたカラーススキームを作れないかとちょっと考えたものの、色彩センスに自信がなかったので、東京メトロのテーマカラーを使ってみることにした。
-ソースコード koirand/tokyo-metro.vim: Vim color scheme using theme color of Tokyo Metro lines.
-作成過程 まずはPhotoshopで各路線のテーマカラーを並べた。
-ダークモード派なので黒背景。思ったより見やすい印象を得た。さすが偉い人が考えた（？）色だけのことはある。千代田線と南北線の色が似ているのが気になる。カラースキームの自作方法についてWebで調べて見たところ、なかなか設定項目数が多く時間がかかりそうだったので、iceberg.vim をForkしてカスタマイズすることにした。README に記載されているが、カラースキーマを半自動生成する仕組みが提供されているのでこれを使用した。具体的な手順としては、
- cocopon/pgmnt プラグインをVimにインストール。 src/template.vim にあるテンプレートを変更。 autoload/iceberg/palette/dark.vim をコピーして、autoload/tokyometro/palette/dark.vim を作成して、配色を変更。:source % してVimに読み込む。 src/iceberg.vim をコピーして src/tokyo-metro.vim を作成して、色と対象オブジェクトのマッピングを少し調整。cd %:hしてカレントディレクトリを変更してから:source %すると、color/tokyo-metro.vim が生成される。  できたのがこちら。 tokyo-metro - Vim Colors
-濃紺の背景は東京の夜景っぽくて違和感なかったのでオリジナルのままにした。このサンプルでは表示されてないけど、言語によっては演算子が副都心線の茶色になるはず。それから丸ノ内線については、やは赤はエラー感が強く出てしまい違和感が拭えなかったので、丸の内線ユーザーには申し訳ないが素直にエラー系の色に当てることにした。
-作ってみた感想 オリジナルカラースキームができてうれしい。cocopon/pgmnt プラグインが良く作られている。色をHSLで指定することができるので、微妙な色の調整がやりやすそうに感じた。今回テーマカラーありきだったので、あまり配色には悩まなかったが、次回作るときは配色にこだわってみたい。</description>
+      <description>VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキ</description>
     </item>
     
     <item>
@@ -46,23 +34,7 @@ OAuth2での認証方法  第1回：Spring Security 5でサポートされるOAu
       <pubDate>Sun, 23 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2018/post-test/</guid>
-      <description>見出し1（h1） 見出し1（h1） 見出し2（h2) 見出し2（h2） 見出し3 見出し4 見出し5 見出し6 ここは段落です。♪もーもたろさん もーもたーろさん おっこしーにつっけたーちーびまーるこー
-ここは段落です。
-↑半角スペース2個で強制改行しています。
-♪もーもたろさん もーもたーろさん おっこしーにつっけたーちーんあーなごー
- 強い強調（strong）です。 これも強い強調です。 &amp;lt;strong&amp;gt;strongタグです。&amp;lt;/strong&amp;gt; 強調（em）です。 これも強調です。 斜体の&amp;lt;em&amp;gt;タグになります。 強調斜体です。 強調斜体です。 &amp;lt;strong&amp;gt;＋&amp;lt;em&amp;gt;タグになります。   引用（Blockquote）です
- 引用のネストです
- 上に一行空けないとネストのままです
- 引用（Blockquote）の中にはMarkdown要素を入れられます
- 見出し  数字リスト 数字リスト   エスケープ文字 *アスタリスクをバックスラッシュでエスケープ*
-## 見出しハッシュ文字をエスケープ
-HTMLタグをバックスラッシュでエスケープ→（&amp;lt;p&amp;gt;）
-HTMLをバッククォートでインラインコード→（&amp;lt;p&amp;gt;）
-水平線（&amp;lt;hr&amp;gt;）各種 アスタリスク3個半角スペース空けて
-アスタリスク3個以上
-ハイフン半角スペース空けて
-続けてハイフン3個以上
-リスト  ハイフン箇条書きリスト プラス箇条書きリスト 米印箇条書きリスト  二階層め・箇条書きリスト  三階層め・箇条書きリスト 四階層め・箇条書きリスト   箇条書きリスト   番号付きリスト  二階層め・番号付きリスト1 二階層め・番号付きリスト2  番号付きリスト2  二階層め・番号付きリスト1  三階層め・番号付きリスト1 三階層め・番号付きリスト2 四階層め・番号付きリスト1  二階層め・番号付きリスト2  番号付きリスト3   定義リストタイトル 定義リスト要素1 定義リスト要素2 定義リスト要素3  コードブロック バッククォート or 半角チルダ3個でくくります。 ###ここにはMarkdown書式は効きません /* コメント */ testtest // コメント  &amp;lt;!</description>
+      <description>見出し1（h1） 見出し1（h1） 見出し2（h2) 見出し2（h2） 見出し3 見出し4 見出し5 見出し6 ここは段落です。♪もーもたろさん もーもたーろ</description>
     </item>
     
   </channel>
