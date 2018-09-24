@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+    
+    <title>
+    
+        東京メトロ配色のVimカラースキームを作った - Kazuki Koide
+    
+    </title>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>東京メトロ配色のVimカラースキームを作った</h1>
+        <p class="date">September 24, 2018</p>
+        <div class="markdown-body">
+            
+
+<p>VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキーマを作ってみたいと思った。東京に住んでるし東京をテーマとしたカラーススキームを作れないかとちょっと考えたものの、色彩センスに自信がなかったので、東京メトロのテーマカラーを使ってみることにした。</p>
+
+<h2 id="ソースコード">ソースコード</h2>
+
+<p><a href="https://github.com/koirand/tokyo-metro.vim">koirand/tokyo-metro.vim: Vim color scheme using theme color of Tokyo Metro lines.</a></p>
+
+<h2 id="作成過程">作成過程</h2>
+
+<p>まずはPhotoshopで各路線のテーマカラーを並べた。</p>
+
+<p><img src="https://i.imgur.com/ARMKrda.png" alt="" /></p>
+
+<p>ダークモード派なので黒背景。思ったより見やすい印象を得た。さすが偉い人が考えた（？）色だけのことはある。千代田線と南北線の色が似ているのが気になる。カラースキームの自作方法についてWebで調べて見たところ、なかなか設定項目数が多く時間がかかりそうだったので、<a href="https://github.com/cocopon/iceberg.vim">iceberg.vim</a> をForkしてカスタマイズすることにした。<a href="https://github.com/cocopon/iceberg.vim/blob/master/README.md#building-your-own-iceberg">README</a> に記載されているが、カラースキーマを半自動生成する仕組みが提供されているのでこれを使用した。具体的な手順としては、</p>
+
+<ol>
+<li><a href="https://github.com/cocopon/pgmnt.vim">cocopon/pgmnt</a> プラグインをVimにインストール。</li>
+<li>src/template.vim にあるテンプレートを変更。</li>
+<li>autoload/iceberg/palette/dark.vim をコピーして、autoload/tokyometro/palette/dark.vim を作成して、配色を変更。<code>:source %</code> してVimに読み込む。</li>
+<li>src/iceberg.vim をコピーして src/tokyo-metro.vim を作成して、色と対象オブジェクトのマッピングを少し調整。<code>cd %:h</code>してカレントディレクトリを変更してから<code>:source %</code>すると、color/tokyo-metro.vim が生成される。</li>
+</ol>
+
+<p>できたのがこちら。
+<a href="http://vimcolors.com/825/tokyo-metro/dark">tokyo-metro - Vim Colors</a></p>
+
+<p><img src="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png" alt="screenshot" /></p>
+
+<p>濃紺の背景は東京の夜景っぽくて違和感なかったのでオリジナルのままにした。このサンプルでは表示されてないけど、言語によっては演算子が副都心線の茶色になるはず。それから丸ノ内線については、やは赤はエラー感が強く出てしまい違和感が拭えなかったので、丸の内線ユーザーには申し訳ないが素直にエラー系の色に当てることにした。</p>
+
+<h2 id="作ってみた感想">作ってみた感想</h2>
+
+<p>オリジナルカラースキームができてうれしい。<a href="https://github.com/cocopon/pgmnt.vim">cocopon/pgmnt</a> プラグインが良く作られている。色をHSLで指定することができるので、微妙な色の調整がやりやすそうに感じた。今回テーマカラーありきだったので、あまり配色には悩まなかったが、次回作るときは配色にこだわってみたい。</p>
+
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+<script src="https://koirand.github.io/js/main.js"></script>
+
+    </body>
+</html>
+
