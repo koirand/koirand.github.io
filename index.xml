@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 24 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HUGOのオリジナルテーマを作った</title>
+      <link>https://koirand.github.io/blog/2018/pulp/</link>
+      <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2018/pulp/</guid>
+      <description>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。WordPressなどのブログサイトとは異なり、PC上で</description>
+    </item>
     
     <item>
       <title>SpringbootでLINEのOAuth2ログインを試した</title>
