@@ -11,12 +11,12 @@
     
     
     <item>
-      <title>ブログのデプロイをCircleCIで自動化した</title>
+      <title>ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</title>
       <link>https://koirand.github.io/blog/2018/blog-auto-deploy/</link>
       <pubDate>Sun, 30 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2018/blog-auto-deploy/</guid>
-      <description>(執筆中)</description>
+      <description>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ</description>
     </item>
     
     <item>
