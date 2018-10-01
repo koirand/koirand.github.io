@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/blog/</link>
     <description>Recent content in Blogs on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 30 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Promiseとasync/awaitをちゃんと理解する</title>
+      <link>https://koirand.github.io/blog/2018/async-await/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2018/async-await/</guid>
+      <description>Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい</description>
+    </item>
     
     <item>
       <title>ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</title>

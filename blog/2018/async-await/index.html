@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        
+            Promiseとasync/awaitをちゃんと理解する - Kazuki Koide
+        
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+
+    
+    
+
+    <meta property="og:title" content="Promiseとasync/awaitをちゃんと理解する" />
+<meta property="og:description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2018/async-await/" /><meta property="article:published_time" content="2018-10-01T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-10-01T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="Promiseとasync/awaitをちゃんと理解する">
+<meta itemprop="description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい">
+
+
+<meta itemprop="datePublished" content="2018-10-01T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-10-01T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2443">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Promiseとasync/awaitをちゃんと理解する"/>
+<meta name="twitter:description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい"/>
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>Promiseとasync/awaitをちゃんと理解する</h1>
+        <p class="date">October 1, 2018</p>
+        <div class="markdown-body">
+            
+
+<p>Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい。もし使いたい関数がPromiseをサポートしていない場合は、自分でPromiseにラップするのが良いとのこと。この辺の知識が若干怪しかったので、実際に一からやってみた。</p>
+
+<h2 id="コールバック方式">コールバック方式</h2>
+
+<p>まずは、適当に従来のコールバック方式の非同期関数を書いてみる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行
+</span><span class="c1"></span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>sum関数は足し算をするだけの関数だが、1秒もかかってしまう。時間がかかるので非同期で動くようになっている&hellip;ということにする。これを実行すると1秒後に<code>result: 3</code>が出力される。引数に数値以外が指定された場合は以下のエラーが出力される。</p>
+
+<pre><code>Error: Invalid parameter!
+    at Timeout.setTimeout [as _onTimeout] (/xxx/sandbox/nodejs/1.callback.js:4:16)
+    at ontimeout (timers.js:498:11)
+    at tryOnTimeout (timers.js:323:5)
+    at Timer.listOnTimeout (timers.js:290:5)
+</code></pre>
+
+<h2 id="promise方式">Promise方式</h2>
+
+<p>次に、先ほどのsum関数をPromiseでラップする。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数(さっきと同じもの)
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Promiseでラップ
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">promiseSum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="k">return</span>
+      <span class="p">}</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行
+</span><span class="c1"></span><span class="nx">promiseSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>これがいわゆる「Promiseでラップする」ということ。これを実行しても先ほどと同様に1秒後に<code>result: 3</code>が出力される。</p>
+
+<h2 id="コールバック方式とpromise方式の比較">コールバック方式とPromise方式の比較</h2>
+
+<p>コールバック方式とPromise方式の実行コードを並べてみる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式
+</span><span class="c1"></span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// Promise方式
+</span><span class="c1"></span><span class="nx">promiseSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>コールバック方式の場合は、関数の仕様に合わせて例外処理する必要がある。今回だと、「コールバック関数の第一引数でエラーを受け取る」という仕様だ。それがPromiseでラップすることで、どんな関数でも同じ方法(catch)で例外処理をすることができる。これはPromise方式のメリットだと感じた。可読性についてはどちらも変わらないと感じる。</p>
+
+<h2 id="非同期関数を順番に実行する">非同期関数を順番に実行する</h2>
+
+<p>次に、1から4の数字を全て足し合わせてみる。sum関数は２つの数字しか受け取れないので、1,2の足し算の結果と3を足して、その結果と4を足すという風に順番にに処理を行う。それぞれ以下のようなコードになる。</p>
+
+<h4 id="コールバック方式-1">コールバック方式</h4>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行
+</span><span class="c1"></span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="nx">sum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">sum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="k">return</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>これを実行すると、足し算を３回行なっているので、３秒待ったあとに<code>result: 10</code>が出力される。良くコールバック地獄やネスト地獄と言われて問題になっているが、この程度だとコールバック方式でもそこまで地獄感は感じない。地獄を味わっている人たちはどれくらい激しいネストをしているんだろうか。</p>
+
+<h4 id="promise方式-1">Promise方式</h4>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Promiseでラップ
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">promiseSum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="k">return</span>
+      <span class="p">}</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行
+</span><span class="c1"></span><span class="nx">promiseSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise方式だと、メソッドチェーン的な書き方で順番に実行することができ、ネストは浅くなる。またPromise方式のもうひとつのメリットとして、try catch的な例外処理ができる。個別に例外を拾いたい場合は、以下のようにthen関数の第二引数に例外処理を書くことができる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 数値以外を引数に指定して故意にエラーを発生させる
+</span><span class="c1"></span><span class="nx">promiseSum</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">},</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error handling ...&#39;</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>この実行結果は以下となる。&rsquo;Error handling&hellip;&lsquo;を出力したあとにcatchに飛んでいるのがわかる。</p>
+
+<pre><code>Error handling ...
+Error: Invalid parameter!
+    at Timeout.setTimeout [as _onTimeout] (/xxx/sandbox/nodejs/5.secencial-promise2.js:4:16)
+    at ontimeout (timers.js:498:11)
+    at tryOnTimeout (timers.js:323:5)
+    at Timer.listOnTimeout (timers.js:290:5)
+</code></pre>
+
+<h2 id="async-await方式">async/await方式</h2>
+
+<p>冒頭に書いた通り、最近はasync/awaitを使うのがトレンドだ。先ほどのPromise方式を
+async/awaitで書き換えると以下のコードになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">sum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">),</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// Promiseでラップ
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">promiseSum</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="k">return</span>
+      <span class="p">}</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行
+</span><span class="c1"></span><span class="p">(</span><span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})()</span>
+</code></pre></div>
+<p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise関数に<code>await</code>を付けることで処理の完了を待ってくれる。<code>await</code>は<code>async</code>を付けたfunctionの中だけで使えるというルールがあるので、即時関数を使わないといけない点はイマイチだが、コールバックを使わずに普通の同期処理と同じように書けるので、とても可読性が高いと感じる。普通にtry catchで例外処理できるのもポイント高い。ちなみに先ほどのように個別で例外を拾う場合は以下のようになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="c1">// 数値以外を引数に指定して故意にエラーを発生させる
+</span><span class="c1"></span>    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error handling ...&#39;</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="kr">await</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;result:&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})()</span>
+</code></pre></div>
+<p>このように、catchで個別に例外を拾うことができる。コールバック完全駆逐&hellip;とまでは行かないようだ。</p>
+
+<h2 id="async-await方式でのテスト">async/await方式でのテスト</h2>
+
+<p>昔は、非同期処理をテストするにはco-mocha等を使った気がするが、最近はmochaでasync/awaitが使えるようだ。以下のようなテストコードになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;asunc/await test&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;1 + 2 = 3 &#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">strictEqual</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="p">})</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;数字以外が入力されるとエラー&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">f</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="k">throw</span> <span class="nx">err</span><span class="p">}</span>
+    <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="kr">throws</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="s1">&#39;Invalid parameter!&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/">Hugo</a>
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+<script src="https://koirand.github.io/js/main.js"></script>
+
+    </body>
+</html>
+
