@@ -64,8 +64,20 @@ if (!doNotTrack) {
         <div class="main">
         
     <div>
+        <div class="searchBoxContainer">
+            <input type="text" id="searchBox" class="searchBox" placeholder="Search..." />
+            <img id="searchBoxIcon" class="searchBoxIcon" src="https://koirand.github.io/img/search.png" />
+        </div>
+        <div id="searchResults" class="searchResults"></div>
         
     </div>
+    <script src="https://koirand.github.io/js/jquery-3.3.1.min.js"></script>
+    <script src="https://koirand.github.io/js/jquery.mark.es6.min.js"></script>
+    <script src="https://koirand.github.io/js/lunr.js"></script>
+    <script src="https://koirand.github.io/js/lunr.stemmer.support.js"></script>
+    <script src="https://koirand.github.io/js/tinyseg.js"></script>
+    <script src="https://koirand.github.io/js/lunr.ja.js"></script>
+    <script src="https://koirand.github.io/js/search.js"></script>
 
         </div>
         <footer>
@@ -75,7 +87,6 @@ if (!doNotTrack) {
         using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
     </p>
 </footer>
-<script src="https://koirand.github.io/js/main.js"></script>
 
     </body>
 </html>
