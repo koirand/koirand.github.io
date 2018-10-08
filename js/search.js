@@ -42,7 +42,6 @@ function search (query) {
  * Setup UI for Search
  */
 function initUI () {
-
   // Clear query when clear icon is clicked
   $('#searchBoxIcon').click(function () {
     $('#searchBox').val('')
@@ -119,4 +118,3 @@ initLunr()
 $(function () {
   initUI()
 })
-
