@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2018/pulp-search/",
+        "title": "HUGOテーマ(pulp)に全文検索機能を付けた",
+        "section": "blog",
+        "date" : "2018.10.08",
+        "body": " 先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしなくても本文が検索できればいいなと思っていた。しっかり作るならElasticSearchやAlgoliaを使うんだろうけど、そうするとThemeとして配布しづらくなるし、個人用途としてはそこまでの機能はいらないのでフロントエンドだけで完結する方法を模索した。\nデモ 記事をJSONで取得できるようにする まずは、HugoでJSONを出力 | Celeumu を参考にしつつブログの記事をJSONで取得できるようにした。config.tomlに以下を追記すると、拡張子が.jsonのテンプレートをHUGOがテンプレートとして見てくれるようになった。\n[outputs] section = [\u0026#34;JSON\u0026#34;, \u0026#34;HTML\u0026#34;] その上でlayouts/_default/list.json を作成すると、http://hostname/section/index.json といったURLでいとも簡単にセクションのデータをJSONで引っこ抜くことができるようになる。このブログの場合だと、https://koirand.github.io/blog/index.json からデータが取得できる。\n[{{ range $index, $page := .Pages }}{{ if ne $index 0 }},{{ end }} { \u0026quot;ref\u0026quot;: \u0026quot;{{ $page.Permalink }}\u0026quot;, \u0026quot;title\u0026quot;: {{ $page.Title | jsonify }}, \u0026quot;section\u0026quot;: \u0026quot;{{ $page.Section }}\u0026quot;, \u0026quot;date\u0026quot; : {{ $page.Date.Format \u0026quot;2006.01.02\u0026quot; | jsonify }}, \u0026quot;body\u0026quot;: {{ $page.Plain | jsonify }} } {{ end }}]  検索処理の実装 検索処理は hugo + gruntjs + lunrjs = \u0026lt;3 search にlunr.jsを使ったサンプルコードを掲載してくれている人がいて、ほぼこのままで動いた。このサンプルコードをベースに以下のカスタマイズを加えた。具体的な変更内容は Add full-text search function by koirand · Pull Request #3 · koirand/pulp を参照。\n 検索結果に本文を表示 日本語での検索対応 キーワードのハイライト  検索結果に本文を表示 本文でキーワードにヒットした箇所の前後50文字を検索結果に表示することにした。複数のキーワードがスペース区切りで入力された場合は先頭のキーワードだけを使っている。また、タイトルのみにヒットした場合は、本文の先頭100文字を表示している。もっと良いやり方がある気がするが一般的なアルゴリズムが分からない。\n日本語での検索対応 標準のlunr.jsだとスペースを単語の区切りとみなすのか日本語が検索できないので、MihaiValentin/lunr-languages: A collection of languages stemmers and stopwords for Lunr Javascript library を使う必要がある。READMEには書いてないが、日本語に対応させる場合は同封されているtinyseg.jsも読み込む必要があった。テーマとして配布することを考えると日本語だけの対応で良いのかとも考えてしまうけど、そもそもテーマを使ってくれる人がいるかどうか怪しいので、そういう人が現れたら考えよう。\nキーワードのハイライト キーワードのハイライトは mark.js – JavaScript keyword highlight を使うと簡単だった。\n感想 たまに検索にヒットしない単語があるのが気になったりはするものの、概ねちゃんと検索できてるしサクサクで良い感じ。ページの数が増えてくるとパフォーマンス落ちたりするのかなと思い、試しに Skycoin社のブログデータ のリポジトリをクローンしてこのテーマを適用してみたが普通にサクサク動いたので個人サイトであればまあ大丈夫だと思う。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2018/async-await/",
         "title": "Promiseとasync/awaitをちゃんと理解する",
         "section": "blog",

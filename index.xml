@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HUGOテーマ(pulp)に全文検索機能を付けた</title>
+      <link>https://koirand.github.io/blog/2018/pulp-search/</link>
+      <pubDate>Mon, 08 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2018/pulp-search/</guid>
+      <description>先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしな</description>
+    </item>
     
     <item>
       <title>Promiseとasync/awaitをちゃんと理解する</title>
