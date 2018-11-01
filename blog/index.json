@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2018/pulp-search2/",
+        "title": "HUGOテーマ(pulp)の全文検索をあいまい検索に変更した",
+        "section": "blog",
+        "date" : "2018.10.31",
+        "body": "前回の記事「HUGOテーマ(pulp)に全文検索機能を付けた」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応することができない。\nこの問題の解決方法としては以下２つが考えられる。\n N-gramを使う インデックスを使わない普通の検索にする  まずはN-gram方式を試してみた。lune.jsのトークナイズプラグインを探しても見つからなかったが、 Created an initial pluggable tokenizer with ngram support in order to allow using lunr to drive autocomplete style search boxes. by wballard · Pull Request #63 · olivernn/lunr.js　に紹介されているようにN-gramでの分割処理を実装してtokenizerに登録すればできる。\nvar myNgramTokenizer = function () { lunr.tokenizer = function (obj) { // ngram implementation  } } idx.use(myNgramTokenizer)  検索クエリも同様にN-gramで分割処理をしてあげれば検索ができる。ただ単純なN-gramだけでは検索精度がいまひとつだった。第5回 N-gramのしくみ：検索エンジンを作る｜gihyo.jp … 技術評論社 にも記載されている通り、分割した文字列片がそれぞれバラバラの箇所でヒットしてしまう問題がある。検索精度を高めるためには、ヒットした文字列片の出現位置を見てあげる必要があるようだ。\nN-gramの実装はなかなか大変そうだったので、インデックスはあきらめてFuse.jsというあいまい検索のライブラリを使うことにした。Fuse.jsのデフォルトのオプションだと本文の先頭32文字しかヒットしないが、Hugo JS Searching with Fuse.js で紹介されている通り、tokenizeオプションを有効にすると全文検索可能になる。色々オプションを試して以下に落ち着いた。\nvar options = { shouldSort: true, tokenize: true, matchAllTokens: true, threshold: 0.3, minMatchCharLength: 5, keys: [\u0026#39;title\u0026#39;, \u0026#39;body\u0026#39;] }  検索精度は上々、不特定な言語でも問題ないはず。しかもあいまい検索なので若干スペルを間違えても検索ができる。ただし、インデックスを使っていないのでパフォーマンスは悪い。前回と同じく Skycoin社のブログデータを使って試してみたら約150件の記事でも結構検索がカクついた。ひとまずこれで運用するが、N-gramをもう少し頑張ったほうが良いのかもしれない。全文検索の道のりは思ったより険しい。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2018/pulp-search/",
         "title": "HUGOテーマ(pulp)に全文検索機能を付けた",
         "section": "blog",

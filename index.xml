@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 08 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 31 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HUGOテーマ(pulp)の全文検索をあいまい検索に変更した</title>
+      <link>https://koirand.github.io/blog/2018/pulp-search2/</link>
+      <pubDate>Wed, 31 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2018/pulp-search2/</guid>
+      <description>前回の記事「HUGOテーマ(pulp)に全文検索機能を付けた」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いと</description>
+    </item>
     
     <item>
       <title>HUGOテーマ(pulp)に全文検索機能を付けた</title>
