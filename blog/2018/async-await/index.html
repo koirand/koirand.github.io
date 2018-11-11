@@ -21,25 +21,25 @@
     
 
     <meta property="og:title" content="Promiseとasync/awaitをちゃんと理解する" />
-<meta property="og:description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい" />
+<meta property="og:description" content="JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/async-await/" /><meta property="article:published_time" content="2018-10-01T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2018-10-01T00:00:00&#43;00:00"/>
 
 <meta itemprop="name" content="Promiseとasync/awaitをちゃんと理解する">
-<meta itemprop="description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい">
+<meta itemprop="description" content="JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい">
 
 
 <meta itemprop="datePublished" content="2018-10-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2442">
+<meta itemprop="wordCount" content="2417">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Promiseとasync/awaitをちゃんと理解する"/>
-<meta name="twitter:description" content="Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい"/>
+<meta name="twitter:description" content="JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい"/>
 
     <!--[if lte IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -78,7 +78,7 @@ if (!doNotTrack) {
         <div class="markdown-body">
             
 
-<p>Javascriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい。もし使いたい関数がPromiseをサポートしていない場合は、自分でPromiseにラップするのが良いとのこと。この辺の知識が若干怪しかったので、実際に一からやってみた。</p>
+<p>JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい。もし使いたい関数がPromiseをサポートしていない場合は、自分でPromiseにラップするのが良いとのこと。この辺の知識が若干怪しかったので、実際に一からやってみた。</p>
 
 <h2 id="コールバック方式">コールバック方式</h2>
 
@@ -167,11 +167,11 @@ if (!doNotTrack) {
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>コールバック方式の場合は、関数の仕様に合わせて例外処理する必要がある。今回だと、「コールバック関数の第一引数でエラーを受け取る」という仕様だ。それがPromiseでラップすることで、どんな関数でも同じ方法(catch)で例外処理をすることができる。これはPromise方式のメリットだと感じた。可読性についてはどちらも変わらないと感じる。</p>
+<p>コールバック方式の場合は、関数の仕様に合わせて例外処理する必要がある。今回だと「コールバック関数の第一引数でエラーを受け取る」という仕様だ。それがPromiseでラップすることにより、どんな関数でも同じ方法(catch)で例外処理ができる。これはPromise方式のメリットだと感じた。可読性についてはどちらも変わらないと感じる。</p>
 
 <h2 id="非同期関数を順番に実行する">非同期関数を順番に実行する</h2>
 
-<p>次に、1から4の数字を全て足し合わせてみる。sum関数は２つの数字しか受け取れないので、1,2の足し算の結果と3を足して、その結果と4を足すという風に順番に処理を行う。それぞれ以下のようなコードになる。</p>
+<p>次に、1から4の数字を全て足し合わせてみる。sum関数は2つの数字しか受け取れないので、1,2の足し算の結果と3を足して、その結果と4を足すという風に順次処理を行う。それぞれ以下のようなコードになる。</p>
 
 <h4 id="コールバック方式-1">コールバック方式</h4>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// コールバック方式による非同期関数
@@ -244,7 +244,7 @@ if (!doNotTrack) {
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise方式だと、メソッドチェーン的な書き方で順番に実行することができ、ネストは浅くなる。またPromise方式のもうひとつのメリットとして、try catch的な例外処理ができる。個別に例外を拾いたい場合は、以下のようにthen関数の第二引数に例外処理を書くことができる。</p>
+<p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise方式だと、メソッドチェイン的な書き方で順番に実行でき、ネストは浅くなる。またPromise方式のもうひとつのメリットとして、try catch的な例外処理ができる。個別に例外を拾いたい場合は、以下のようにthen関数の第二引数に例外処理を書くことができる。</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 数値以外を引数に指定して故意にエラーを発生させる
 </span><span class="c1"></span><span class="nx">promiseSum</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">promiseSum</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -258,7 +258,7 @@ if (!doNotTrack) {
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>この実行結果は以下となる。&rsquo;Error handling&hellip;&lsquo;を出力したあとにcatchに飛んでいるのがわかる。</p>
+<p>この実行結果は以下となる。&rsquo;Error handling&hellip;&lsquo;を出力したあとcatchに飛んでいるのがわかる。</p>
 
 <pre><code>Error handling ...
 Error: Invalid parameter!
@@ -309,7 +309,7 @@ async/awaitで書き換えると以下のコードになる。</p>
   <span class="p">}</span>
 <span class="p">})()</span>
 </code></pre></div>
-<p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise関数に<code>await</code>を付けることで処理の完了を待ってくれる。<code>await</code>は<code>async</code>を付けたfunctionの中だけで使えるというルールがあるので、即時関数を使わないといけない点はイマイチだが、コールバックを使わずに普通の同期処理と同じように書けるので、とても可読性が高いと感じる。普通にtry catchで例外処理できるのもポイント高い。ちなみに先ほどのように個別で例外を拾う場合は以下のようになる。</p>
+<p>このコードを実行した場合も3秒待ったあとに<code>result: 10</code>が出力される。Promise関数に<code>await</code>を付けることで処理の完了を待ってくれる。<code>await</code>は<code>async</code>を付けたfunctionの中だけで使えるというルールがあるので即時関数を使わないといけない点はイマイチだが、コールバックを使わずに同期処理が書けるので可読性が高いと感じる。普通にtry catchで例外処理できるのもポイント高い。ちなみに先ほどのように個別で例外を拾う場合は以下のようになる。</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">result</span><span class="p">;</span>

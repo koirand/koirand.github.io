@@ -34,7 +34,7 @@
 
 <meta itemprop="datePublished" content="2018-09-24T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-24T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1935">
+<meta itemprop="wordCount" content="1932">
 
   <meta itemprop="image" content="https://i.imgur.com/mP49mwf.png">
 
@@ -141,7 +141,7 @@ spring.security.oauth2.client.registration.github.clientSecret={Set your client 
   <span class="nt">&#34;pictureUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://example.com/abcdefghijklmn&#34;</span><span class="p">,</span>
   <span class="nt">&#34;statusMessage&#34;</span><span class="p">:</span><span class="s2">&#34;Hello, LINE!&#34;</span>
 <span class="p">}</span></code></pre></div>
-<p>ちなみにSpringboot v2.1.0.M2より古いバージョンは、<code>userNameAttribute</code>が反映されないバグがあるので注意されたし。</p>
+<p>ちなみにSpringboot v2.1.0.M2より古いバージョンは、<code>userNameAttribute</code>が反映されないので注意されたし。</p>
 
 <blockquote>
 <p><a href="https://github.com/spring-projects/spring-boot/pull/10672">UserNameAttribute for custom OAuth2 provider by thiagohirata · Pull Request #10672 · spring-projects/spring-boot</a></p>
@@ -167,7 +167,7 @@ spring.security.oauth2.client.registration.github.clientSecret={Set your client 
 
 <p><img src="https://i.imgur.com/mP49mwf.png" alt="" /></p>
 
-<p>この例ではLINEのみだが、複数のプロバイダを設定した場合はそれぞれのリンクが表示される。LINEリンクをクリックすると、<code>http://localhost:8080/oauth2/authorization/line</code>に遷移する。自前のログインページを作成する場合は同じようにこのURIに遷移するリンクなりボタンを作成すれば良い。<code>http://localhost:8080/oauth2/authorization/line</code>にアクセスすると、そこからさらに<code>authorizationUri</code>で設定した<code>https://access.line.me/oauth2/v2.1/authorize</code>にリダイレクトし、LINEの認証画面が表示される。認証に成功すると、<code>http://localhost:8080/login/oauth2/code/line</code>にリダイレクトし、さらにそこから最初にアクセスした<code>http://localhost:8080</code>にリダイレクトする。まとめると以下のようなページ遷移になる。</p>
+<p>この例ではLINEのみだが、複数のプロバイダを設定した場合はそれぞれのリンクが表示される。LINEリンクをクリックすると、<code>http://localhost:8080/oauth2/authorization/line</code>に遷移する。自前のログインページを作成する場合は同じようにこのURIへ遷移するリンクなりボタンを作成すれば良い。<code>http://localhost:8080/oauth2/authorization/line</code>にアクセスすると、そこから更に<code>authorizationUri</code>で設定した<code>https://access.line.me/oauth2/v2.1/authorize</code>へリダイレクトしてLINEの認証画面が表示される。認証に成功すると、<code>http://localhost:8080/login/oauth2/code/line</code>へリダイレクトし、そして最初にアクセスした<code>http://localhost:8080</code>へリダイレクトする。まとめると以下のようなページ遷移になる。</p>
 
 <pre><code>http://localhost:8080
 ↓ リダイレクト
@@ -188,7 +188,7 @@ http://localhost:8080
 
 <h2 id="別の実装方法">別の実装方法</h2>
 
-<p>LINE Engieeringブログで、<code>spring-boot-starter-security</code>と<code>spring-security-oauth</code>を使った実現方法が紹介されていたが、この方法だとOAuth2プロバイダが１つしか指定できなかったので採用しなかった。LINEだけでなくGoogleやfacebookと併用したいケースが多いと思うので。</p>
+<p>LINE Engieeringブログで、<code>spring-boot-starter-security</code>と<code>spring-security-oauth</code>を使った実現方法が紹介されていたが、この方法だとOAuth2プロバイダが１つしか指定できなかったので採用しなかった。実際はLINEだけでなくGoogleやFacebookと併用したいケースが多いのではないだろうか。</p>
 
 <blockquote>
 <p><a href="https://engineering.linecorp.com/ja/blog/detail/159">Spring Security + 設定ファイルで始める LINE との ID Federation : LINE Engineering Blog</a></p>

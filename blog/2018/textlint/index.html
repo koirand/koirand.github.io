@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        
+            ブログの記事をtextlintで校正してみた - Kazuki Koide
+        
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+
+    
+    
+
+    <meta property="og:title" content="ブログの記事をtextlintで校正してみた" />
+<meta property="og:description" content="このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2018/textlint/" /><meta property="article:published_time" content="2018-11-11T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-11-11T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="ブログの記事をtextlintで校正してみた">
+<meta itemprop="description" content="このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミ">
+
+
+<meta itemprop="datePublished" content="2018-11-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-11-11T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="685">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ブログの記事をtextlintで校正してみた"/>
+<meta name="twitter:description" content="このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミ"/>
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>ブログの記事をtextlintで校正してみた</h1>
+        <p class="date">November 11, 2018</p>
+        <div class="markdown-body">
+            
+
+<p>このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミスを見つけてしまって、何度も修正する羽目になる。個人ブログなので神経質になる必要はないがミスを見つけてしまうと何となく気になって修正してしまう。流石に虚しいので文章校正の仕組みを入れることにした。今はVimというテキストエディタで記事を書いているので、Vim上で文書校正をしてみた。</p>
+
+<h2 id="textlintのインストール">textlintのインストール</h2>
+
+<p>文章校正ツールである <a href="https://textlint.github.io/">textlint</a> インストール。ルールは種類が多すぎて正直どれを入れれば良いのか迷う。とりあえず無難そうな <a href="https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing">技術文書向けのtextlintルールプリセット</a>と、<a href="https://github.com/azu/textlint-rule-spellcheck-tech-word">Webエンジニア向けの辞書</a> をインストールしてみた。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$npm</span> install -g textlint
+<span class="nv">$npm</span> install -g textlint-rule-preset-ja-technical-writing textlint-rule-spellcheck-tech-word</code></pre></div>
+<h2 id="textlintの設定">textlintの設定</h2>
+
+<p>ホームディレクトリに<code>.textlintrc</code>を作成する。デフォルトだと一文の長さが100文字を越えると警告が表示されるが、100文字だとURLなどを記載するとすぐに超えてしまうので200文字で上書きした。</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;preset-ja-technical-writing&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;sentence-length&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;max&#34;</span><span class="p">:</span> <span class="mi">200</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;spellcheck-tech-word&#34;</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="vimプラグインの導入">Vimプラグインの導入</h2>
+
+<p>vimrcの設定例は以下。Lintエンジンの <a href="https://github.com/w0rp/ale">w0rp/ale</a> と、ステータスラインをカスタマイズする <a href="https://github.com/itchyny/lightline.vim">itchyny/lightline.vim</a>を使っている。</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; ale</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">ale_linters</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span> \  <span class="s1">&#39;markdown&#39;</span><span class="p">:</span> [<span class="s1">&#39;textlint&#39;</span>]<span class="err">
+</span><span class="err"></span> \}<span class="c">
+</span><span class="c">
+</span><span class="c">&#34; lightline</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">lightline</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span>  \ <span class="s1">&#39;active&#39;</span><span class="p">:</span> {<span class="err">
+</span><span class="err"></span>  \   <span class="s1">&#39;left&#39;</span><span class="p">:</span> [<span class="err">
+</span><span class="err"></span>  \     [<span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;paste&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>  \     [<span class="s1">&#39;readonly&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;modified&#39;</span><span class="p">,</span> <span class="s1">&#39;ale&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>  \   ]<span class="err">
+</span><span class="err"></span>  \ }<span class="p">,</span><span class="err">
+</span><span class="err"></span>  \ <span class="s1">&#39;component_function&#39;</span><span class="p">:</span> {<span class="err">
+</span><span class="err"></span>  \   <span class="s1">&#39;ale&#39;</span><span class="p">:</span> <span class="s1">&#39;ALEGetStatusLine&#39;</span><span class="err">
+</span><span class="err"></span>  \ }<span class="err">
+</span><span class="err"></span>\ }</code></pre></div>
+<h2 id="結果">結果</h2>
+
+<p>こんな感じで警告してくれるようになった。行番号の箇所に警告マークが表示され、そこにカーソルを合わせると警告の内容が一番下に表示される。また警告の総数がステータスラインに表示されている。便利。
+<img src="https://i.imgur.com/Igy5I0a.png" alt="" /></p>
+
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/">Hugo</a>
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+
+    </body>
+</html>
+

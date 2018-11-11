@@ -32,7 +32,7 @@
 
 <meta itemprop="datePublished" content="2018-10-31T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-31T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="983">
+<meta itemprop="wordCount" content="948">
 
 
 
@@ -76,7 +76,7 @@ if (!doNotTrack) {
         <h1>HUGOテーマ(pulp)の全文検索をあいまい検索に変更した</h1>
         <p class="date">October 31, 2018</p>
         <div class="markdown-body">
-            <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応することができない。</p>
+            <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応できない。</p>
 
 <p>この問題の解決方法としては以下２つが考えられる。</p>
 
@@ -86,7 +86,7 @@ if (!doNotTrack) {
 </ol>
 
 <p>まずはN-gram方式を試してみた。lune.jsのトークナイズプラグインを探しても見つからなかったが、
-<a href="https://github.com/olivernn/lunr.js/pull/63">Created an initial pluggable tokenizer with ngram support in order to allow using lunr to drive autocomplete style search boxes. by wballard · Pull Request #63 · olivernn/lunr.js</a>　に紹介されているようにN-gramでの分割処理を実装してtokenizerに登録すればできる。</p>
+<a href="https://github.com/olivernn/lunr.js/pull/63">Pull Request #63 olivernn/lunr.js</a>　に紹介されているようにN-gramでの分割処理を実装してtokenizerに登録すればできる。</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">myNgramTokenizer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="nx">lunr</span><span class="p">.</span><span class="nx">tokenizer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ngram implementation
@@ -107,7 +107,7 @@ if (!doNotTrack) {
   <span class="nx">keys</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>検索精度は上々、不特定な言語でも問題ないはず。しかもあいまい検索なので若干スペルを間違えても検索ができる。ただし、インデックスを使っていないのでパフォーマンスは悪い。前回と同じく Skycoin社のブログデータを使って試してみたら約150件の記事でも結構検索がカクついた。ひとまずこれで運用するが、N-gramをもう少し頑張ったほうが良いのかもしれない。全文検索の道のりは思ったより険しい。</p>
+<p>検索精度は上々、不特定な言語でも問題ないはず。しかもあいまい検索なので若干スペルを間違えても検索ができる。ただしインデックスを使っていないのでパフォーマンスは悪い。前回と同じく Skycoin社のブログデータを使って試してみたら約150件の記事でも結構検索がカクついた。一旦はこれで運用するが、N-gramをもう少し頑張ったほうが良さそうだ。全文検索の道のりは思ったより険しい。</p>
 
         </div>
     </div>

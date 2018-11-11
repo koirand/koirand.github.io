@@ -32,7 +32,7 @@
 
 <meta itemprop="datePublished" content="2018-10-08T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-08T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1314">
+<meta itemprop="wordCount" content="1192">
 
 
 
@@ -104,7 +104,7 @@ if (!doNotTrack) {
 
 <h2 id="検索処理の実装">検索処理の実装</h2>
 
-<p>検索処理は <a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">hugo + gruntjs + lunrjs = &lt;3 search</a> にlunr.jsを使ったサンプルコードを掲載してくれている人がいて、ほぼこのままで動いた。このサンプルコードをベースに以下のカスタマイズを加えた。具体的な変更内容は <a href="https://github.com/koirand/pulp/pull/3/files">Add full-text search function by koirand · Pull Request #3 · koirand/pulp</a> を参照。</p>
+<p>検索処理は <a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">hugo + gruntjs + lunrjs = search</a> にlunr.jsを使ったサンプルコードを掲載してくれている人がいて、ほぼこのままで動いた。このサンプルコードをベースに以下のカスタマイズを加えた。具体的な変更内容は <a href="https://github.com/koirand/pulp/pull/3/files">Add full-text search function by koirand · Pull Request #3 · koirand/pulp</a> を参照。</p>
 
 <ul>
 <li>検索結果に本文を表示</li>
@@ -114,11 +114,11 @@ if (!doNotTrack) {
 
 <h2 id="検索結果に本文を表示">検索結果に本文を表示</h2>
 
-<p>本文でキーワードにヒットした箇所の前後50文字を検索結果に表示することにした。複数のキーワードがスペース区切りで入力された場合は先頭のキーワードだけを使っている。また、タイトルのみにヒットした場合は、本文の先頭100文字を表示している。もっと良いやり方がある気がするが一般的なアルゴリズムが分からない。</p>
+<p>本文でキーワードにヒットした箇所の前後50文字を検索結果に表示した。複数のキーワードがスペース区切りで入力された場合は先頭のキーワードだけを使っている。また、タイトルのみにヒットした場合は、本文の先頭100文字を表示している。(恐らくもっと良いやり方がある)</p>
 
 <h2 id="日本語での検索対応">日本語での検索対応</h2>
 
-<p>標準のlunr.jsだとスペースを単語の区切りとみなすのか日本語が検索できないので、<a href="https://github.com/MihaiValentin/lunr-languages">MihaiValentin/lunr-languages: A collection of languages stemmers and stopwords for Lunr Javascript library</a> を使う必要がある。READMEには書いてないが、日本語に対応させる場合は同封されているtinyseg.jsも読み込む必要があった。テーマとして配布することを考えると日本語だけの対応で良いのかとも考えてしまうけど、そもそもテーマを使ってくれる人がいるかどうか怪しいので、そういう人が現れたら考えよう。</p>
+<p>標準のlunr.jsだとスペースを単語の区切りとみなすのか日本語を検索できないので、<a href="https://github.com/MihaiValentin/lunr-languages">MihaiValentin/lunr-languages: A collection of languages stemmers and stopwords for Lunr Javascript library</a> を使う必要がある。READMEには書いてないが、日本語に対応させる場合は同封されているtinyseg.jsも読み込む必要があった。</p>
 
 <h2 id="キーワードのハイライト">キーワードのハイライト</h2>
 
@@ -126,7 +126,7 @@ if (!doNotTrack) {
 
 <h2 id="感想">感想</h2>
 
-<p>たまに検索にヒットしない単語があるのが気になったりはするものの、概ねちゃんと検索できてるしサクサクで良い感じ。ページの数が増えてくるとパフォーマンス落ちたりするのかなと思い、試しに <a href="https://github.com/skycoin/blog">Skycoin社のブログデータ</a> のリポジトリをクローンしてこのテーマを適用してみたが普通にサクサク動いたので個人サイトであればまあ大丈夫だと思う。</p>
+<p>たまに一部の単語が検索にヒットしないものの、概ねちゃんと検索できてるしサクサクで良い感じ。ページの数が増えてくるとパフォーマンス落ちたりするのかなと、試しに <a href="https://github.com/skycoin/blog">Skycoin社のブログデータ</a> のリポジトリをクローンしてこのテーマを適用してみたが普通にサクサク動いたので個人サイトであれば大丈夫だろう。</p>
 
         </div>
     </div>

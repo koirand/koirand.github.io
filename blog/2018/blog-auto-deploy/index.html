@@ -34,7 +34,7 @@
 
 <meta itemprop="datePublished" content="2018-09-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="737">
+<meta itemprop="wordCount" content="735">
 
   <meta itemprop="image" content="https://i.imgur.com/nIbbulw.png">
 
@@ -84,13 +84,13 @@ if (!doNotTrack) {
         <div class="markdown-body">
             
 
-<p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバにアップロードする代わりにGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>
+<p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバを用意しなくてもGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>
 
 <h2 id="自動化の過程">自動化の過程</h2>
 
 <p><img src="https://i.imgur.com/nIbbulw.png" alt="" /></p>
 
-<p>ブログの生成元となるリポジトリは非公開にしたかったのでBitbucketを使っている(GitHubはプライベートリポジトリが有料なので)。<a href="http://blog.shotarok.com/post/hugo-with-bitbucket-and-circleci/">Hugo + Bitbucket + CircleCI で GitHub Pages に自動デプロイ | shotarok&rsquo;s Tech Blog</a> で既に同じ構成で自動化している人がいたのでこれを参考に構築した。ただし設定ファイルがCircleCI 1.0のものだったので、 <a href="https://taikii.net/posts/2017/11/auto-deploy-hugo-by-circleci/">Auto Deploy Hugo by Circle CI 2.0 - taikii blog</a> を見ながらCircle CI 2.0を使った設定にした。Circle CIからGitHubにSSHアクセスする必要があるので、事前に鍵ペアを作成して、公開鍵をGitHubに、秘密鍵をCircle CIに登録しておく必要があった。あとデプロイ結果をメールで確認するのが面倒だったので、<a href="https://koirand.slack.com/apps/A0F7VRE7N-circleci?next_id=0">CircleCI | Slack App ディレクトリ</a> を使ってSlackで通知するようにした。</p>
+<p>ブログの生成元となるリポジトリは非公開にしたかったのでBitbucketを使っている(GitHubはプライベートリポジトリが有料なので)。<a href="http://blog.shotarok.com/post/hugo-with-bitbucket-and-circleci/">Hugo + Bitbucket + CircleCI で GitHub Pages に自動デプロイ | shotarok&rsquo;s Tech Blog</a> で既に同じ構成で自動化している人がいたのでこれを参考に構築した。ただし設定ファイルがCircleCI 1.0のものだったので、 <a href="https://taikii.net/posts/2017/11/auto-deploy-hugo-by-circleci/">Auto Deploy Hugo by Circle CI 2.0 - taikii blog</a> を見ながらCircle CI 2.0を使った設定にした。Circle CIからGitHubにSSHアクセスする必要があるので、事前に鍵ペアを作成して、公開鍵をGitHubに秘密鍵をCircle CIにそれぞれ登録しておく必要があった。あとデプロイ結果をメールで確認するのが面倒だったので、<a href="https://koirand.slack.com/apps/A0F7VRE7N-circleci?next_id=0">CircleCI | Slack App ディレクトリ</a> を使ってSlackで通知するようにした。</p>
 
 <h2 id="circleci-config-yml">.circleci/config.yml</h2>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">version<span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
