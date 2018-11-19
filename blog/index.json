@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2018/ini-json-yaml-toml/",
+        "title": "INI,JSON,YAML,TOMLのチートシート",
+        "section": "blog",
+        "date" : "2018.11.19",
+        "body": " 設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。辛い。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGo言語でツールを作った時に初めて触れた。Go言語界隈ではなぜかTOMLが良く使われている。HUGOの設定もTOMLだ。\n以上唐突な自分語り。何が言いたいのかというと、TPOに合わせて色々な規格を読み書きしないといけなくてややこしいと言うことだ。\nついでなので各規格の登場年月を調べた。\n   規格 初版     INI -   XML 1998年   YAML 2001年5月   JSON 2006年7月   TOML 2013年2月    意外とYAMLが古い。INIはWikipediaによると規格化・標準化されていないらしい。今初めて知った。自然発生的に生まれたと言うことだろうか。不思議な書式だ。そういう意味ではTOMLはINIを規格化したものと言えるのだろうか。ちなみに各フォーマットをGoogleトレンドだとこんな感じ。\nチートシート というわけでチートシート。(XMLは書かない)\nINI ; コメント key1=value1 [section] key2=value2 key3=1.1 INIに配列やネストを記述する方法はない。\nJSON { \u0026#34;key1\u0026#34;: \u0026#34;value1\u0026#34;, \u0026#34;key2\u0026#34;: { \u0026#34;key3\u0026#34;: null, \u0026#34;key4\u0026#34;: [ 1.1, 2.2 ] }, \u0026#34;key5\u0026#34;: [ { \u0026#34;key6\u0026#34;: 3, \u0026#34;key7\u0026#34;: true }, { \u0026#34;key6\u0026#34;: 4, \u0026#34;key7\u0026#34;: false } ] } JSONにコメントはない。\nYAML # コメントkey1:value1# コメントkey2:key3:nullkey4:-1.1-2.2key5:-key6:3key7:true-key6:4key7:false TOML # コメント key1: \u0026#34;value1\u0026#34; # コメント [key2] key3: null key4: [1.1, 2.2] [[key5]] key6: 3 key7: true [[key5]] key6: 4 key7: false key8: 2018-11-19 key9: 2018-11-19T15:30:00+09:00 #日本時間15:30"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2018/textlint/",
         "title": "ブログの記事をtextlintで校正してみた",
         "section": "blog",

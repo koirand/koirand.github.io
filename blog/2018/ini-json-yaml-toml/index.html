@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        
+            INI,JSON,YAML,TOMLのチートシート - Kazuki Koide
+        
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+
+    
+    
+
+    <meta property="og:title" content="INI,JSON,YAML,TOMLのチートシート" />
+<meta property="og:description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2018/ini-json-yaml-toml/" /><meta property="article:published_time" content="2018-11-19T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-11-19T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="INI,JSON,YAML,TOMLのチートシート">
+<meta itemprop="description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS">
+
+
+<meta itemprop="datePublished" content="2018-11-19T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-11-19T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1023">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="INI,JSON,YAML,TOMLのチートシート"/>
+<meta name="twitter:description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS"/>
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>INI,JSON,YAML,TOMLのチートシート</h1>
+        <p class="date">November 19, 2018</p>
+        <div class="markdown-body">
+            
+
+<p>設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。辛い。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGo言語でツールを作った時に初めて触れた。Go言語界隈ではなぜかTOMLが良く使われている。HUGOの設定もTOMLだ。</p>
+
+<p>以上唐突な自分語り。何が言いたいのかというと、TPOに合わせて色々な規格を読み書きしないといけなくてややこしいと言うことだ。</p>
+
+<p>ついでなので各規格の登場年月を調べた。</p>
+
+<table>
+<thead>
+<tr>
+<th>規格</th>
+<th>初版</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>INI</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>XML</td>
+<td>1998年</td>
+</tr>
+
+<tr>
+<td>YAML</td>
+<td>2001年5月</td>
+</tr>
+
+<tr>
+<td>JSON</td>
+<td>2006年7月</td>
+</tr>
+
+<tr>
+<td>TOML</td>
+<td>2013年2月</td>
+</tr>
+</tbody>
+</table>
+
+<p>意外とYAMLが古い。INIは<a href="https://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">Wikipedia</a>によると規格化・標準化されていないらしい。今初めて知った。自然発生的に生まれたと言うことだろうか。不思議な書式だ。そういう意味ではTOMLはINIを規格化したものと言えるのだろうか。ちなみに各フォーマットをGoogleトレンドだと<a href="https://trends.google.co.jp/trends/explore?date=all&amp;geo=JP&amp;q=ini,xml,json,yaml,toml">こんな感じ</a>。</p>
+
+<h2 id="チートシート">チートシート</h2>
+
+<p>というわけでチートシート。(XMLは書かない)</p>
+
+<h3 id="ini">INI</h3>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1">; コメント</span>
+<span class="na">key1</span><span class="o">=</span><span class="s">value1</span>
+
+<span class="k">[section]</span>
+<span class="na">key2</span><span class="o">=</span><span class="s">value2</span>
+<span class="na">key3</span><span class="o">=</span><span class="s">1.1</span></code></pre></div>
+<p>INIに配列やネストを記述する方法はない。</p>
+
+<h3 id="json">JSON</h3>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;key1&#34;</span><span class="p">:</span> <span class="s2">&#34;value1&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;key2&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;key3&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&#34;key4&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span> <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;key5&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;key6&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="nt">&#34;key7&#34;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;key6&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="nt">&#34;key7&#34;</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+<p>JSONにコメントはない。</p>
+
+<h3 id="yaml">YAML</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># コメント</span><span class="w">
+</span><span class="w"></span>key1<span class="p">:</span><span class="w"> </span>value1<span class="w">    </span><span class="c"># コメント</span><span class="w">
+</span><span class="w"></span>key2<span class="p">:</span><span class="w">
+</span><span class="w">  </span>key3<span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="w">  </span>key4<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span><span class="m">1.1</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span><span class="m">2.2</span><span class="w">
+</span><span class="w"></span>key5<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>key6<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">    </span>key7<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>key6<span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span><span class="w">    </span>key7<span class="p">:</span><span class="w"> </span><span class="kc">false</span></code></pre></div>
+<h3 id="toml">TOML</h3>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># コメント</span>
+<span class="nx">key1</span><span class="err">:</span> <span class="s2">&#34;value1&#34;</span>  <span class="c"># コメント</span>
+
+<span class="p">[</span><span class="nx">key2</span><span class="p">]</span>
+<span class="nx">key3</span><span class="err">:</span> <span class="nx">null</span>
+<span class="nx">key4</span><span class="err">:</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">]</span>
+
+<span class="p">[[</span><span class="nx">key5</span><span class="p">]]</span>
+<span class="nx">key6</span><span class="err">:</span> <span class="mi">3</span>
+<span class="nx">key7</span><span class="err">:</span> <span class="kc">true</span>
+
+<span class="p">[[</span><span class="nx">key5</span><span class="p">]]</span>
+<span class="nx">key6</span><span class="err">:</span> <span class="mi">4</span>
+<span class="nx">key7</span><span class="err">:</span> <span class="kc">false</span>
+
+<span class="nx">key8</span><span class="err">:</span> <span class="mi">2018-11-19</span>
+<span class="nx">key9</span><span class="err">:</span> <span class="ld">2018-11-19T15:30:00+09:00</span>  <span class="c">#日本時間15:30</span></code></pre></div>
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/">Hugo</a>
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+
+    </body>
+</html>
+

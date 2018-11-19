@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://koirand.github.io/blog/2018/ini-json-yaml-toml/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://koirand.github.io/blog/2018/textlint/</loc>
     <lastmod>2018-11-11T00:00:00+00:00</lastmod>
   </url>
@@ -49,7 +54,7 @@
   
   <url>
     <loc>https://koirand.github.io/blog/index.json</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -60,7 +65,7 @@
   
   <url>
     <loc>https://koirand.github.io/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
