@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        
+            パッケージマネージャーのチートシート - Kazuki Koide
+        
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+
+    
+    
+
+    <meta property="og:title" content="パッケージマネージャーのチートシート" />
+<meta property="og:description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2018/package-manager/" /><meta property="article:published_time" content="2018-11-30T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-11-30T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="パッケージマネージャーのチートシート">
+<meta itemprop="description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ">
+
+
+<meta itemprop="datePublished" content="2018-11-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-11-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="637">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="パッケージマネージャーのチートシート"/>
+<meta name="twitter:description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ"/>
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>パッケージマネージャーのチートシート</h1>
+        <p class="date">November 30, 2018</p>
+        <div class="markdown-body">
+            <p><a href="https://koirand.github.io/blog/2018/ini-json-yaml-toml/">前回</a>の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマネージャーによってコマンドの意味が微妙に違っていたりするのでチートシートで目的からコマンドの逆引きしたほうが安心できる。自分用なので自分が使うものだけとはいえapt(Debian)、yum(Red Hat)、Homebrew(Mac OS)、npm(JavaScript)、yarn(JavaScript)、pip(Python)、dep(Golang)と結構種類が多い。パッケージマネージャーとはやや異なるがfisherman(fish)、Helm(Kubernetes)もついでなので一緒に記載しておいた。</p>
+
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>apt(旧)</th>
+<th>apt(新)</th>
+<th>yum</th>
+<th>Homebrew</th>
+<th>npm</th>
+<th>yarn</th>
+<th>pip</th>
+<th>dep</th>
+<th>fisherman</th>
+<th>Helm</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>パッケージ追加</td>
+<td>apt-get install</td>
+<td>apt-install</td>
+<td>yum install</td>
+<td>brew install</td>
+<td>npm install</td>
+<td>yarn add</td>
+<td>pip install</td>
+<td>dep ensure</td>
+<td>fisher install</td>
+<td>helm install</td>
+</tr>
+
+<tr>
+<td>パッケージ削除</td>
+<td>apt-get remove</td>
+<td>apt remove</td>
+<td>yum remove</td>
+<td>brew uninstall</td>
+<td>npm uninstall</td>
+<td>yarn remove</td>
+<td>pip uninstall</td>
+<td>dep remove</td>
+<td>fisher rm</td>
+<td>helm delete</td>
+</tr>
+
+<tr>
+<td>リポジトリ更新</td>
+<td>apt-get update</td>
+<td>apt update</td>
+<td>-</td>
+<td>brew update</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>helm update</td>
+</tr>
+
+<tr>
+<td>パッケージ更新</td>
+<td>apt-get upgrade</td>
+<td>apt upgrade</td>
+<td>yum update</td>
+<td>brew upgrade</td>
+<td>npm update</td>
+<td>yarn upgrade</td>
+<td>pip install -U</td>
+<td>-</td>
+<td>fisher update</td>
+<td>helm upgrade</td>
+</tr>
+
+<tr>
+<td>パッケージ検索</td>
+<td>apt-cache search</td>
+<td>apt search</td>
+<td>yum search</td>
+<td>brew search</td>
+<td>npm search</td>
+<td>-</td>
+<td>pip search</td>
+<td>-</td>
+<td>-</td>
+<td>helm search</td>
+</tr>
+
+<tr>
+<td>パッケージ詳細</td>
+<td>apt-cache show</td>
+<td>apt show</td>
+<td>yum info</td>
+<td>brew info</td>
+<td>npm view</td>
+<td>yarn info</td>
+<td>pip show</td>
+<td>-</td>
+<td>-</td>
+<td>helm inspect</td>
+</tr>
+
+<tr>
+<td>追加したパッケージの確認</td>
+<td>dpkg -l</td>
+<td>dpkg -l</td>
+<td>yum list installed</td>
+<td>brew list</td>
+<td>npm ls</td>
+<td>yarn list</td>
+<td>pip list</td>
+<td>dep status</td>
+<td>fisher ls</td>
+<td>helm list</td>
+</tr>
+
+<tr>
+<td>ゴミパッケージの掃除</td>
+<td>apt-get autoremove</td>
+<td>apt autoremove</td>
+<td>yum autoremove</td>
+<td>-</td>
+<td>npm prune</td>
+<td>yarn install</td>
+<td>-</td>
+<td>dep prune</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+<p>Homebrewにautoremoveが無くて辛いことが良くあって、何か方法はないかと調べたら<a href="https://github.com/connorworley/dotfiles/blob/master/.bin/brew-autoremove">スクリプトをつくっている人がいた</a>(しかもfish)。ありがたく拝借した。</p>
+
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/">Hugo</a>
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+
+    </body>
+</html>
+
