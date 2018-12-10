@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React開発環境構築(create-react-app利用)</title>
+      <link>https://koirand.github.io/blog/2018/create-react-app/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2018/create-react-app/</guid>
+      <description>Reactアプリの開発環境を一から構築するのは中々辛いものがある。たくさんモジュールを入れないといけないし、それらのモジュールの依存関係にも</description>
+    </item>
     
     <item>
       <title>パッケージマネージャーのチートシート</title>
