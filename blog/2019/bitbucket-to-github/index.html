@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>
+        
+            ブログのリポジトリをGitHubに移行した - Kazuki Koide
+        
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="map[]" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+
+    
+    
+
+    <meta property="og:title" content="ブログのリポジトリをGitHubに移行した" />
+<meta property="og:description" content="以前、ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した に書いた通り、ブログのリポジトリはBitbucketで管理して、ブロ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2019/bitbucket-to-github/" />
+
+<meta property="og:image" content="https://i.imgur.com/DEWfnei.png" />
+<meta property="article:published_time" content="2019-03-02T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-03-02T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="ブログのリポジトリをGitHubに移行した">
+<meta itemprop="description" content="以前、ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した に書いた通り、ブログのリポジトリはBitbucketで管理して、ブロ">
+
+
+<meta itemprop="datePublished" content="2019-03-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-03-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="488">
+
+  <meta itemprop="image" content="https://i.imgur.com/DEWfnei.png">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://i.imgur.com/DEWfnei.png"/>
+
+<meta name="twitter:title" content="ブログのリポジトリをGitHubに移行した"/>
+<meta name="twitter:description" content="以前、ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した に書いた通り、ブログのリポジトリはBitbucketで管理して、ブロ"/>
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+    <body>
+        <header>
+    <div class="avatar">
+        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
+        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+    </div>
+</header>
+        <div class="main">
+        
+    <div>
+        <h1>ブログのリポジトリをGitHubに移行した</h1>
+        <p class="date">March 2, 2019</p>
+        <div class="markdown-body">
+            
+
+<p>以前、<a href="https://koirand.github.io/blog/2018/blog-auto-deploy/">ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</a> に書いた通り、ブログのリポジトリはBitbucketで管理して、ブログをビルドした結果生成されるhtmlファイルはGitHubにデプロイしていたが、先日GitHubのプライベートリポジトリが無料化されたのでGitHubだけで完結するようにリポジトリを移行してみた。</p>
+
+<h2 id="before">Before</h2>
+
+<p><img src="https://i.imgur.com/KVUoXES.png" alt="" /></p>
+
+<h2 id="after">After</h2>
+
+<p><img src="https://i.imgur.com/DEWfnei.png" alt="" /></p>
+
+<h2 id="circleciでのsshキーの登録">CircleCIでのSSHキーの登録</h2>
+
+<p>特に難しいところはなかったが、SSHキーの登録だけ少しハマったのでメモ。
+CircleCIのプロジェクト設定にあるPERMISSIONS -&gt; Checkout SSH keys からSSHキーを登録する際、デプロイキーを追加する方法と、ユーザーキーを追加する方法の２種類がある。
+最初にデプロイキーを選択したがうまく動かなかった。デプロイキーだとブログ用のリポジトリ(図の左上のリポジトリ)のRead権限しか付与されないので、GitHub Pages用のリポジトリ(図の右上のリポジトリ)に対してデプロイできる権限を付与できなかった。
+一方ユーザーキーだと、全てのリポジトリにRead/Write権限を付与でき、これだとうまくデプロイできた。</p>
+
+        </div>
+    </div>
+
+        </div>
+        <footer>
+    <p>
+        &copy; 2018 Kazuki Koide. 
+        Powered by <a href="https://gohugo.io/">Hugo</a>
+        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+    </p>
+</footer>
+
+    </body>
+</html>
+
