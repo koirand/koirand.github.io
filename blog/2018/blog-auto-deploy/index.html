@@ -24,6 +24,7 @@
 <meta property="og:description" content="このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/blog-auto-deploy/" />
+
 <meta property="og:image" content="https://i.imgur.com/nIbbulw.png" />
 <meta property="article:published_time" content="2018-09-30T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2018-09-30T00:00:00&#43;00:00"/>
@@ -34,7 +35,7 @@
 
 <meta itemprop="datePublished" content="2018-09-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="735">
+<meta itemprop="wordCount" content="712">
 
   <meta itemprop="image" content="https://i.imgur.com/nIbbulw.png">
 
@@ -108,14 +109,14 @@ if (!doNotTrack) {
 </span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
 </span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Setting for Git&#34;</span><span class="w">
 </span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            git config --global user.name &#34;koirand&#34;
-</span><span class="sd">            git config --global user.email &#34;koirand.jp@gmail.com&#34;</span><span class="w">
+</span><span class="sd">            git config --global user.name &#34;koirand&#34;</span><span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&#34;koirand.jp@gmail.com&#34;</span><span class="w">
 </span><span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
 </span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Up to date themes&#34;</span><span class="w">
 </span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            git submodule sync
-</span><span class="sd">            git submodule update --init --recursive</span><span class="w">
+</span><span class="sd">            git submodule sync</span><span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive<span class="w">
 </span><span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
 </span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Get GitHub repository&#34;</span><span class="w">
@@ -124,11 +125,11 @@ if (!doNotTrack) {
 </span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
 </span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Build &amp; Push&#34;</span><span class="w">
 </span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            hugo
-</span><span class="sd">            cd public
-</span><span class="sd">            git add .
-</span><span class="sd">            git commit -m &#34;rebuilding site `date &#39;+%Y-%m-%d&#39;`&#34;
-</span><span class="sd">            git push origin master</span></code></pre></div>
+</span><span class="sd">            hugo</span><span class="w">
+</span><span class="w">            </span>cd<span class="w"> </span>public<span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>add<span class="w"> </span>.<span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&#34;rebuilding site `date &#39;+%Y-%m-%d&#39;`&#34;</span><span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master</code></pre></div>
 <p>ビルド結果はこんな感じ。14秒くらいかかった。
 <img src="https://i.imgur.com/MBvPW7t.png" alt="" /></p>
 
