@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 02 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mac初期設定メモ</title>
+      <link>https://koirand.github.io/blog/2019/macos-setting/</link>
+      <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/macos-setting/</guid>
+      <description>MacbookにMojaveをクリーンインストールしたのでその時の初期設定メモ。 アプリインストール Apple Storeから BetterSnapTool Slack LINE BitWarden Webからダウンロ</description>
+    </item>
     
     <item>
       <title>ブログのリポジトリをGitHubに移行した</title>
