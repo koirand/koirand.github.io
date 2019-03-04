@@ -33,7 +33,7 @@
 
 <meta itemprop="datePublished" content="2019-03-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="687">
+<meta itemprop="wordCount" content="711">
 
 
 
@@ -246,7 +246,7 @@ ln -s ~/Projects/dotfiles/.textlintrc ~/.textlintrc
 <li>chsh -s /usr/local/bin/fish</li>
 <li><a href="https://github.com/jorgebucaran/fisher">fisher</a> をインストール</li>
 <li><a href="https://github.com/rafaelrinaldi/pure">pure</a> をインストール</li>
-<li>~/.config/fish/config.fish</li>
+<li>~/.config/fish/config.fish に以下を追記</li>
 </ul>
 
 <pre><code># node.js
@@ -268,6 +268,13 @@ set -x TERM screen-256color
 
 # ruby
 set -g fish_user_paths &quot;/usr/local/opt/ruby/bin&quot; $fish_user_paths
+</code></pre>
+
+<ul>
+<li>コマンドの色が見辛いので ~/.config/fish/fish_variables を変更</li>
+</ul>
+
+<pre><code>SETUVAR fish_color_command:white
 </code></pre>
 
         </div>
