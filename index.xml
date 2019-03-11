@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 03 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>create-react-appで作ったアプリをESLintする</title>
+      <link>https://koirand.github.io/blog/2019/react-eslint/</link>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/react-eslint/</guid>
+      <description>Sider というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。 以前 React開発環境構築</description>
+    </item>
     
     <item>
       <title>Mac初期設定メモ</title>

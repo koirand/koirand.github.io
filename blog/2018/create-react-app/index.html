@@ -33,7 +33,7 @@
 
 <meta itemprop="datePublished" content="2018-12-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1481">
+<meta itemprop="wordCount" content="1516">
 
 
 
@@ -270,7 +270,7 @@ my-app@0.1.0
 
 <h2 id="lint-prettire">Lint、Prettire</h2>
 
-<p>.eslintrcや.prettierrcを書くのはとてもダルいので、専用のモジュールを入れてしまう。</p>
+<p>.eslintrcや.prettierrcを書くのはとてもダルいので、Standard Style専用のモジュールを入れてしまう。</p>
 
 <pre><code>yarn add -D standard prettier-standard
 </code></pre>
@@ -291,6 +291,12 @@ my-app@0.1.0
 <pre><code>let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_fix_on_save = 1
 </code></pre>
+
+<h2 id="atom">Atom</h2>
+
+<p>以下２つのプラグインを入れればOK
+- linter-standard
+- standard-formatter</p>
 
 <h2 id="まとめ">まとめ</h2>
 
