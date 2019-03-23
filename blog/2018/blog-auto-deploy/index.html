@@ -87,7 +87,7 @@ if (!doNotTrack) {
   
   <p class="date">September 30, 2018</p>
   
-  <div class="markdown-body">
+  <div id="contentBody">
     
 
 <p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバを用意しなくてもGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>

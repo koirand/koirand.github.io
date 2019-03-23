@@ -81,7 +81,7 @@ if (!doNotTrack) {
   
   <p class="date">October 31, 2018</p>
   
-  <div class="markdown-body">
+  <div id="contentBody">
     <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応できない。</p>
 
 <p>この問題の解決方法としては以下２つが考えられる。</p>
