@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した" />
+  <meta property="og:title" content="ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した" />
 <meta property="og:description" content="このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/blog-auto-deploy/" />
@@ -35,7 +36,7 @@
 
 <meta itemprop="datePublished" content="2018-09-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="764">
+<meta itemprop="wordCount" content="829">
 
   <meta itemprop="image" content="https://i.imgur.com/FFRPSaW.png">
 
@@ -48,16 +49,16 @@
 <meta name="twitter:title" content="ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した"/>
 <meta name="twitter:description" content="このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -70,20 +71,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</h1>
-        <p class="date">September 30, 2018</p>
-        <div class="markdown-body">
-            
+
+  
+  <p class="date">September 30, 2018</p>
+  
+  <div class="markdown-body">
+    
 
 <p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバを用意しなくてもGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>
 
@@ -94,42 +99,45 @@ if (!doNotTrack) {
 <p>ブログの生成元となるリポジトリは非公開にしたかったのでBitbucketを使っている(GitHubはプライベートリポジトリが有料なので)。<a href="http://blog.shotarok.com/post/hugo-with-bitbucket-and-circleci/">Hugo + Bitbucket + CircleCI で GitHub Pages に自動デプロイ | shotarok&rsquo;s Tech Blog</a> で既に同じ構成で自動化している人がいたのでこれを参考に構築した。ただし設定ファイルがCircleCI 1.0のものだったので、 <a href="https://taikii.net/posts/2017/11/auto-deploy-hugo-by-circleci/">Auto Deploy Hugo by Circle CI 2.0 - taikii blog</a> を見ながらCircle CI 2.0を使った設定にした。Circle CIからGitHubにSSHアクセスする必要があるので、事前に鍵ペアを作成して、公開鍵をGitHubに秘密鍵をCircle CIにそれぞれ登録しておく必要があった。あとデプロイ結果をメールで確認するのが面倒だったので、<a href="https://koirand.slack.com/apps/A0F7VRE7N-circleci?next_id=0">CircleCI | Slack App ディレクトリ</a> を使ってSlackで通知するようにした。</p>
 
 <h2 id="circleci-config-yml">.circleci/config.yml</h2>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">version<span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span><span class="w"></span>jobs<span class="p">:</span><span class="w">
-</span><span class="w">  </span>build<span class="p">:</span><span class="w">
-</span><span class="w">    </span>docker<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>image<span class="p">:</span><span class="w"> </span>cibuilds/hugo<span class="p">:</span>latest<span class="w">
-</span><span class="w">        </span>environment<span class="p">:</span><span class="w">
-</span><span class="w">          </span>TZ<span class="p">:</span><span class="w"> </span>Asia/Tokyo<span class="w">
-</span><span class="w">
-</span><span class="w">    </span>working_directory<span class="p">:</span><span class="w"> </span>~/blog<span class="w">
-</span><span class="w">    </span>steps<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>checkout<span class="w">
-</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Setting for Git&#34;</span><span class="w">
-</span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            git config --global user.name &#34;koirand&#34;</span><span class="w">
-</span><span class="w">            </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&#34;koirand.jp@gmail.com&#34;</span><span class="w">
-</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Up to date themes&#34;</span><span class="w">
-</span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            git submodule sync</span><span class="w">
-</span><span class="w">            </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive<span class="w">
-</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Get GitHub repository&#34;</span><span class="w">
-</span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com<span class="p">:</span>koirand/koirand.github.io.git<span class="w"> </span>public<span class="w">
-</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>run<span class="p">:</span><span class="w">
-</span><span class="w">          </span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;Build &amp; Push&#34;</span><span class="w">
-</span><span class="w">          </span>command<span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="sd">            hugo</span><span class="w">
-</span><span class="w">            </span>cd<span class="w"> </span>public<span class="w">
-</span><span class="w">            </span>git<span class="w"> </span>add<span class="w"> </span>.<span class="w">
-</span><span class="w">            </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&#34;rebuilding site `date &#39;+%Y-%m-%d&#39;`&#34;</span><span class="w">
-</span><span class="w">            </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master</code></pre></div>
+
+<pre><code class="language-yaml">version: 2
+jobs:
+  build:
+    docker:
+      - image: cibuilds/hugo:latest
+        environment:
+          TZ: Asia/Tokyo
+
+    working_directory: ~/blog
+    steps:
+      - checkout
+
+      - run:
+          name: &quot;Setting for Git&quot;
+          command: |
+            git config --global user.name &quot;koirand&quot;
+            git config --global user.email &quot;koirand.jp@gmail.com&quot;
+
+      - run:
+          name: &quot;Up to date themes&quot;
+          command: |
+            git submodule sync
+            git submodule update --init --recursive
+
+      - run:
+          name: &quot;Get GitHub repository&quot;
+          command: git clone git@github.com:koirand/koirand.github.io.git public
+
+      - run:
+          name: &quot;Build &amp; Push&quot;
+          command: |
+            hugo
+            cd public
+            git add .
+            git commit -m &quot;rebuilding site `date '+%Y-%m-%d'`&quot;
+            git push origin master
+</code></pre>
+
 <p>ビルド結果はこんな感じ。14秒くらいかかった。
 <img src="https://i.imgur.com/MBvPW7t.png" alt="" /></p>
 
@@ -137,18 +145,15 @@ if (!doNotTrack) {
 
 <p>GitHubのプライベートリポジトリが無料化されたので、<a href="https://koirand.github.io/blog/2019/bitbucket-to-github/">ブログのリポジトリをGitHubに移行した</a></p>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

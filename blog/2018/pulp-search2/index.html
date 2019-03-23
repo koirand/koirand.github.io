@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            HUGOテーマ(pulp)の全文検索をあいまい検索に変更した - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          HUGOテーマ(pulp)の全文検索をあいまい検索に変更した - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="HUGOテーマ(pulp)の全文検索をあいまい検索に変更した" />
+  <meta property="og:title" content="HUGOテーマ(pulp)の全文検索をあいまい検索に変更した" />
 <meta property="og:description" content="前回の記事「HUGOテーマ(pulp)に全文検索機能を付けた」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いと" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/pulp-search2/" />
@@ -42,16 +43,16 @@
 <meta name="twitter:title" content="HUGOテーマ(pulp)の全文検索をあいまい検索に変更した"/>
 <meta name="twitter:description" content="前回の記事「HUGOテーマ(pulp)に全文検索機能を付けた」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いと"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -64,20 +65,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>HUGOテーマ(pulp)の全文検索をあいまい検索に変更した</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>HUGOテーマ(pulp)の全文検索をあいまい検索に変更した</h1>
-        <p class="date">October 31, 2018</p>
-        <div class="markdown-body">
-            <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応できない。</p>
+
+  
+  <p class="date">October 31, 2018</p>
+  
+  <div class="markdown-body">
+    <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応できない。</p>
 
 <p>この問題の解決方法としては以下２つが考えられる。</p>
 
@@ -88,40 +93,41 @@ if (!doNotTrack) {
 
 <p>まずはN-gram方式を試してみた。lune.jsのトークナイズプラグインを探しても見つからなかったが、
 <a href="https://github.com/olivernn/lunr.js/pull/63">Pull Request #63 olivernn/lunr.js</a>　に紹介されているようにN-gramでの分割処理を実装してtokenizerに登録すればできる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">myNgramTokenizer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">lunr</span><span class="p">.</span><span class="nx">tokenizer</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ngram implementation
-</span><span class="c1"></span>  <span class="p">}</span>
-<span class="p">}</span>
 
-<span class="nx">idx</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myNgramTokenizer</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-javascript">var myNgramTokenizer = function () {
+  lunr.tokenizer = function (obj) {
+    // ngram implementation
+  }
+}
+
+idx.use(myNgramTokenizer)
+</code></pre>
+
 <p>検索クエリも同様にN-gramで分割処理をしてあげれば検索ができる。ただ単純なN-gramだけでは検索精度がいまひとつだった。<a href="http://gihyo.jp/dev/serial/01/make-findspot/0005?page=2">第5回 N-gramのしくみ：検索エンジンを作る｜gihyo.jp … 技術評論社</a> にも記載されている通り、分割した文字列片がそれぞれバラバラの箇所でヒットしてしまう問題がある。検索精度を高めるためには、ヒットした文字列片の出現位置を見てあげる必要があるようだ。</p>
 
 <p>N-gramの実装はなかなか大変そうだったので、インデックスはあきらめて<a href="http://fusejs.io/">Fuse.js</a>というあいまい検索のライブラリを使うことにした。Fuse.jsのデフォルトのオプションだと本文の先頭32文字しかヒットしないが、<a href="https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae">Hugo JS Searching with Fuse.js</a> で紹介されている通り、tokenizeオプションを有効にすると全文検索可能になる。色々オプションを試して以下に落ち着いた。</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">shouldSort</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nx">tokenize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nx">matchAllTokens</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nx">threshold</span><span class="o">:</span> <span class="mf">0.3</span><span class="p">,</span>
-  <span class="nx">minMatchCharLength</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-  <span class="nx">keys</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+
+<pre><code class="language-javascript">var options = {
+  shouldSort: true,
+  tokenize: true,
+  matchAllTokens: true,
+  threshold: 0.3,
+  minMatchCharLength: 5,
+  keys: ['title', 'body']
+}
+</code></pre>
+
 <p>検索精度は上々、不特定な言語でも問題ないはず。しかもあいまい検索なので若干スペルを間違えても検索ができる。ただしインデックスを使っていないのでパフォーマンスは悪い。前回と同じく Skycoin社のブログデータを使って試してみたら約150件の記事でも結構検索がカクついた。一旦はこれで運用するが、N-gramをもう少し頑張ったほうが良さそうだ。全文検索の道のりは思ったより険しい。</p>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

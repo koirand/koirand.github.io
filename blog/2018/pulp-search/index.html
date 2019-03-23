@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            HUGOテーマ(pulp)に全文検索機能を付けた - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          HUGOテーマ(pulp)に全文検索機能を付けた - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="HUGOテーマ(pulp)に全文検索機能を付けた" />
+  <meta property="og:title" content="HUGOテーマ(pulp)に全文検索機能を付けた" />
 <meta property="og:description" content="先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしな" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/pulp-search/" />
@@ -42,16 +43,16 @@
 <meta name="twitter:title" content="HUGOテーマ(pulp)に全文検索機能を付けた"/>
 <meta name="twitter:description" content="先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしな"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -64,20 +65,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>HUGOテーマ(pulp)に全文検索機能を付けた</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>HUGOテーマ(pulp)に全文検索機能を付けた</h1>
-        <p class="date">October 8, 2018</p>
-        <div class="markdown-body">
-            
+
+  
+  <p class="date">October 8, 2018</p>
+  
+  <div class="markdown-body">
+    
 
 <p>先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしなくても本文が検索できればいいなと思っていた。しっかり作るならElasticSearchや<a href="https://www.algolia.com/">Algolia</a>を使うんだろうけど、そうするとThemeとして配布しづらくなるし、個人用途としてはそこまでの機能はいらないのでフロントエンドだけで完結する方法を模索した。</p>
 
@@ -88,8 +93,11 @@ if (!doNotTrack) {
 <h2 id="記事をjsonで取得できるようにする">記事をJSONで取得できるようにする</h2>
 
 <p>まずは、<a href="https://www.celeumu.com/articles/20171107023559/">HugoでJSONを出力 | Celeumu</a> を参考にしつつブログの記事をJSONで取得できるようにした。config.tomlに以下を追記すると、拡張子が.jsonのテンプレートをHUGOがテンプレートとして見てくれるようになった。</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
-    <span class="nx">section</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;JSON&#34;</span><span class="p">,</span> <span class="s2">&#34;HTML&#34;</span><span class="p">]</span></code></pre></div>
+
+<pre><code class="language-toml">[outputs]
+    section = [&quot;JSON&quot;, &quot;HTML&quot;]
+</code></pre>
+
 <p>その上で<code>layouts/_default/list.json</code> を作成すると、<a href="http://hostname/section/index.json">http://hostname/section/index.json</a> といったURLでいとも簡単にセクションのデータをJSONで引っこ抜くことができるようになる。このブログの場合だと、<a href="https://koirand.github.io/blog/index.json">https://koirand.github.io/blog/index.json</a> からデータが取得できる。</p>
 
 <pre><code>[{{ range $index, $page := .Pages }}{{ if ne $index 0 }},{{ end }}
@@ -129,18 +137,15 @@ if (!doNotTrack) {
 
 <p>たまに一部の単語が検索にヒットしないものの、概ねちゃんと検索できてるしサクサクで良い感じ。ページの数が増えてくるとパフォーマンス落ちたりするのかなと、試しに <a href="https://github.com/skycoin/blog">Skycoin社のブログデータ</a> のリポジトリをクローンしてこのテーマを適用してみたが普通にサクサク動いたので個人サイトであれば大丈夫だろう。</p>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

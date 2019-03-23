@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            パッケージマネージャーのチートシート - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          パッケージマネージャーのチートシート - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="パッケージマネージャーのチートシート" />
+  <meta property="og:title" content="パッケージマネージャーのチートシート" />
 <meta property="og:description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/package-manager/" />
@@ -42,16 +43,16 @@
 <meta name="twitter:title" content="パッケージマネージャーのチートシート"/>
 <meta name="twitter:description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -64,20 +65,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>パッケージマネージャーのチートシート</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>パッケージマネージャーのチートシート</h1>
-        <p class="date">November 30, 2018</p>
-        <div class="markdown-body">
-            <p><a href="https://koirand.github.io/blog/2018/ini-json-yaml-toml/">前回</a>の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマネージャーによってコマンドの意味が微妙に違っていたりするのでチートシートで目的からコマンドの逆引きしたほうが安心できる。自分用なので自分が使うものだけとはいえapt(Debian)、yum(Red Hat)、Homebrew(Mac OS)、npm(JavaScript)、yarn(JavaScript)、pip(Python)、dep(Golang)と結構種類が多い。パッケージマネージャーとはやや異なるがfisherman(fish)、Helm(Kubernetes)もついでなので一緒に記載しておいた。</p>
+
+  
+  <p class="date">November 30, 2018</p>
+  
+  <div class="markdown-body">
+    <p><a href="https://koirand.github.io/blog/2018/ini-json-yaml-toml/">前回</a>の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマネージャーによってコマンドの意味が微妙に違っていたりするのでチートシートで目的からコマンドの逆引きしたほうが安心できる。自分用なので自分が使うものだけとはいえapt(Debian)、yum(Red Hat)、Homebrew(Mac OS)、npm(JavaScript)、yarn(JavaScript)、pip(Python)、dep(Golang)と結構種類が多い。パッケージマネージャーとはやや異なるがfisherman(fish)、Helm(Kubernetes)もついでなので一緒に記載しておいた。</p>
 
 <table>
 <thead>
@@ -213,18 +218,15 @@ if (!doNotTrack) {
 
 <p>Homebrewにautoremoveが無くて辛いことが良くあって、何か方法はないかと調べたら<a href="https://github.com/connorworley/dotfiles/blob/master/.bin/brew-autoremove">スクリプトをつくっている人がいた</a>(しかもfish)。ありがたく拝借した。</p>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            INI,JSON,YAML,TOMLのチートシート - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          INI,JSON,YAML,TOMLのチートシート - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="INI,JSON,YAML,TOMLのチートシート" />
+  <meta property="og:title" content="INI,JSON,YAML,TOMLのチートシート" />
 <meta property="og:description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/ini-json-yaml-toml/" />
@@ -33,7 +34,7 @@
 
 <meta itemprop="datePublished" content="2018-11-19T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-19T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1015">
+<meta itemprop="wordCount" content="960">
 
 
 
@@ -42,16 +43,16 @@
 <meta name="twitter:title" content="INI,JSON,YAML,TOMLのチートシート"/>
 <meta name="twitter:description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -64,20 +65,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>INI,JSON,YAML,TOMLのチートシート</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>INI,JSON,YAML,TOMLのチートシート</h1>
-        <p class="date">November 19, 2018</p>
-        <div class="markdown-body">
-            
+
+  
+  <p class="date">November 19, 2018</p>
+  
+  <div class="markdown-body">
+    
 
 <p>設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGolangを使った時に初めて触れた。Go言語界隈ではTOMLが良く使われている。HUGOの設定もTOMLだ。</p>
 
@@ -128,77 +133,86 @@ if (!doNotTrack) {
 <p>というわけでチートシート。(XMLは書かない)</p>
 
 <h3 id="ini">INI</h3>
-<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1">; コメント</span>
-<span class="na">key1</span><span class="o">=</span><span class="s">value1</span>
 
-<span class="k">[section]</span>
-<span class="na">key2</span><span class="o">=</span><span class="s">value2</span>
-<span class="na">key3</span><span class="o">=</span><span class="s">1.1</span></code></pre></div>
+<pre><code class="language-ini">; コメント
+key1=value1
+
+[section]
+key2=value2
+key3=1.1
+</code></pre>
+
 <p>INIに配列やネストを記述する方法はない。</p>
 
 <h3 id="json">JSON</h3>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;key1&#34;</span><span class="p">:</span> <span class="s2">&#34;value1&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;key2&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;key3&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nt">&#34;key4&#34;</span><span class="p">:</span> <span class="p">[</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span> <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&#34;key5&#34;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;key6&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-      <span class="nt">&#34;key7&#34;</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;key6&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-      <span class="nt">&#34;key7&#34;</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span></code></pre></div>
+
+<pre><code class="language-json">{
+  &quot;key1&quot;: &quot;value1&quot;,
+  &quot;key2&quot;: {
+    &quot;key3&quot;: null,
+    &quot;key4&quot;: [ 1.1, 2.2 ]
+  },
+  &quot;key5&quot;: [
+    {
+      &quot;key6&quot;: 3,
+      &quot;key7&quot;: true
+    },
+    {
+      &quot;key6&quot;: 4,
+      &quot;key7&quot;: false
+    }
+  ]
+}
+</code></pre>
+
 <p>JSONにコメントはない。</p>
 
 <h3 id="yaml">YAML</h3>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># コメント</span><span class="w">
-</span><span class="w"></span>key1<span class="p">:</span><span class="w"> </span>value1<span class="w">    </span><span class="c"># コメント</span><span class="w">
-</span><span class="w"></span>key2<span class="p">:</span><span class="w">
-</span><span class="w">  </span>key3<span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="w">  </span>key4<span class="p">:</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span><span class="m">1.1</span><span class="w">
-</span><span class="w">    </span>-<span class="w"> </span><span class="m">2.2</span><span class="w">
-</span><span class="w"></span>key5<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>key6<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
-</span><span class="w">    </span>key7<span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>key6<span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
-</span><span class="w">    </span>key7<span class="p">:</span><span class="w"> </span><span class="kc">false</span></code></pre></div>
+
+<pre><code class="language-yaml"># コメント
+key1: value1    # コメント
+key2:
+  key3: null
+  key4:
+    - 1.1
+    - 2.2
+key5:
+  - key6: 3
+    key7: true
+  - key6: 4
+    key7: false
+</code></pre>
+
 <h3 id="toml">TOML</h3>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># コメント</span>
-<span class="nx">key1</span><span class="err">:</span> <span class="s2">&#34;value1&#34;</span>  <span class="c"># コメント</span>
 
-<span class="p">[</span><span class="nx">key2</span><span class="p">]</span>
-<span class="nx">key3</span><span class="err">:</span> <span class="nx">null</span>
-<span class="nx">key4</span><span class="err">:</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">]</span>
+<pre><code class="language-toml"># コメント
+key1: &quot;value1&quot;  # コメント
 
-<span class="p">[[</span><span class="nx">key5</span><span class="p">]]</span>
-<span class="nx">key6</span><span class="err">:</span> <span class="mi">3</span>
-<span class="nx">key7</span><span class="err">:</span> <span class="kc">true</span>
+[key2]
+key3: null
+key4: [1.1, 2.2]
 
-<span class="p">[[</span><span class="nx">key5</span><span class="p">]]</span>
-<span class="nx">key6</span><span class="err">:</span> <span class="mi">4</span>
-<span class="nx">key7</span><span class="err">:</span> <span class="kc">false</span>
+[[key5]]
+key6: 3
+key7: true
 
-<span class="nx">key8</span><span class="err">:</span> <span class="mi">2018-11-19</span>
-<span class="nx">key9</span><span class="err">:</span> <span class="ld">2018-11-19T15:30:00+09:00</span>  <span class="c">#日本時間15:30</span></code></pre></div>
-        </div>
-    </div>
+[[key5]]
+key6: 4
+key7: false
 
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+key8: 2018-11-19
+key9: 2018-11-19T15:30:00+09:00  #日本時間15:30
+</code></pre>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

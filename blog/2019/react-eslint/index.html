@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            create-react-appで作ったアプリをESLintする - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          create-react-appで作ったアプリをESLintする - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="create-react-appで作ったアプリをESLintする" />
+  <meta property="og:title" content="create-react-appで作ったアプリをESLintする" />
 <meta property="og:description" content="Sider というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。 以前 React開発環境構築" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/react-eslint/" />
@@ -33,7 +34,7 @@
 
 <meta itemprop="datePublished" content="2019-03-11T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-11T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="544">
+<meta itemprop="wordCount" content="622">
 
 
 
@@ -42,16 +43,16 @@
 <meta name="twitter:title" content="create-react-appで作ったアプリをESLintする"/>
 <meta name="twitter:description" content="Sider というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。 以前 React開発環境構築"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -64,20 +65,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>create-react-appで作ったアプリをESLintする</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>create-react-appで作ったアプリをESLintする</h1>
-        <p class="date">March 11, 2019</p>
-        <div class="markdown-body">
-            
+
+  
+  <p class="date">March 11, 2019</p>
+  
+  <div class="markdown-body">
+    
 
 <p><a href="https://sider.review/dashboard">Sider</a> というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。
 以前 <a href="https://koirand.github.io/blog/2018/create-react-app/">React開発環境構築(create-react-app利用)</a> に書いたとおり、ESLintの設定がダルいので普段はStandard Styleのモジュールを入れてLintの設定は簡単に済ましているが、このSiderがStandard Styleには対応してなくてJSHintかESLintにしか対応していないようなので、今回ESLintでLintしてみた。</p>
@@ -85,45 +90,57 @@ if (!doNotTrack) {
 <h2 id="モジュールのインストール">モジュールのインストール</h2>
 
 <p>react-create-appにはReactをESLintするために必要なモジュールは同梱されている。なのでStandard Style用のプラグインだけ追加で入れる。</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yarn add -D <span class="se">\
-</span><span class="se"></span>  eslint-config-standard <span class="se">\
-</span><span class="se"></span>  eslint-plugin-node <span class="se">\
-</span><span class="se"></span>  eslint-plugin-standard <span class="se">\
-</span><span class="se"></span>  peslint-plugin-promis <span class="se">\
-</span><span class="se"></span>  prettier-standard</code></pre></div>
+
+<pre><code class="language-shell">yarn add -D \
+  eslint-config-standard \
+  eslint-plugin-node \
+  eslint-plugin-standard \
+  peslint-plugin-promis \
+  prettier-standard
+</code></pre>
+
 <h2 id="eslintrc-json">.eslintrc.json</h2>
 
 <p>こいつが面倒&hellip;かと思いきや下記の設定だけで良い模様。</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;extends&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;react-app&#34;</span><span class="p">,</span> <span class="s2">&#34;standard&#34;</span><span class="p">]</span>
-<span class="p">}</span></code></pre></div>
+
+<pre><code class="language-json">{
+  &quot;extends&quot;: [&quot;react-app&quot;, &quot;standard&quot;]
+}
+</code></pre>
+
 <p>これで <code>yarn run eslint src/</code> などやればLintしてくれる。</p>
 
 <h2 id="vimの設定-ale">Vimの設定(ALE)</h2>
 
 <p>ALEはLintのモジュールを自動検知してくれるので、ESLintになっても設定は変更しなくても問題なかった。</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">ale_fixers</span> <span class="p">=</span> {<span class="s1">&#39;javascript&#39;</span><span class="p">:</span> [<span class="s1">&#39;prettier_standard&#39;</span>]}<span class="err">
-</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span><span class="p">:</span><span class="nx">ale_fix_on_save</span> <span class="p">=</span> <span class="m">1</span></code></pre></div>
+
+<pre><code class="language-vim">let g:ale_fixers = {'javascript': ['prettier_standard']}
+let g:ale_fix_on_save = 1
+</code></pre>
+
 <h2 id="atom">Atom</h2>
 
-<p>linter-standard だけ入れとけば自動修正機能もあるのでOKっぽい。</p>
+<p><code>react</code>プラグインと<code>linter-eslint</code>を入れればOK。
+<code>linter-eslint</code>の設定をいじれば自動修正もしてくれる。</p>
+
+<h2 id="vscode">VSCode</h2>
+
+<p><code>eslint</code>プラグインを入れればOK。
+設定をいじれば自動修正もしてくれる。</p>
 
 <h2 id="まとめ">まとめ</h2>
 
 <p>思ったより設定項目少なくて楽だった。最初からこうすれば良かった感がある。</p>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>

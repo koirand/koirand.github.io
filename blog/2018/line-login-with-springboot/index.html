@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>
-        
-            SpringbootでLINEのOAuth2ログインを試した - Kazuki Koide
-        
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+  <head>
+  <title>
+      
+          SpringbootでLINEのOAuth2ログインを試した - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
 
-    
-    <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
-    <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  
+  <link rel="stylesheet" href="https://koirand.github.io/css/style.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/markdown.css">
+  <link rel="stylesheet" href="https://koirand.github.io/css/syntax-highlight.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    
-    
+  
+  
 
-    <meta property="og:title" content="SpringbootでLINEのOAuth2ログインを試した" />
+  <meta property="og:title" content="SpringbootでLINEのOAuth2ログインを試した" />
 <meta property="og:description" content="タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。 ソースコード koirand/springboot-line-login: LINE login with Springboot Sample OAuth2での認証方法 第1回：Spring Security 5" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/line-login-with-springboot/" />
@@ -48,16 +49,16 @@
 <meta name="twitter:title" content="SpringbootでLINEのOAuth2ログインを試した"/>
 <meta name="twitter:description" content="タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。 ソースコード koirand/springboot-line-login: LINE login with Springboot Sample OAuth2での認証方法 第1回：Spring Security 5"/>
 
-    <!--[if lte IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-    <![endif]-->
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
 
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
 
-    
+  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -70,20 +71,24 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 </head>
 
-    <body>
-        <header>
-    <div class="avatar">
-        <img class="avatar-mask" src="https://koirand.github.io/img/avatar.jpg">
-        <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
-    </div>
+  <body>
+    
+  <h1>SpringbootでLINEのOAuth2ログインを試した</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
 </header>
-        <div class="main">
-        
-    <div>
-        <h1>SpringbootでLINEのOAuth2ログインを試した</h1>
-        <p class="date">September 24, 2018</p>
-        <div class="markdown-body">
-            
+
+  
+  <p class="date">September 24, 2018</p>
+  
+  <div class="markdown-body">
+    
 
 <p>タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。</p>
 
@@ -98,11 +103,14 @@ if (!doNotTrack) {
 </blockquote>
 
 <p>主にこの記事にOAuth2クライアントの実装を行った。OAuth2でログインするためには、spring-security-oauth2-clientモジュールを使う。OpenID Connectでの認証を行う場合は加えてspring-security-oauth2-joseが必要になるが、今回はOAuth2のみなので入れなかった。</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- OAuth2 authentication--&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework.security<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-security-oauth2-client<span class="nt">&lt;/artifactId&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
+
+<pre><code class="language-xml">&lt;!-- OAuth2 authentication--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-security-oauth2-client&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
 <p>application.properties に以下の通りLINE用の設定を記載する。<code>clientID</code>と<code>clientSeret</code>はLINE Developersで取得したものに書き換える。</p>
 
 <pre><code># Settings for LINE login
@@ -136,12 +144,15 @@ spring.security.oauth2.client.registration.github.clientSecret={Set your client 
 </blockquote>
 
 <p>LINEの場合、ユーザープロファイルを取得するためのAPI(userInfoUriで指定しているエンドポイント)のレスポンスが以下のようなJSONになる。従って<code>userNameAttribute</code>には、ユーザー名に該当するuserIdを指定している。</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;userId&#34;</span><span class="p">:</span><span class="s2">&#34;U4af4980629...&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;displayName&#34;</span><span class="p">:</span><span class="s2">&#34;Brown&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;pictureUrl&#34;</span><span class="p">:</span><span class="s2">&#34;https://example.com/abcdefghijklmn&#34;</span><span class="p">,</span>
-  <span class="nt">&#34;statusMessage&#34;</span><span class="p">:</span><span class="s2">&#34;Hello, LINE!&#34;</span>
-<span class="p">}</span></code></pre></div>
+
+<pre><code class="language-json">{
+  &quot;userId&quot;:&quot;U4af4980629...&quot;,
+  &quot;displayName&quot;:&quot;Brown&quot;,
+  &quot;pictureUrl&quot;:&quot;https://example.com/abcdefghijklmn&quot;,
+  &quot;statusMessage&quot;:&quot;Hello, LINE!&quot;
+}
+</code></pre>
+
 <p>ちなみにSpringboot v2.1.0.M2より古いバージョンは、<code>userNameAttribute</code>が反映されないので注意されたし。</p>
 
 <blockquote>
@@ -149,21 +160,24 @@ spring.security.oauth2.client.registration.github.clientSecret={Set your client 
 </blockquote>
 
 <p>コントローラーのメソッドの引数に<code>@AuthenticationPrincipal</code>を指定することで、認証済みのユーザーの情報を受け取ることができるようになる。ここではシンプルにユーザー情報をレスポンスボディにそのままセットしている。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.example</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">org.springframework.security.core.annotation.AuthenticationPrincipal</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.security.oauth2.core.user.OAuth2User</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<pre><code class="language-java">package com.example;
 
-<span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleController</span> <span class="o">{</span>
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 
-  <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)</span>
-  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">index</span><span class="o">(</span><span class="nd">@AuthenticationPrincipal</span> <span class="n">OAuth2User</span> <span class="n">oauth2User</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="n">oauth2User</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+@RestController
+public class SampleController {
+
+  @GetMapping(&quot;/&quot;)
+  public Object index(@AuthenticationPrincipal OAuth2User oauth2User) {
+      return oauth2User;
+  }
+}
+</code></pre>
+
 <p><code>http://localhost:8080</code>にアクセスすると、未認証の場合は、<code>/login</code>にリダイレクトされる。<code>/login</code>エンドポイントを実装していなければ、Spring SecurityのDefaultLoginPageGeneratingFilterが以下のログイン画面を自動生成する仕組みになっている。</p>
 
 <p><img src="https://i.imgur.com/mP49mwf.png" alt="" /></p>
@@ -195,18 +209,15 @@ http://localhost:8080
 <p><a href="https://engineering.linecorp.com/ja/blog/detail/159">Spring Security + 設定ファイルで始める LINE との ID Federation : LINE Engineering Blog</a></p>
 </blockquote>
 
-        </div>
-    </div>
-
-        </div>
-        <footer>
-    <p>
-        &copy; 2018 Kazuki Koide. 
-        Powered by <a href="https://gohugo.io/">Hugo</a>
-        using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
-    </p>
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
 </footer>
 
-    </body>
-</html>
 
+  </body>
+</html>
