@@ -1,10 +1,18 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2019/nixie-timer/",
+        "title": "ニキシー管風のカウントダウンタイマーを作った",
+        "section": "blog",
+        "date" : "2019.04.06",
+        "body": " 「今年はunstatedがくる」と同僚が言っていたので使ってみようと思った。unstatedはReactのプロジェクトでステートを簡単に管理できるjsのモジュールだ。ソースコードは200行に満たないがとても強力。\n jamiebuilds/unstated: State so simple, it goes without saying\n 作ったもの koirand/nixie-timer: Nixie tube style count down timer.\nデモは こちら 。時間を設定して[Start]ボタンを押すとカウントダウンが始まる。カウントダウン中は余計な情報が非表示になるので、デザインスプリントやワークショップなどで、スクリーンとかモニタとかに映すと格好がよろしいかと。画像の素材は Photoshop ニキシー管風味カウンター素材 - trismegistuslabo トリメギ から拝借させてもらった。\nunstated使ってみた感想 今いる会社はフロントエンドのエンジニアがそんなにいないので、正直Reduxを社内で使っていくのは厳しい。unstatedなら覚えることが少なくて大丈夫そうだと感じた。componentDidMountなどでStateを更新したい場合にHOCをかまさないといけないのが若干アレだけど慣れれば大したことない。\ngh-pages 今回 gh-pages - npm を使ってデモページをデプロイしてみた。このモジュールもとてもお手軽で良かった。\n\u0026quot;scripts\u0026quot;: { \u0026quot;predeploy\u0026quot;: \u0026quot;yarn build\u0026quot;, \u0026quot;deploy\u0026quot;: \u0026quot;gh-pages -d build -m \\\u0026quot;[ci skip]\\\u0026quot;\u0026quot; },  package.jsonにこのようにscriptsを書いておけば、yarn deployするとGitHub Pagesにデプロイできる。ちなみにCIをスキップするために、-mオプションでコミットメッセージに[ci skip]を入れるようにしている。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2019/git-zoo/",
         "title": "Gitのログを動物園にする",
         "section": "blog",
         "date" : "2019.04.06",
-        "body": "Gitのログに絵文字のプレフィックスを入れている人をたまに見かける。バグだったら :bug: とか、テストだったら :white_check_mark: とか。見やすくていいんだけど、なんか仕事のルールって感じがして、もっと自由で無意味で楽しく開発したいと思った。例えば動物の絵文字を追加するとか。\n自動で絵文字を追加できたりしないのかなと思って調べたら、Git hookというものがあることを知った。\n Git - Git フック\n prepare-commit-msgでゴニョゴニョすることで、コミットメッセージを書き換えられるらしいので、ランダムに動物の絵文字を追加するツールを作ってみた、\n koirand/git-zoo: Add animals emoji to git commit message.  使い方はREADMEにある通り、適用したいGitリポジトリの.git/hooks/prepare-commit-msgにシンボリックリンクを作成するだけ。\nこんな風に楽しい感じになる。会社でやるとたぶんウザがられるのでオススメはしない。\n"
+        "body": "Gitのログに絵文字のプレフィックスを入れている人をたまに見かける。バグだったら :bug: とか、テストだったら :white_check_mark: とか。見やすくていいんだけど、なんか仕事のルールって感じがして、もっと自由で無意味で楽しく開発したいと思った。例えば動物の絵文字を追加するとか。\n自動で絵文字を追加できたりしないのかなと思って調べたら、Git hookというものがあることを知った。\n Git - Git フック\n prepare-commit-msgでゴニョゴニョすることで、コミットメッセージを書き換えられるらしいので、ランダムに動物の絵文字を追加するツールを作ってみた。\n koirand/git-zoo: Add animals emoji to git commit message.  使い方はREADMEにある通り、適用したいGitリポジトリの.git/hooks/prepare-commit-msgにシンボリックリンクを作成すると、コミット時にコミットメッセージの行頭にランダムな動物の絵文字が挿入されるようになる。\nこんな風に楽しい感じになる。会社でやるとたぶんウザがられるのでオススメはしない。\n"
     }
 ,
     {
