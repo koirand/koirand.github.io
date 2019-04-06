@@ -24,26 +24,26 @@
   
 
   <meta property="og:title" content="ニキシー管風のカウントダウンタイマーを作った" />
-<meta property="og:description" content="「今年はunstatedがくる」と同僚が言っていたので使ってみようと思った。unstatedはReactのプロジェクトでステートを簡単に管理" />
+<meta property="og:description" content="「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactでSt" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/nixie-timer/" />
 <meta property="article:published_time" content="2019-04-06T23:39:26&#43;09:00"/>
 <meta property="article:modified_time" content="2019-04-06T23:39:26&#43;09:00"/>
 
 <meta itemprop="name" content="ニキシー管風のカウントダウンタイマーを作った">
-<meta itemprop="description" content="「今年はunstatedがくる」と同僚が言っていたので使ってみようと思った。unstatedはReactのプロジェクトでステートを簡単に管理">
+<meta itemprop="description" content="「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactでSt">
 
 
 <meta itemprop="datePublished" content="2019-04-06T23:39:26&#43;09:00" />
 <meta itemprop="dateModified" content="2019-04-06T23:39:26&#43;09:00" />
-<meta itemprop="wordCount" content="622">
+<meta itemprop="wordCount" content="624">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ニキシー管風のカウントダウンタイマーを作った"/>
-<meta name="twitter:description" content="「今年はunstatedがくる」と同僚が言っていたので使ってみようと思った。unstatedはReactのプロジェクトでステートを簡単に管理"/>
+<meta name="twitter:description" content="「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactでSt"/>
 
   <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -86,7 +86,7 @@ if (!doNotTrack) {
   <div id="contentBody">
     
 
-<p>「今年はunstatedがくる」と同僚が言っていたので使ってみようと思った。unstatedはReactのプロジェクトでステートを簡単に管理できるjsのモジュールだ。ソースコードは200行に満たないがとても強力。</p>
+<p>「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactでStateを簡単に管理できるモジュールだ。ソースコードは200行に満たないがとても強力。</p>
 
 <blockquote>
 <p><a href="https://github.com/jamiebuilds/unstated">jamiebuilds/unstated: State so simple, it goes without saying</a></p>
@@ -98,11 +98,11 @@ if (!doNotTrack) {
 
 <p><img src="https://user-images.githubusercontent.com/17229643/54739890-f4a7f300-4bfc-11e9-8d08-34c8e7e42893.png" alt="" /></p>
 
-<p>デモは <a href="https://koirand.github.io/nixie-timer/">こちら</a> 。時間を設定して[Start]ボタンを押すとカウントダウンが始まる。カウントダウン中は余計な情報が非表示になるので、デザインスプリントやワークショップなどで、スクリーンとかモニタとかに映すと格好がよろしいかと。画像の素材は <a href="http://www.trismegistuslabo.com/blog/2010/04/29-1815.html">Photoshop ニキシー管風味カウンター素材 - trismegistuslabo トリメギ</a> から拝借させてもらった。</p>
+<p>デモは <a href="https://koirand.github.io/nixie-timer/">こちら</a> 。時間を設定して[Start]ボタンを押すとカウントダウンが始まる。カウントダウン中は時計以外が隠れるので、デザインスプリントやワークショップなどで、スクリーンとかモニタとかに映すと格好がよろしいかと。画像の素材は <a href="http://www.trismegistuslabo.com/blog/2010/04/29-1815.html">Photoshop ニキシー管風味カウンター素材 - trismegistuslabo トリメギ</a> から拝借させてもらった。</p>
 
 <h2 id="unstated使ってみた感想">unstated使ってみた感想</h2>
 
-<p>今いる会社はフロントエンドのエンジニアがそんなにいないので、正直Reduxを社内で使っていくのは厳しい。unstatedなら覚えることが少なくて大丈夫そうだと感じた。componentDidMountなどでStateを更新したい場合に<a href="https://github.om/koirand/nixie-timer/blob/427141560cfe375b31b356f65ff6029da114925f/src/components/App.js#L60-L65">HOCをかまさないといけない</a>のが若干アレだけど慣れれば大したことない。</p>
+<p>今いる会社はフロントエンドのエンジニアがそんなにいないのでReduxを社内で使っていくのは正直厳しいが、unstatedなら覚えることが少なくて大丈夫そうだと感じた。componentDidMountなどでStateを更新したい場合に<a href="https://github.om/koirand/nixie-timer/blob/427141560cfe375b31b356f65ff6029da114925f/src/components/App.js#L60-L65">HOCをかまさないといけない</a>のが若干アレだけど慣れれば大したことない。</p>
 
 <h2 id="gh-pages">gh-pages</h2>
 
@@ -111,7 +111,7 @@ if (!doNotTrack) {
 <pre><code class="language-json">&quot;scripts&quot;: {
   &quot;predeploy&quot;: &quot;yarn build&quot;,
   &quot;deploy&quot;: &quot;gh-pages -d build -m \&quot;[ci skip]\&quot;&quot;
-},
+}
 </code></pre>
 
 <p>package.jsonにこのようにscriptsを書いておけば、<code>yarn deploy</code>するとGitHub Pagesにデプロイできる。ちなみにCIをスキップするために、<code>-m</code>オプションでコミットメッセージに<code>[ci skip]</code>を入れるようにしている。</p>
