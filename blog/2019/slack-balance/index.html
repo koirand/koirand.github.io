@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          口座残高をSlackに通知する - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.7135f8265f0e5668aaf68b968cf560537cb8017044dfb3bdcd7a5d0d8a806b3d.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="口座残高をSlackに通知する" />
+<meta property="og:description" content="GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2019/slack-balance/" />
+
+<meta property="og:image" content="https://i.imgur.com/crhnO50.png" />
+<meta property="article:published_time" content="2019-04-30T21:55:59&#43;09:00"/>
+<meta property="article:modified_time" content="2019-04-30T21:55:59&#43;09:00"/>
+
+<meta itemprop="name" content="口座残高をSlackに通知する">
+<meta itemprop="description" content="GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM">
+
+
+<meta itemprop="datePublished" content="2019-04-30T21:55:59&#43;09:00" />
+<meta itemprop="dateModified" content="2019-04-30T21:55:59&#43;09:00" />
+<meta itemprop="wordCount" content="718">
+
+  <meta itemprop="image" content="https://i.imgur.com/crhnO50.png">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://i.imgur.com/crhnO50.png"/>
+
+<meta name="twitter:title" content="口座残高をSlackに通知する"/>
+<meta name="twitter:description" content="GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>口座残高をSlackに通知する</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io//img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io//img/avatar-border.svg" }}></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
+</header>
+
+  
+  <p class="date">April 30, 2019</p>
+  
+  <div id="contentBody">
+    
+
+<p>GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。</p>
+
+<h2 id="ソースコード">ソースコード</h2>
+
+<p><a href="https://github.com/koirand/slack-balance">koirand/slack-balance: Get bank balance and send to slack</a></p>
+
+<p>自分はMUFGをメインバンクとして使っているので、MUFGダイレクトのサイトにログインして口座残高を取得するように作ってみたものの、どうせなら他の口座の残高も見たいなあと作ってから気づいた。そこでMoneyForwardの口座ページにアクセスして、MoneyForwardと連携している口座残高の取得もできるようにした。ただ、MoneyForwardの残高はリアルタイムではないので、MUFGの処理は残しておくことにした。</p>
+
+<h2 id="chromedp">chromedp</h2>
+
+<p>今どきSelenium使うのもいけてないので、chromedpを使うことにした。chromedpはChrome DevTools Protocolを使ってChromeを自動操作するツール。Go言語でサクッと書ける。</p>
+
+<p><a href="https://github.com/chromedp/chromedp">chromedp/chromedp: A faster, simpler way to drive browsers supporting the Chrome DevTools Protocol.</a></p>
+
+<p>Exampleを見るとだいたいやり方がわかるかと。</p>
+
+<p><a href="https://github.com/chromedp/examples">chromedp/examples: chromedp code examples.</a></p>
+
+<p>Exampleのevalを見ると、</p>
+
+<pre><code>chromedp.Evaluate(`Object.keys(window);`, &amp;res)
+</code></pre>
+
+<p>のように、どうやら任意のJSの戻り値を取得することもできる模様。
+また、Exampleのheadersを実行するとリクエストヘッダが見れる。Macで実行したらUserAgentは以下となっていた。</p>
+
+<pre><code>&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/74.0.3729.108 Safari/537.36&quot;
+</code></pre>
+
+<p>HeadlessChromeでアクセスしていることがサイト運営者には分かるようなので一応注意されたし。</p>
+
+<h2 id="slack-incoming-webhook">Slack Incoming Webhook</h2>
+
+<p>Slackへの通知はIncoming Webhooksを使って実装した。実装といってもWebサイト上でWebhook URLを発行して、そこにPOSTすれば良いだけなので拍子抜けするほど簡単だった。</p>
+
+<p><a href="https://api.slack.com/">Slack API | Slack</a></p>
+
+<p>こんな感じで通知できてる。良い。</p>
+
+<p><img src="https://i.imgur.com/crhnO50.png" alt="" /></p>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>

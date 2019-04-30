@@ -3,6 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://koirand.github.io/blog/</loc>
+    <lastmod>2019-04-30T21:55:59+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/</loc>
+    <lastmod>2019-04-30T21:55:59+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/blog/2019/slack-balance/</loc>
+    <lastmod>2019-04-30T21:55:59+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://koirand.github.io/blog/2019/nixie-timer/</loc>
     <lastmod>2019-04-06T23:39:26+09:00</lastmod>
   </url>
@@ -88,19 +105,7 @@
   </url>
   
   <url>
-    <loc>https://koirand.github.io/blog/index.json</loc>
-    <lastmod>2019-04-06T23:39:26+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://koirand.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://koirand.github.io/</loc>
-    <lastmod>2019-04-06T23:39:26+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 06 Apr 2019 23:39:26 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 30 Apr 2019 21:55:59 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>口座残高をSlackに通知する</title>
+      <link>https://koirand.github.io/blog/2019/slack-balance/</link>
+      <pubDate>Tue, 30 Apr 2019 21:55:59 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/slack-balance/</guid>
+      <description>GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM</description>
+    </item>
     
     <item>
       <title>ニキシー管風のカウントダウンタイマーを作った</title>

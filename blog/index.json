@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2019/slack-balance/",
+        "title": "口座残高をSlackに通知する",
+        "section": "blog",
+        "date" : "2019.04.30",
+        "body": " GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。\nソースコード koirand/slack-balance: Get bank balance and send to slack\n自分はMUFGをメインバンクとして使っているので、MUFGダイレクトのサイトにログインして口座残高を取得するように作ってみたものの、どうせなら他の口座の残高も見たいなあと作ってから気づいた。そこでMoneyForwardの口座ページにアクセスして、MoneyForwardと連携している口座残高の取得もできるようにした。ただ、MoneyForwardの残高はリアルタイムではないので、MUFGの処理は残しておくことにした。\nchromedp 今どきSelenium使うのもいけてないので、chromedpを使うことにした。chromedpはChrome DevTools Protocolを使ってChromeを自動操作するツール。Go言語でサクッと書ける。\nchromedp/chromedp: A faster, simpler way to drive browsers supporting the Chrome DevTools Protocol.\nExampleを見るとだいたいやり方がわかるかと。\nchromedp/examples: chromedp code examples.\nExampleのevalを見ると、\nchromedp.Evaluate(`Object.keys(window);`, \u0026amp;res)  のように、どうやら任意のJSの戻り値を取得することもできる模様。 また、Exampleのheadersを実行するとリクエストヘッダが見れる。Macで実行したらUserAgentは以下となっていた。\n\u0026quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/74.0.3729.108 Safari/537.36\u0026quot;  HeadlessChromeでアクセスしていることがサイト運営者には分かるようなので一応注意されたし。\nSlack Incoming Webhook Slackへの通知はIncoming Webhooksを使って実装した。実装といってもWebサイト上でWebhook URLを発行して、そこにPOSTすれば良いだけなので拍子抜けするほど簡単だった。\nSlack API | Slack\nこんな感じで通知できてる。良い。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2019/nixie-timer/",
         "title": "ニキシー管風のカウントダウンタイマーを作った",
         "section": "blog",
