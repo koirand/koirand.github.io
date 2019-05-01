@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 30 Apr 2019 21:55:59 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 01 May 2019 23:04:33 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS IoTボタンで遊ぶ</title>
+      <link>https://koirand.github.io/blog/2019/slack-timeclock/</link>
+      <pubDate>Wed, 01 May 2019 23:04:33 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/slack-timeclock/</guid>
+      <description>前々から触ってみたかったAWS IoTボタンをついに購入した。 Amazonで2500円で販売している。Dash buttonが500円だったので</description>
+    </item>
     
     <item>
       <title>口座残高をSlackに通知する</title>
