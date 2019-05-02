@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 01 May 2019 23:04:33 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 02 May 2019 19:24:22 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS Cloud9を使ってみた</title>
+      <link>https://koirand.github.io/blog/2019/cloud9/</link>
+      <pubDate>Thu, 02 May 2019 19:24:22 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/cloud9/</guid>
+      <description>前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9について</description>
+    </item>
     
     <item>
       <title>AWS IoTボタンで遊ぶ</title>

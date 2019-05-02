@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2019/cloud9/",
+        "title": "AWS Cloud9を使ってみた",
+        "section": "blog",
+        "date" : "2019.05.02",
+        "body": " 前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9については、re:Invent2017の動画がわかりやすい。\nAWS re:Invent 2017 - Introducing AWS Cloud9: Werner Vogels Keynote - YouTube\nクラウドIDEに求めるもの これまでにクラウドIDEを使ったことはない。技術書の写経とかで環境構築がめんどくさかったりするので(Pythonとか)、そのへんがサクッとできると嬉しい。その他には以下の機能があればいいなという感じ。\n Vimキーバインドが使える Terminalが使える Lint、自動修正ができる コード補完ができる コードの共同編集ができる(社内勉強会などで使いたい)  セットアップ Cloud9を動かすホストとしてEC2を使うのが一般的だと思うけど、自分は個人でさくらのVPS(Ubuntu)を契約しているのでそこで動かすことにした(AWS良くわからない)。ホスト側でやったことは以下の通り。\n cloud9用にユーザーを作成する(一般ユーザーで問題なし)  既存のユーザーでも問題ないと思うけど一応別ユーザーにした  AWSコンソールに表示される公開鍵を.ssh/authorized_keysに登録 Node.jsをインストール(今回はv10.15.3)  動いた。\n対応している言語 ここに記載されている。\nAWS Cloud9 Integrated Development Environment (IDE) の言語のサポート - AWS Cloud9\nC++も対応しているので、競プロをやるのも面白いかと思った。\nHello, world Goのサンプルコードを動かしてみた。\nAWS Cloud9 の Go サンプル - AWS Cloud9\n.bashrcにパスを設定\nGOPATH=$HOME/go PATH=\u0026quot;/usr/local/go/bin:$GOPATH/bin:$PATH\u0026quot;  .goファイルを開くと、エラーになる。\n調べるとどうもgocodeが必要らしいので、gocodeをインストールした。\ngo get github.com/nsf/gocode  動いた。\n補完はこんな感じ。\nコードの補完にgocodeを使っているので、goのバージョンは1.9以下にしておいたほうが良いと思われる。goのコード補完はlspへの移行期なので、1.10以降はもう少し落ち着いてから使おう。mattnさんが以下の記事で経緯を説明してくれている。\nBig Sky :: gocode やめます(そして Language Server へ)\nフォルダ階層はチュートリアルと違うけど、一般的な開発だとこんな感じになるかと思う。 Vimキーバインド 普段良く使うキーはだいたい問題なかった。ウィンドウ操作系はやはり難しいようだった。\nLambda Functionとの連携 前回作ったLambda Function をCloud9上で変更してみる。\n以下を参考にした。\nAWS Cloud9 Integrated Development Environment (IDE) で AWS Lambda 関数を操作する - AWS Cloud9\nLambdaへのアクセス権限を持つcloud9用のIAMを作成して、aws-cliをインストールすると、Remote Functionsが見えるようになる。\n関数をインポートしようとしたらエラーが。goのランタイムはサポートしてないっぽい。まあコンパイル言語だし無理か。残念。\n感想 好きな言語の好きなバージョンの仮想環境がサクッと立ち上がるのかなとか勝手に思ってたけど、そういうものではないらしい。クラウドIDEという名前の通りあくまでIDEなので、環境は自分で構築する必要がある。環境汚したくない場合はコンテナを使ったほうが良さそう。環境構築をサクッとやりたいのであればPiaza Cloudとかのほうが良いのかもしれない。とはいえ一度環境を作ってしまえば、どのPCでも開発できてしまうのは熱い。IDEとしては普通に使いやすい。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2019/slack-timeclock/",
         "title": "AWS IoTボタンで遊ぶ",
         "section": "blog",
