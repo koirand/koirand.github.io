@@ -1,0 +1,9 @@
+[
+    {
+        "ref": "https://koirand.github.io/about/about-ja/",
+        "title": "About me",
+        "section": "about",
+        "date" : "2019.05.07",
+        "body": " 東京でソフトウェアエンジニアをしたり、スクラムマスターをしたりしています。ブログでは主に趣味で作ったものや勉強したことを掲載しています。Twitter、GitHubで@koirandというIDで活動しているので、フォローしてもらえると嬉しいです。\n Blog : http://koirand.github.io/blog/ Twitter : @koirand GitHub : @koirand  作ったもの pulp HUGO用のテーマ(このブログで使ってます)\n\nnixie-timer ニキシー管風のカウントダウンタイマー\n\ngit-zoo Gitのログを動物園にするツール\n\ntokyo-metro.vim 東京メトロの配色を使ったVimのカラースキーム\n\nquick-excel-toolbar Excelのカスタムツールバー\n \ntetris.xlsm Excelで動くテトリス\n\n技術スタック \n"
+    }
+]

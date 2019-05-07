@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 May 2019 19:24:22 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 07 May 2019 12:17:54 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About me</title>
+      <link>https://koirand.github.io/about/about-ja/</link>
+      <pubDate>Tue, 07 May 2019 12:17:54 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/about/about-ja/</guid>
+      <description>東京でソフトウェアエンジニアをしたり、スクラムマスターをしたりしています。ブログでは主に趣味で作ったものや勉強したことを掲載しています。Tw</description>
+    </item>
     
     <item>
       <title>AWS Cloud9を使ってみた</title>
