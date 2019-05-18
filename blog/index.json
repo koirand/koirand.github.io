@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2019/create-react-app-v3/",
+        "title": "create-react-app v3がリリースされたのでTypeScriptに移行してみた",
+        "section": "blog",
+        "date" : "2019.05.18",
+        "body": " 2019年４月にv3.0.0がリリースされた。\nRelease v3.0.0 · facebook/create-react-app\n Jest 24に対応 Hooksをサポート TypeScriptのLintに対応 browserslistをサポート jsconfig.json/tsconfig.json を使用した絶対位置インポートに対応  が追加機能となっている。 個人的にLintの設定変更がめんどくさくてTypeScriptに移行していなかったところがあるので、これを機にTypeScriptへの移行をやってみた。\nリポジトリ こちらを題材とした。 https://github.com/koirand/nixie-timer\ncreate-react-appのバージョンアップ プロジェクトフォルダで\n$ yarn add react-scripts  とやると、現時点で最新版のv3.0.1が入った。\nTypeScriptに移行してみる TypeScriptをインストール $ yarn add typescript @types/node @types/react @types/react-dom @types/jest  jsファイルの拡張子をtsxに変更 拡張子はtsではなくtsxにする必要がある模様。 テストコードも含めて機械的にやるのみ。\ntsconfig.jsonを作成 yarn start するとtsconfig.jsonが自動的に生成される。\n\u0026quot;noImplicitAny\u0026quot;: false  だけ追記して(修正がめんどくさかった)、その他はデフォルトのままとした。\nコンパイルエラー修正 https://github.com/koirand/nixie-timer/pull/41/commits/9dcdaf07df3bb9d732432ea851289c99c82116f6\nエラーの修正に加えて、PropTypesを使わない変更をしたり、ステータスの定数をenumにしたりした。\n以上で、TypeScriptへの移行終わり。\nVSCodeの設定変更 ESLintプラグインがデフォルトだとjsファイルしか見てくれないので、tsxファイルも見るように以下の設定を追加した。\n{ \u0026quot;eslint.validate\u0026quot;: [ \u0026quot;javascript\u0026quot;, \u0026quot;javascriptreact\u0026quot;, { \u0026quot;language\u0026quot;: \u0026quot;typescript\u0026quot;, \u0026quot;autoFix\u0026quot;: true }, { \u0026quot;language\u0026quot;: \u0026quot;typescriptreact\u0026quot;, \u0026quot;autoFix\u0026quot;: true } ] }  感想 コンパイルエラーは意外と少なかった(2,3件くらい)。慣れれば数分で移行できそうなレベル。 プロトタイプはES6で書いて、商用のタイミングでTypeScriptに移行するのが良さそう。\n個人的にIDEはAtom推しなのでAtomでの設定方法も調べてみたが、linter-eslintプラグインでtsxファイルを見るようにする方法が良くわからなかった。Reactの公式サイトでもVSCodeを推奨するとか書いてあったりするし、FlutterとかもVSCodeしかサポートしていなかったりするので、もうVSCodeでいいやという気になってきた。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2019/cloud9/",
         "title": "AWS Cloud9を使ってみた",
         "section": "blog",

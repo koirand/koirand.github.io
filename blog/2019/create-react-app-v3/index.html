@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          create-react-app v3がリリースされたのでTypeScriptに移行してみた - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="map[]" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.74c1d842fda3c5dcef37cb1e26934d4a205babfe7cbfca23903297bcab678581.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="create-react-app v3がリリースされたのでTypeScriptに移行してみた" />
+<meta property="og:description" content="2019年４月にv3.0.0がリリースされた。 Release v3.0.0 · facebook/create-react-app Jest 24に対応 Hooksをサポート TypeScriptのLintに対応 browsersl" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2019/create-react-app-v3/" />
+<meta property="article:published_time" content="2019-05-18T23:16:07&#43;09:00"/>
+<meta property="article:modified_time" content="2019-05-18T23:16:07&#43;09:00"/>
+
+<meta itemprop="name" content="create-react-app v3がリリースされたのでTypeScriptに移行してみた">
+<meta itemprop="description" content="2019年４月にv3.0.0がリリースされた。 Release v3.0.0 · facebook/create-react-app Jest 24に対応 Hooksをサポート TypeScriptのLintに対応 browsersl">
+
+
+<meta itemprop="datePublished" content="2019-05-18T23:16:07&#43;09:00" />
+<meta itemprop="dateModified" content="2019-05-18T23:16:07&#43;09:00" />
+<meta itemprop="wordCount" content="894">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="create-react-app v3がリリースされたのでTypeScriptに移行してみた"/>
+<meta name="twitter:description" content="2019年４月にv3.0.0がリリースされた。 Release v3.0.0 · facebook/create-react-app Jest 24に対応 Hooksをサポート TypeScriptのLintに対応 browsersl"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>create-react-app v3がリリースされたのでTypeScriptに移行してみた</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io//img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io//img/avatar-border.svg" }}></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
+</header>
+
+  
+  <p class="date">May 18, 2019</p>
+  
+  <div id="contentBody">
+    
+
+<p>2019年４月にv3.0.0がリリースされた。</p>
+
+<p><a href="https://github.com/facebook/create-react-app/releases/tag/v3.0.0">Release v3.0.0 · facebook/create-react-app</a></p>
+
+<ul>
+<li>Jest 24に対応</li>
+<li>Hooksをサポート</li>
+<li>TypeScriptのLintに対応</li>
+<li>browserslistをサポート</li>
+<li>jsconfig.json/tsconfig.json を使用した絶対位置インポートに対応</li>
+</ul>
+
+<p>が追加機能となっている。
+個人的にLintの設定変更がめんどくさくてTypeScriptに移行していなかったところがあるので、これを機にTypeScriptへの移行をやってみた。</p>
+
+<h2 id="リポジトリ">リポジトリ</h2>
+
+<p>こちらを題材とした。
+<a href="https://github.com/koirand/nixie-timer">https://github.com/koirand/nixie-timer</a></p>
+
+<h2 id="create-react-appのバージョンアップ">create-react-appのバージョンアップ</h2>
+
+<p>プロジェクトフォルダで</p>
+
+<pre><code class="language-bash">$ yarn add react-scripts
+</code></pre>
+
+<p>とやると、現時点で最新版のv3.0.1が入った。</p>
+
+<h2 id="typescriptに移行してみる">TypeScriptに移行してみる</h2>
+
+<h3 id="typescriptをインストール">TypeScriptをインストール</h3>
+
+<pre><code class="language-bash">$ yarn add typescript @types/node @types/react @types/react-dom @types/jest
+</code></pre>
+
+<h3 id="jsファイルの拡張子をtsxに変更">jsファイルの拡張子をtsxに変更</h3>
+
+<p>拡張子はtsではなくtsxにする必要がある模様。
+テストコードも含めて機械的にやるのみ。</p>
+
+<h3 id="tsconfig-jsonを作成">tsconfig.jsonを作成</h3>
+
+<p><code>yarn start</code> するとtsconfig.jsonが自動的に生成される。</p>
+
+<pre><code>&quot;noImplicitAny&quot;: false
+</code></pre>
+
+<p>だけ追記して(修正がめんどくさかった)、その他はデフォルトのままとした。</p>
+
+<h3 id="コンパイルエラー修正">コンパイルエラー修正</h3>
+
+<p><a href="https://github.com/koirand/nixie-timer/pull/41/commits/9dcdaf07df3bb9d732432ea851289c99c82116f6">https://github.com/koirand/nixie-timer/pull/41/commits/9dcdaf07df3bb9d732432ea851289c99c82116f6</a></p>
+
+<p>エラーの修正に加えて、PropTypesを使わない変更をしたり、ステータスの定数をenumにしたりした。</p>
+
+<p>以上で、TypeScriptへの移行終わり。</p>
+
+<h2 id="vscodeの設定変更">VSCodeの設定変更</h2>
+
+<p>ESLintプラグインがデフォルトだとjsファイルしか見てくれないので、tsxファイルも見るように以下の設定を追加した。</p>
+
+<pre><code class="language-json">{
+  &quot;eslint.validate&quot;: [
+    &quot;javascript&quot;,
+    &quot;javascriptreact&quot;,
+    { &quot;language&quot;: &quot;typescript&quot;, &quot;autoFix&quot;: true },
+    { &quot;language&quot;: &quot;typescriptreact&quot;, &quot;autoFix&quot;: true }
+  ]
+}
+</code></pre>
+
+<h2 id="感想">感想</h2>
+
+<p>コンパイルエラーは意外と少なかった(2,3件くらい)。慣れれば数分で移行できそうなレベル。
+プロトタイプはES6で書いて、商用のタイミングでTypeScriptに移行するのが良さそう。</p>
+
+<p>個人的にIDEはAtom推しなのでAtomでの設定方法も調べてみたが、linter-eslintプラグインでtsxファイルを見るようにする方法が良くわからなかった。Reactの公式サイトでもVSCodeを推奨するとか書いてあったりするし、FlutterとかもVSCodeしかサポートしていなかったりするので、もうVSCodeでいいやという気になってきた。</p>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>
