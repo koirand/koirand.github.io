@@ -1,5 +1,13 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2019/vim-memo/",
+        "title": "Vimでさっとメモを取る",
+        "section": "blog",
+        "date" : "2019.10.29",
+        "body": " Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。\nalias memo=\u0026quot;vim + ~/Documents/memo.txt\u0026quot;  ポイントは+をつけていることで、こうすると最下行にカーソルがある状態でファイルを開くことができる。 次に.vimrcに以下を設定する。\nautocmd BufNewFile,BufRead memo.txt $r! echo '--------------------------------------------------------------------------------' \u0026amp;\u0026amp; date  これはどういう意味かというと、「memo.txtを開いたときに、区切り線と日付をバッファの最終行に追記しなさい。」という意味になる。r!でシェルコマンドの実行結果をバッファに取り込むことができる。\n以上の設定により、ターミナルでmemoと打てばmemo.txtが開き、区切り線と日付が追記され、さらに最終行にカーソルがある状態になる。そこからoをタイプしてメモを書いていく。 Vimは起動が非常に速いし、自分はたいていターミナルを常時起動しているのもあって、かなり素早くメモを書き始めることができる。Vimmerにはおすすめ。\nデモ "
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2019/create-react-app-v3/",
         "title": "create-react-app v3がリリースされたのでTypeScriptに移行してみた",
         "section": "blog",

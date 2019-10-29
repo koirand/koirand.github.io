@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://koirand.github.io/blog/</loc>
-    <lastmod>2019-05-18T23:16:07+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://koirand.github.io/blog/2019/create-react-app-v3/</loc>
-    <lastmod>2019-05-18T23:16:07+09:00</lastmod>
+    <lastmod>2019-10-29T16:45:53+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://koirand.github.io/</loc>
+    <lastmod>2019-10-29T16:45:53+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/blog/2019/vim-memo/</loc>
+    <lastmod>2019-10-29T16:45:53+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/blog/2019/create-react-app-v3/</loc>
     <lastmod>2019-05-18T23:16:07+09:00</lastmod>
   </url>
   

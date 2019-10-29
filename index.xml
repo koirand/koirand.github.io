@@ -1,14 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kazuki Koide</title>
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 18 May 2019 23:16:07 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 16:45:53 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vimでさっとメモを取る</title>
+      <link>https://koirand.github.io/blog/2019/vim-memo/</link>
+      <pubDate>Tue, 29 Oct 2019 16:45:53 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2019/vim-memo/</guid>
+      <description>Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。 alias memo=&amp;quot;vim + ~/Documents/memo.txt&amp;quot; ポイントは+をつけていることで、こう</description>
+    </item>
     
     <item>
       <title>create-react-app v3がリリースされたのでTypeScriptに移行してみた</title>
