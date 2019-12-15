@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2019-03-11T00:00:00+00:00" />
 <meta itemprop="name" content="create-react-appで作ったアプリをESLintする">
 <meta itemprop="description" content="Sider というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。 以前 React開発環境構築">
-
-
 <meta itemprop="datePublished" content="2019-03-11T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-11T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="622">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="create-react-appで作ったアプリをESLintする"/>
 <meta name="twitter:description" content="Sider というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。 以前 React開発環境構築"/>
 
@@ -84,15 +81,10 @@ if (!doNotTrack) {
   <p class="date">March 11, 2019</p>
   
   <div id="contentBody">
-    
-
-<p><a href="https://sider.review/dashboard">Sider</a> というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。
+    <p><a href="https://sider.review/dashboard">Sider</a> というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。
 以前 <a href="https://koirand.github.io/blog/2018/create-react-app/">React開発環境構築(create-react-app利用)</a> に書いたとおり、ESLintの設定がダルいので普段はStandard Styleのモジュールを入れてLintの設定は簡単に済ましているが、このSiderがStandard Styleには対応してなくてJSHintかESLintにしか対応していないようなので、今回ESLintでLintしてみた。</p>
-
-<h2 id="モジュールのインストール">モジュールのインストール</h2>
-
+<h2 id="heading">モジュールのインストール</h2>
 <p>react-create-appにはReactをESLintするために必要なモジュールは同梱されている。なのでStandard Style用のプラグインだけ追加で入れる。</p>
-
 <pre><code class="language-shell">yarn add -D \
   eslint-config-standard \
   eslint-plugin-node \
@@ -100,38 +92,25 @@ if (!doNotTrack) {
   peslint-plugin-promis \
   prettier-standard
 </code></pre>
-
-<h2 id="eslintrc-json">.eslintrc.json</h2>
-
+<h2 id="eslintrcjson">.eslintrc.json</h2>
 <p>こいつが面倒&hellip;かと思いきや下記の設定だけで良い模様。</p>
-
 <pre><code class="language-json">{
   &quot;extends&quot;: [&quot;react-app&quot;, &quot;standard&quot;]
 }
 </code></pre>
-
 <p>これで <code>yarn run eslint src/</code> などやればLintしてくれる。</p>
-
-<h2 id="vimの設定-ale">Vimの設定(ALE)</h2>
-
+<h2 id="vimale">Vimの設定(ALE)</h2>
 <p>ALEはLintのモジュールを自動検知してくれるので、ESLintになっても設定は変更しなくても問題なかった。</p>
-
 <pre><code class="language-vim">let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_fix_on_save = 1
 </code></pre>
-
 <h2 id="atom">Atom</h2>
-
 <p><code>react</code>プラグインと<code>linter-eslint</code>を入れればOK。
 <code>linter-eslint</code>の設定をいじれば自動修正もしてくれる。</p>
-
 <h2 id="vscode">VSCode</h2>
-
 <p><code>eslint</code>プラグインを入れればOK。
 設定をいじれば自動修正もしてくれる。</p>
-
-<h2 id="まとめ">まとめ</h2>
-
+<h2 id="heading-1">まとめ</h2>
 <p>思ったより設定項目少なくて楽だった。最初からこうすれば良かった感がある。</p>
 
   </div>

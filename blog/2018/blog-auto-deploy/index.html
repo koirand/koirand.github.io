@@ -27,24 +27,19 @@
 <meta property="og:description" content="このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/blog-auto-deploy/" />
-
 <meta property="og:image" content="https://i.imgur.com/FFRPSaW.png" />
 <meta property="article:published_time" content="2018-09-30T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-30T00:00:00+00:00" />
 <meta itemprop="name" content="ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した">
 <meta itemprop="description" content="このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブ">
-
-
 <meta itemprop="datePublished" content="2018-09-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-30T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="829">
-
-  <meta itemprop="image" content="https://i.imgur.com/FFRPSaW.png">
-
+<meta itemprop="image" content="https://i.imgur.com/FFRPSaW.png">
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary_large_image"/>
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://i.imgur.com/FFRPSaW.png"/>
 
 <meta name="twitter:title" content="ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した"/>
@@ -90,18 +85,11 @@ if (!doNotTrack) {
   <p class="date">September 30, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバを用意しなくてもGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>
-
-<h2 id="自動化の過程">自動化の過程</h2>
-
-<p><img src="https://i.imgur.com/FFRPSaW.png" alt="" /></p>
-
-<p>ブログの生成元となるリポジトリは非公開にしたかったのでBitbucketを使っている(GitHubはプライベートリポジトリが有料なので)。<a href="http://blog.shotarok.com/post/hugo-with-bitbucket-and-circleci/">Hugo + Bitbucket + CircleCI で GitHub Pages に自動デプロイ | shotarok&rsquo;s Tech Blog</a> で既に同じ構成で自動化している人がいたのでこれを参考に構築した。ただし設定ファイルがCircleCI 1.0のものだったので、 <a href="https://taikii.net/posts/2017/11/auto-deploy-hugo-by-circleci/">Auto Deploy Hugo by Circle CI 2.0 - taikii blog</a> を見ながらCircle CI 2.0を使った設定にした。Circle CIからGitHubにSSHアクセスする必要があるので、事前に鍵ペアを作成して、公開鍵をGitHubに秘密鍵をCircle CIにそれぞれ登録しておく必要があった。あとデプロイ結果をメールで確認するのが面倒だったので、<a href="https://koirand.slack.com/apps/A0F7VRE7N-circleci?next_id=0">CircleCI | Slack App ディレクトリ</a> を使ってSlackで通知するようにした。</p>
-
-<h2 id="circleci-config-yml">.circleci/config.yml</h2>
-
+    <p>このブログはHUGO(ヒューゴ)というブログ構築のためのフレームワークを使っている。HUGOで記事を作成する手順はWordPressなどのブログサイトとは異なり、PC上で静的なHTMLやCSSを生成してから、それをWebサーバにアップロードする必要がある。このブログの場合はGitHub Pagesを使っているので、Webサーバを用意しなくてもGitHubにPushすれば公開される仕組みになっているが、いずれにせよ一手間がかかる。これまでは <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a> を参考にサイトの生成とGitHubへのPushをシェルスクリプトで自動化していたが、それだったらCIツール使えばいいじゃんってことで、CircleCIでブログのデプロイを自動化することにした。</p>
+<h2 id="heading">自動化の過程</h2>
+<p><img src="https://i.imgur.com/FFRPSaW.png" alt=""></p>
+<p>ブログの生成元となるリポジトリは非公開にしたかったのでBitbucketを使っている(GitHubはプライベートリポジトリが有料なので)。<a href="http://blog.shotarok.com/post/hugo-with-bitbucket-and-circleci/">Hugo + Bitbucket + CircleCI で GitHub Pages に自動デプロイ | shotarok's Tech Blog</a> で既に同じ構成で自動化している人がいたのでこれを参考に構築した。ただし設定ファイルがCircleCI 1.0のものだったので、 <a href="https://taikii.net/posts/2017/11/auto-deploy-hugo-by-circleci/">Auto Deploy Hugo by Circle CI 2.0 - taikii blog</a> を見ながらCircle CI 2.0を使った設定にした。Circle CIからGitHubにSSHアクセスする必要があるので、事前に鍵ペアを作成して、公開鍵をGitHubに秘密鍵をCircle CIにそれぞれ登録しておく必要があった。あとデプロイ結果をメールで確認するのが面倒だったので、<a href="https://koirand.slack.com/apps/A0F7VRE7N-circleci?next_id=0">CircleCI | Slack App ディレクトリ</a> を使ってSlackで通知するようにした。</p>
+<h2 id="circleciconfigyml">.circleci/config.yml</h2>
 <pre><code class="language-yaml">version: 2
 jobs:
   build:
@@ -139,12 +127,9 @@ jobs:
             git commit -m &quot;rebuilding site `date '+%Y-%m-%d'`&quot;
             git push origin master
 </code></pre>
-
 <p>ビルド結果はこんな感じ。14秒くらいかかった。
-<img src="https://i.imgur.com/MBvPW7t.png" alt="" /></p>
-
-<h2 id="2019-03-02-追記">2019-03-02 追記</h2>
-
+<img src="https://i.imgur.com/MBvPW7t.png" alt=""></p>
+<h2 id="2019-03-02-">2019-03-02 追記</h2>
 <p>GitHubのプライベートリポジトリが無料化されたので、<a href="https://koirand.github.io/blog/2019/bitbucket-to-github/">ブログのリポジトリをGitHubに移行した</a></p>
 
   </div>

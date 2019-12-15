@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2018-11-19T00:00:00+00:00" />
 <meta itemprop="name" content="INI,JSON,YAML,TOMLのチートシート">
 <meta itemprop="description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS">
-
-
 <meta itemprop="datePublished" content="2018-11-19T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-19T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="960">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="INI,JSON,YAML,TOMLのチートシート"/>
 <meta name="twitter:description" content="設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JS"/>
 
@@ -84,14 +81,9 @@ if (!doNotTrack) {
   <p class="date">November 19, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGolangを使った時に初めて触れた。Go言語界隈ではTOMLが良く使われている。HUGOの設定もTOMLだ。</p>
-
+    <p>設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGolangを使った時に初めて触れた。Go言語界隈ではTOMLが良く使われている。HUGOの設定もTOMLだ。</p>
 <p>以上唐突な自分語り。何が言いたいのかというと、TPOに合わせて色々な規格を読み書きしないといけなくてややこしいと言うことだ。</p>
-
 <p>ついでなので各規格の登場年月を調べた。</p>
-
 <table>
 <thead>
 <tr>
@@ -99,43 +91,33 @@ if (!doNotTrack) {
 <th>初版</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>INI</td>
 <td>-</td>
 </tr>
-
 <tr>
 <td>XML</td>
 <td>1998年</td>
 </tr>
-
 <tr>
 <td>YAML</td>
 <td>2001年5月</td>
 </tr>
-
 <tr>
 <td>JSON</td>
 <td>2006年7月</td>
 </tr>
-
 <tr>
 <td>TOML</td>
 <td>2013年2月</td>
 </tr>
 </tbody>
 </table>
-
 <p>意外とYAMLが古い。INIは<a href="https://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">Wikipedia</a>によると規格化・標準化されていないらしい。今初めて知った。自然発生的に生まれたと言うことだろうか。不思議な書式だ。そういう意味ではTOMLはINIを規格化したものと言えるのだろうか。ちなみに各フォーマットをGoogleトレンドだと<a href="https://trends.google.co.jp/trends/explore?date=all&amp;geo=JP&amp;q=ini,xml,json,yaml,toml">こんな感じ</a>。</p>
-
-<h2 id="チートシート">チートシート</h2>
-
+<h2 id="heading">チートシート</h2>
 <p>というわけでチートシート。(XMLは書かない)</p>
-
 <h3 id="ini">INI</h3>
-
 <pre><code class="language-ini">; コメント
 key1=value1
 
@@ -143,11 +125,8 @@ key1=value1
 key2=value2
 key3=1.1
 </code></pre>
-
 <p>INIに配列やネストを記述する方法はない。</p>
-
 <h3 id="json">JSON</h3>
-
 <pre><code class="language-json">{
   &quot;key1&quot;: &quot;value1&quot;,
   &quot;key2&quot;: {
@@ -166,11 +145,8 @@ key3=1.1
   ]
 }
 </code></pre>
-
 <p>JSONにコメントはない。</p>
-
 <h3 id="yaml">YAML</h3>
-
 <pre><code class="language-yaml"># コメント
 key1: value1    # コメント
 key2:
@@ -184,9 +160,7 @@ key5:
   - key6: 4
     key7: false
 </code></pre>
-
 <h3 id="toml">TOML</h3>
-
 <pre><code class="language-toml"># コメント
 key1: &quot;value1&quot;  # コメント
 

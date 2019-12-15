@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2018-11-30T00:00:00+00:00" />
 <meta itemprop="name" content="パッケージマネージャーのチートシート">
 <meta itemprop="description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ">
-
-
 <meta itemprop="datePublished" content="2018-11-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-30T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="637">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="パッケージマネージャーのチートシート"/>
 <meta name="twitter:description" content="前回の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマ"/>
 
@@ -85,7 +82,6 @@ if (!doNotTrack) {
   
   <div id="contentBody">
     <p><a href="https://koirand.github.io/blog/2018/ini-json-yaml-toml/">前回</a>の設定ファイルの書式と同様、パッケージマネージャーのコマンドもチートシートを作ってみた。コマンドのhelpで確認はできるが、パッケージマネージャーによってコマンドの意味が微妙に違っていたりするのでチートシートで目的からコマンドの逆引きしたほうが安心できる。自分用なので自分が使うものだけとはいえapt(Debian)、yum(Red Hat)、Homebrew(Mac OS)、npm(JavaScript)、yarn(JavaScript)、pip(Python)、dep(Golang)と結構種類が多い。パッケージマネージャーとはやや異なるがfisherman(fish)、Helm(Kubernetes)もついでなので一緒に記載しておいた。</p>
-
 <table>
 <thead>
 <tr>
@@ -102,7 +98,6 @@ if (!doNotTrack) {
 <th>Helm</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>パッケージ追加</td>
@@ -117,7 +112,6 @@ if (!doNotTrack) {
 <td>fisher install</td>
 <td>helm install</td>
 </tr>
-
 <tr>
 <td>パッケージ削除</td>
 <td>apt-get remove</td>
@@ -131,7 +125,6 @@ if (!doNotTrack) {
 <td>fisher rm</td>
 <td>helm delete</td>
 </tr>
-
 <tr>
 <td>リポジトリ更新</td>
 <td>apt-get update</td>
@@ -145,7 +138,6 @@ if (!doNotTrack) {
 <td>-</td>
 <td>helm update</td>
 </tr>
-
 <tr>
 <td>パッケージ更新</td>
 <td>apt-get upgrade</td>
@@ -159,7 +151,6 @@ if (!doNotTrack) {
 <td>fisher update</td>
 <td>helm upgrade</td>
 </tr>
-
 <tr>
 <td>パッケージ検索</td>
 <td>apt-cache search</td>
@@ -173,7 +164,6 @@ if (!doNotTrack) {
 <td>-</td>
 <td>helm search</td>
 </tr>
-
 <tr>
 <td>パッケージ詳細</td>
 <td>apt-cache show</td>
@@ -187,7 +177,6 @@ if (!doNotTrack) {
 <td>-</td>
 <td>helm inspect</td>
 </tr>
-
 <tr>
 <td>追加したパッケージの確認</td>
 <td>dpkg -l</td>
@@ -201,7 +190,6 @@ if (!doNotTrack) {
 <td>fisher ls</td>
 <td>helm list</td>
 </tr>
-
 <tr>
 <td>ゴミパッケージの掃除</td>
 <td>apt-get autoremove</td>
@@ -217,7 +205,6 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table>
-
 <p>Homebrewにautoremoveが無くて辛いことが良くあって、何か方法はないかと調べたら<a href="https://github.com/connorworley/dotfiles/blob/master/.bin/brew-autoremove">スクリプトをつくっている人がいた</a>(しかもfish)。ありがたく拝借した。</p>
 
   </div>

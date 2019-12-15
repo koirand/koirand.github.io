@@ -27,24 +27,19 @@
 <meta property="og:description" content="VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2018/tokyo-metro-vim/" />
-
 <meta property="og:image" content="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png" />
 <meta property="article:published_time" content="2018-09-24T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-24T00:00:00+00:00" />
 <meta itemprop="name" content="東京メトロ配色のVimカラースキームを作った">
 <meta itemprop="description" content="VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキ">
-
-
 <meta itemprop="datePublished" content="2018-09-24T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-09-24T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="952">
-
-  <meta itemprop="image" content="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png">
-
+<meta itemprop="image" content="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png">
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary_large_image"/>
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png"/>
 
 <meta name="twitter:title" content="東京メトロ配色のVimカラースキームを作った"/>
@@ -90,38 +85,24 @@ if (!doNotTrack) {
   <p class="date">September 24, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキーマを作ってみたいと思った。東京に住んでるし東京をテーマとしたカラーススキームを作れないかとちょっと考えたものの、色彩センスに自信がなかったので、東京メトロのテーマカラーを使ってみることにした。</p>
-
-<h2 id="ソースコード">ソースコード</h2>
-
+    <p>VimConf2017でcocoponさんがicebergというカラースキーマを作った時の話をしているのを聞いて自分もオリジナルのカラースキーマを作ってみたいと思った。東京に住んでるし東京をテーマとしたカラーススキームを作れないかとちょっと考えたものの、色彩センスに自信がなかったので、東京メトロのテーマカラーを使ってみることにした。</p>
+<h2 id="heading">ソースコード</h2>
 <p><a href="https://github.com/koirand/tokyo-metro.vim">koirand/tokyo-metro.vim: Vim color scheme using theme color of Tokyo Metro lines.</a></p>
-
-<h2 id="作成過程">作成過程</h2>
-
+<h2 id="heading-1">作成過程</h2>
 <p>まずはPhotoshopで各路線のテーマカラーを並べた。</p>
-
-<p><img src="https://i.imgur.com/ARMKrda.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/ARMKrda.png" alt=""></p>
 <p>ダークモード派なので黒背景。思ったより見やすい印象を得た。さすが偉い人が考えた配色である。ただ千代田線と南北線の色が似ていて使い分けが難しい。カラースキームの自作方法についてWebで調べて見たところ、設定項目数が多くなかなか大変そうだったので、<a href="https://github.com/cocopon/iceberg.vim">iceberg.vim</a> をForkしてカスタマイズすることにした。<a href="https://github.com/cocopon/iceberg.vim/blob/master/README.md#building-your-own-iceberg">README</a> に記載されているが、カラースキーマを半自動生成する仕組みが提供されているのでこれを使用した。具体的な手順としては以下の通り。</p>
-
 <ol>
 <li><a href="https://github.com/cocopon/pgmnt.vim">cocopon/pgmnt</a> プラグインをVimにインストール。</li>
 <li>src/template.vim にあるテンプレートを変更。</li>
 <li>autoload/iceberg/palette/dark.vim をコピーして、autoload/tokyometro/palette/dark.vim を作成して、配色を変更。<code>:source %</code> してVimに読み込む。</li>
 <li>src/iceberg.vim をコピーして src/tokyo-metro.vim を作成して、色と対象オブジェクトのマッピングを少し調整。<code>cd %:h</code>してカレントディレクトリを変更してから<code>:source %</code>すると、color/tokyo-metro.vim が生成される。</li>
 </ol>
-
 <p>できたのがこちら。
 <a href="http://vimcolors.com/825/tokyo-metro/dark">tokyo-metro - Vim Colors</a></p>
-
-<p><img src="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png" alt="screenshot" /></p>
-
+<p><img src="https://user-images.githubusercontent.com/17229643/44889091-624b0b00-ad0f-11e8-89e6-cc5c77202d1b.png" alt="screenshot"></p>
 <p>濃紺の背景は東京の夜景っぽくて違和感なかったのでオリジナルのままにした。このサンプルでは表示されてないけど、言語によっては演算子が副都心線の茶色になるはず。それから丸ノ内線については、やは赤はエラー感が強く出てしまい違和感が拭えなかったので、丸の内線ユーザーには申し訳ないが素直にエラー系の色を当てることにした。</p>
-
-<h2 id="作ってみた感想">作ってみた感想</h2>
-
+<h2 id="heading-2">作ってみた感想</h2>
 <p>オリジナルカラースキームができてうれしい。<a href="https://github.com/cocopon/pgmnt.vim">cocopon/pgmnt</a> プラグインが良く作られている。色をHSLで指定できるので、微妙な色の調整がやりやすそうに感じた。今回テーマカラーありきだったので、あまり配色には悩まなかったが、次回作るときは配色に拘ってみたい。</p>
 
   </div>

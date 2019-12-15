@@ -27,24 +27,19 @@
 <meta property="og:description" content="GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/slack-balance/" />
-
 <meta property="og:image" content="https://i.imgur.com/crhnO50.png" />
 <meta property="article:published_time" content="2019-04-30T21:55:59+09:00" />
 <meta property="article:modified_time" content="2019-04-30T21:55:59+09:00" />
 <meta itemprop="name" content="口座残高をSlackに通知する">
 <meta itemprop="description" content="GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。 ソースコード koirand/slack-balance: Get bank balance and send to slack 自分はM">
-
-
 <meta itemprop="datePublished" content="2019-04-30T21:55:59&#43;09:00" />
 <meta itemprop="dateModified" content="2019-04-30T21:55:59&#43;09:00" />
 <meta itemprop="wordCount" content="718">
-
-  <meta itemprop="image" content="https://i.imgur.com/crhnO50.png">
-
+<meta itemprop="image" content="https://i.imgur.com/crhnO50.png">
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary_large_image"/>
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://i.imgur.com/crhnO50.png"/>
 
 <meta name="twitter:title" content="口座残高をSlackに通知する"/>
@@ -90,48 +85,28 @@ if (!doNotTrack) {
   <p class="date">April 30, 2019</p>
   
   <div id="contentBody">
-    
-
-<p>GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。</p>
-
-<h2 id="ソースコード">ソースコード</h2>
-
+    <p>GWだし何か作ろうということで、銀行の口座残高をスクレイピングしてSlackに通知というのをやってみた。</p>
+<h2 id="heading">ソースコード</h2>
 <p><a href="https://github.com/koirand/slack-balance">koirand/slack-balance: Get bank balance and send to slack</a></p>
-
 <p>自分はMUFGをメインバンクとして使っているので、MUFGダイレクトのサイトにログインして口座残高を取得するように作ってみたものの、どうせなら他の口座の残高も見たいなあと作ってから気づいた。そこでMoneyForwardの口座ページにアクセスして、MoneyForwardと連携している口座残高の取得もできるようにした。ただ、MoneyForwardの残高はリアルタイムではないので、MUFGの処理は残しておくことにした。</p>
-
 <h2 id="chromedp">chromedp</h2>
-
 <p>今どきSelenium使うのもいけてないので、chromedpを使うことにした。chromedpはChrome DevTools Protocolを使ってChromeを自動操作するツール。Go言語でサクッと書ける。</p>
-
 <p><a href="https://github.com/chromedp/chromedp">chromedp/chromedp: A faster, simpler way to drive browsers supporting the Chrome DevTools Protocol.</a></p>
-
 <p>Exampleを見るとだいたいやり方がわかるかと。</p>
-
 <p><a href="https://github.com/chromedp/examples">chromedp/examples: chromedp code examples.</a></p>
-
 <p>Exampleのevalを見ると、</p>
-
 <pre><code>chromedp.Evaluate(`Object.keys(window);`, &amp;res)
 </code></pre>
-
 <p>のように、どうやら任意のJSの戻り値を取得することもできる模様。
 また、Exampleのheadersを実行するとリクエストヘッダが見れる。Macで実行したらUserAgentは以下となっていた。</p>
-
 <pre><code>&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/74.0.3729.108 Safari/537.36&quot;
 </code></pre>
-
 <p>HeadlessChromeでアクセスしていることがサイト運営者には分かるようなので一応注意されたし。</p>
-
 <h2 id="slack-incoming-webhook">Slack Incoming Webhook</h2>
-
 <p>Slackへの通知はIncoming Webhooksを使って実装した。実装といってもWebサイト上でWebhook URLを発行して、そこにPOSTすれば良いだけなので拍子抜けするほど簡単だった。</p>
-
 <p><a href="https://api.slack.com/">Slack API | Slack</a></p>
-
 <p>こんな感じで通知できてる。良い。</p>
-
-<p><img src="https://i.imgur.com/crhnO50.png" alt="" /></p>
+<p><img src="https://i.imgur.com/crhnO50.png" alt=""></p>
 
   </div>
   <footer>

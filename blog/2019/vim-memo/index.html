@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2019-10-29T16:45:53+09:00" />
 <meta itemprop="name" content="Vimでさっとメモを取る">
 <meta itemprop="description" content="Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。 alias memo=&quot;vim &#43; ~/Documents/memo.txt&quot; ポイントは&#43;をつけていることで、こう">
-
-
 <meta itemprop="datePublished" content="2019-10-29T16:45:53&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-29T16:45:53&#43;09:00" />
 <meta itemprop="wordCount" content="389">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vimでさっとメモを取る"/>
 <meta name="twitter:description" content="Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。 alias memo=&quot;vim &#43; ~/Documents/memo.txt&quot; ポイントは&#43;をつけていることで、こう"/>
 
@@ -84,27 +81,18 @@ if (!doNotTrack) {
   <p class="date">October 29, 2019</p>
   
   <div id="contentBody">
-    
-
-<p>Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。</p>
-
+    <p>Vimさっとメモを取るいい感じの方法を発見したので紹介。まずシェルで以下のエイリアスを設定する。</p>
 <pre><code>alias memo=&quot;vim + ~/Documents/memo.txt&quot;
 </code></pre>
-
 <p>ポイントは<code>+</code>をつけていることで、こうすると最下行にカーソルがある状態でファイルを開くことができる。
 次に<code>.vimrc</code>に以下を設定する。</p>
-
 <pre><code>autocmd BufNewFile,BufRead memo.txt $r! echo '--------------------------------------------------------------------------------' &amp;&amp; date
 </code></pre>
-
 <p>これはどういう意味かというと、「memo.txtを開いたときに、区切り線と日付をバッファの最終行に追記しなさい。」という意味になる。r!でシェルコマンドの実行結果をバッファに取り込むことができる。</p>
-
 <p>以上の設定により、ターミナルで<code>memo</code>と打てば<code>memo.txt</code>が開き、区切り線と日付が追記され、さらに最終行にカーソルがある状態になる。そこから<code>o</code>をタイプしてメモを書いていく。
 Vimは起動が非常に速いし、自分はたいていターミナルを常時起動しているのもあって、かなり素早くメモを書き始めることができる。Vimmerにはおすすめ。</p>
-
-<h3 id="デモ">デモ</h3>
-
-<p><img src="https://i.imgur.com/sBU7DJr.gif" alt="vim-memo" /></p>
+<h3 id="heading">デモ</h3>
+<p><img src="https://i.imgur.com/sBU7DJr.gif" alt="vim-memo"></p>
 
   </div>
   <footer>

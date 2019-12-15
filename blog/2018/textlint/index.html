@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2018-11-11T00:00:00+00:00" />
 <meta itemprop="name" content="ブログの記事をtextlintで校正してみた">
 <meta itemprop="description" content="このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミ">
-
-
 <meta itemprop="datePublished" content="2018-11-11T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-11T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="689">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ブログの記事をtextlintで校正してみた"/>
 <meta name="twitter:description" content="このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミ"/>
 
@@ -84,22 +81,14 @@ if (!doNotTrack) {
   <p class="date">November 11, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミスを見つけてしまって、何度も修正する羽目になる。個人ブログなので神経質になる必要はないがミスを見つけてしまうと何となく気になって修正してしまう。流石に虚しいので文章校正の仕組みを入れることにした。今はVimというテキストエディタで記事を書いているので、Vim上で文書校正をしてみた。</p>
-
-<h2 id="textlintのインストール">textlintのインストール</h2>
-
+    <p>このブログを書いていて、記事を公開してしまってから間抜けな誤字脱字に気づくことが度々あった。慌てて修正してPushして確認すると、また別のミスを見つけてしまって、何度も修正する羽目になる。個人ブログなので神経質になる必要はないがミスを見つけてしまうと何となく気になって修正してしまう。流石に虚しいので文章校正の仕組みを入れることにした。今はVimというテキストエディタで記事を書いているので、Vim上で文書校正をしてみた。</p>
+<h2 id="textlint">textlintのインストール</h2>
 <p>文章校正ツールである <a href="https://textlint.github.io/">textlint</a> インストール。ルールは種類が多すぎて正直どれを入れれば良いのか迷う。とりあえず無難そうな <a href="https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing">技術文書向けのtextlintルールプリセット</a>と、<a href="https://github.com/azu/textlint-rule-spellcheck-tech-word">Webエンジニア向けの辞書</a> をインストールしてみた。</p>
-
 <pre><code class="language-shell">$npm install -g textlint
 $npm install -g textlint-rule-preset-ja-technical-writing textlint-rule-spellcheck-tech-word
 </code></pre>
-
-<h2 id="textlintの設定">textlintの設定</h2>
-
+<h2 id="textlint-1">textlintの設定</h2>
 <p>ホームディレクトリに<code>.textlintrc</code>を作成する。デフォルトだと一文の長さが100文字を越えると警告が表示されるが、100文字だとURLなどを記載するとすぐに超えてしまうので200文字で上書きした。</p>
-
 <pre><code class="language-json">{
   &quot;rules&quot;: {
     &quot;preset-ja-technical-writing&quot;: {
@@ -111,11 +100,8 @@ $npm install -g textlint-rule-preset-ja-technical-writing textlint-rule-spellche
   }
 }
 </code></pre>
-
-<h2 id="vimプラグインの導入">Vimプラグインの導入</h2>
-
+<h2 id="vim">Vimプラグインの導入</h2>
 <p>vimrcの設定例は以下。Lintエンジンの <a href="https://github.com/w0rp/ale">w0rp/ale</a> と、ステータスラインをカスタマイズする <a href="https://github.com/itchyny/lightline.vim">itchyny/lightline.vim</a>を使っている。</p>
-
 <pre><code class="language-vim">&quot; ale
 let g:ale_linters = {
  \  'markdown': ['textlint']
@@ -134,11 +120,9 @@ let g:lightline = {
   \ }
 \ }
 </code></pre>
-
-<h2 id="結果">結果</h2>
-
+<h2 id="heading">結果</h2>
 <p>こんな感じで警告してくれるようになった。行番号の箇所に警告マークが表示され、そこにカーソルを合わせると警告の内容が一番下に表示される。また警告の総数がステータスラインに表示されている。便利。
-<img src="https://i.imgur.com/Igy5I0a.png" alt="" /></p>
+<img src="https://i.imgur.com/Igy5I0a.png" alt=""></p>
 
   </div>
   <footer>

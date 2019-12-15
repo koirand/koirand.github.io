@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2018-10-01T00:00:00+00:00" />
 <meta itemprop="name" content="Promiseとasync/awaitをちゃんと理解する">
 <meta itemprop="description" content="JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい">
-
-
 <meta itemprop="datePublished" content="2018-10-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-01T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="2409">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Promiseとasync/awaitをちゃんと理解する"/>
 <meta name="twitter:description" content="JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい"/>
 
@@ -84,14 +81,9 @@ if (!doNotTrack) {
   <p class="date">October 1, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい。もし使いたい関数がPromiseをサポートしていない場合は、自分でPromiseにラップするのが良いとのこと。この辺の知識が若干怪しかったので、実際に一からやってみた。</p>
-
-<h2 id="コールバック方式">コールバック方式</h2>
-
+    <p>JavaScriptといえばコールバックだが、最近は基本的に非同期関数はPromiseで実装してasync/awaitするのがトレンドらしい。もし使いたい関数がPromiseをサポートしていない場合は、自分でPromiseにラップするのが良いとのこと。この辺の知識が若干怪しかったので、実際に一からやってみた。</p>
+<h2 id="heading">コールバック方式</h2>
 <p>まずは、適当に従来のコールバック方式の非同期関数を書いてみる。</p>
-
 <pre><code class="language-javascript">// コールバック方式による非同期関数
 function sum (x, y, callback) {
   setTimeout(() =&gt; {
@@ -112,20 +104,15 @@ sum(1, 2, (err, result) =&gt; {
   console.log('result:', result)
 })
 </code></pre>
-
 <p>sum関数は足し算をするだけの関数だが、1秒もかかってしまう。時間がかかるので非同期で動くようになっている&hellip;ということにする。これを実行すると1秒後に<code>result: 3</code>が出力される。引数に数値以外が指定された場合は以下のエラーが出力される。</p>
-
 <pre><code>Error: Invalid parameter!
     at Timeout.setTimeout [as _onTimeout] (/xxx/sandbox/nodejs/1.callback.js:4:16)
     at ontimeout (timers.js:498:11)
     at tryOnTimeout (timers.js:323:5)
     at Timer.listOnTimeout (timers.js:290:5)
 </code></pre>
-
-<h2 id="promise方式">Promise方式</h2>
-
+<h2 id="promise">Promise方式</h2>
 <p>次に、先ほどのsum関数をPromiseでラップする。</p>
-
 <pre><code class="language-javascript">// コールバック方式による非同期関数(さっきと同じもの)
 function sum (x, y, callback) {
   setTimeout(() =&gt; {
@@ -157,13 +144,9 @@ promiseSum(1, 2).then(result =&gt; {
   console.log(err)
 })
 </code></pre>
-
 <p>これがいわゆる「Promiseでラップする」ということ。これを実行しても先ほどと同様に1秒後に<code>result: 3</code>が出力される。</p>
-
-<h2 id="コールバック方式とpromise方式の比較">コールバック方式とPromise方式の比較</h2>
-
+<h2 id="promise-1">コールバック方式とPromise方式の比較</h2>
 <p>コールバック方式とPromise方式の実行コードを並べてみる。</p>
-
 <pre><code class="language-javascript">// コールバック方式
 sum(1, 2, (err, result) =&gt; {
   if (err) {
@@ -180,15 +163,10 @@ promiseSum(1, 2).then(result =&gt; {
   console.log(err)
 })
 </code></pre>
-
 <p>コールバック方式の場合は、関数の仕様に合わせて例外処理する必要がある。今回だと「コールバック関数の第一引数でエラーを受け取る」という仕様だ。それがPromiseでラップすることにより、どんな関数でも同じ方法(catch)で例外処理ができる。これはPromise方式のメリットだと感じた。可読性についてはどちらも変わらないと感じる。</p>
-
-<h2 id="非同期関数を順番に実行する">非同期関数を順番に実行する</h2>
-
+<h2 id="heading-1">非同期関数を順番に実行する</h2>
 <p>次に、1から4の数字を全て足し合わせてみる。sum関数は2つの数字しか受け取れないので、1,2の足し算の結果と3を足して、その結果と4を足すという風に順次処理を行う。それぞれ以下のようなコードになる。</p>
-
-<h4 id="コールバック方式-1">コールバック方式</h4>
-
+<h4 id="heading-2">コールバック方式</h4>
 <pre><code class="language-javascript">// コールバック方式による非同期関数
 function sum (x, y, callback) {
   setTimeout(() =&gt; {
@@ -221,11 +199,8 @@ sum(1, 2, (err, result) =&gt; {
   })
 })
 </code></pre>
-
 <p>これを実行すると、足し算を３回行なっているので、３秒待ったあとに<code>result: 10</code>が出力される。良くコールバック地獄やネスト地獄と言われて問題になっているが、この程度だとコールバック方式でもそこまで地獄感は感じない。地獄を味わっている人たちはどれくらい激しいネストをしているんだろうか。</p>
-
-<h4 id="promise方式-1">Promise方式</h4>
-
+<h4 id="promise-2">Promise方式</h4>
 <pre><code class="language-javascript">// コールバック方式による非同期関数
 function sum (x, y, callback) {
   setTimeout(() =&gt; {
@@ -261,9 +236,7 @@ promiseSum(1, 2).then(result =&gt; {
   console.log(err)
 })
 </code></pre>
-
 <p>このコードを実行した場合も、３秒待ったあとに<code>result: 10</code>が出力される。Promise方式だと、メソッドチェイン的な書き方で順番に実行でき、ネストは浅くなる。またPromise方式のもうひとつのメリットとして、try catch的な例外処理ができる。個別に例外を拾いたい場合は、以下のようにthen関数の第二引数に例外処理を書くことができる。</p>
-
 <pre><code class="language-javascript">// 数値以外を引数に指定して故意にエラーを発生させる
 promiseSum('x', 2).then(result =&gt; {
   return promiseSum(result, 3)
@@ -277,9 +250,7 @@ promiseSum('x', 2).then(result =&gt; {
   console.log(err)
 })
 </code></pre>
-
-<p>この実行結果は以下となる。&rsquo;Error handling&hellip;&lsquo;を出力したあとcatchに飛んでいるのがわかる。</p>
-
+<p>この実行結果は以下となる。&lsquo;Error handling&hellip;&lsquo;を出力したあとcatchに飛んでいるのがわかる。</p>
 <pre><code>Error handling ...
 Error: Invalid parameter!
     at Timeout.setTimeout [as _onTimeout] (/xxx/sandbox/nodejs/5.secencial-promise2.js:4:16)
@@ -287,12 +258,9 @@ Error: Invalid parameter!
     at tryOnTimeout (timers.js:323:5)
     at Timer.listOnTimeout (timers.js:290:5)
 </code></pre>
-
-<h2 id="async-await方式">async/await方式</h2>
-
+<h2 id="asyncawait">async/await方式</h2>
 <p>冒頭に書いた通り、最近はasync/awaitを使うのがトレンドだ。先ほどのPromise方式を
 async/awaitで書き換えると以下のコードになる。</p>
-
 <pre><code class="language-javascript">// コールバック方式による非同期関数
 function sum (x, y, callback) {
   setTimeout(() =&gt; {
@@ -330,9 +298,7 @@ function promiseSum (x, y) {
   }
 })()
 </code></pre>
-
 <p>このコードを実行した場合も3秒待ったあとに<code>result: 10</code>が出力される。Promise関数に<code>await</code>を付けることで処理の完了を待ってくれる。<code>await</code>は<code>async</code>を付けたfunctionの中だけで使えるというルールがあるので即時関数を使わないといけない点はイマイチだが、コールバックを使わずに同期処理が書けるので可読性が高いと感じる。普通にtry catchで例外処理できるのもポイント高い。ちなみに先ほどのように個別で例外を拾う場合は以下のようになる。</p>
-
 <pre><code class="language-javascript">(async () =&gt; {
   try {
     let result;
@@ -348,13 +314,9 @@ function promiseSum (x, y) {
   }
 })()
 </code></pre>
-
 <p>このように、catchで個別に例外を拾うことができる。コールバック完全駆逐&hellip;とまでは行かないようだ。</p>
-
-<h2 id="async-await方式でのテスト">async/await方式でのテスト</h2>
-
+<h2 id="asyncawait-1">async/await方式でのテスト</h2>
 <p>昔は、非同期処理をテストするにはco-mocha等を使った気がするが、最近はmochaでasync/awaitが使えるようだ。以下のようなテストコードになる。</p>
-
 <pre><code class="language-javascript">describe('asunc/await test', () =&gt; {
   it('1 + 2 = 3 ', async () =&gt; {
     const result = await promiseSum(1, 2)

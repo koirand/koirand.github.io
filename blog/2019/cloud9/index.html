@@ -27,24 +27,19 @@
 <meta property="og:description" content="前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9について" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/cloud9/" />
-
 <meta property="og:image" content="https://i.imgur.com/noTJzw4.png" />
 <meta property="article:published_time" content="2019-05-02T19:24:22+09:00" />
 <meta property="article:modified_time" content="2019-05-02T19:24:22+09:00" />
 <meta itemprop="name" content="AWS Cloud9を使ってみた">
 <meta itemprop="description" content="前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9について">
-
-
 <meta itemprop="datePublished" content="2019-05-02T19:24:22&#43;09:00" />
 <meta itemprop="dateModified" content="2019-05-02T19:24:22&#43;09:00" />
 <meta itemprop="wordCount" content="1380">
-
-  <meta itemprop="image" content="https://i.imgur.com/noTJzw4.png">
-
+<meta itemprop="image" content="https://i.imgur.com/noTJzw4.png">
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary_large_image"/>
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://i.imgur.com/noTJzw4.png"/>
 
 <meta name="twitter:title" content="AWS Cloud9を使ってみた"/>
@@ -90,16 +85,10 @@ if (!doNotTrack) {
   <p class="date">May 2, 2019</p>
   
   <div id="contentBody">
-    
-
-<p>前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9については、re:Invent2017の動画がわかりやすい。</p>
-
+    <p>前回、AWS IoTボタンを使うためにAWSアカウントを作ったので、ついでにクラウドIDEであるCloud9を触ってみた。Cloud9については、re:Invent2017の動画がわかりやすい。</p>
 <p><a href="https://www.youtube.com/watch?v=fwFoU_Wb-fU">AWS re:Invent 2017 - Introducing AWS Cloud9: Werner Vogels Keynote - YouTube</a></p>
-
-<h2 id="クラウドideに求めるもの">クラウドIDEに求めるもの</h2>
-
+<h2 id="ide">クラウドIDEに求めるもの</h2>
 <p>これまでにクラウドIDEを使ったことはない。技術書の写経とかで環境構築がめんどくさかったりするので(Pythonとか)、そのへんがサクッとできると嬉しい。その他には以下の機能があればいいなという感じ。</p>
-
 <ul>
 <li>Vimキーバインドが使える</li>
 <li>Terminalが使える</li>
@@ -107,91 +96,54 @@ if (!doNotTrack) {
 <li>コード補完ができる</li>
 <li>コードの共同編集ができる(社内勉強会などで使いたい)</li>
 </ul>
-
-<h2 id="セットアップ">セットアップ</h2>
-
+<h2 id="heading">セットアップ</h2>
 <p>Cloud9を動かすホストとしてEC2を使うのが一般的だと思うけど、自分は個人でさくらのVPS(Ubuntu)を契約しているのでそこで動かすことにした(AWS良くわからない)。ホスト側でやったことは以下の通り。</p>
-
 <ul>
 <li>cloud9用にユーザーを作成する(一般ユーザーで問題なし)
-
 <ul>
 <li>既存のユーザーでも問題ないと思うけど一応別ユーザーにした</li>
-</ul></li>
+</ul>
+</li>
 <li>AWSコンソールに表示される公開鍵を<code>.ssh/authorized_keys</code>に登録</li>
 <li>Node.jsをインストール(今回はv10.15.3)</li>
 </ul>
-
 <p>動いた。</p>
-
-<p><img src="https://i.imgur.com/noTJzw4.png" alt="" /></p>
-
-<h2 id="対応している言語">対応している言語</h2>
-
+<p><img src="https://i.imgur.com/noTJzw4.png" alt=""></p>
+<h2 id="heading-1">対応している言語</h2>
 <p>ここに記載されている。</p>
-
 <p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/language-support.html">AWS Cloud9 Integrated Development Environment (IDE) の言語のサポート - AWS Cloud9</a></p>
-
 <p>C++も対応しているので、競プロをやるのも面白いかと思った。</p>
-
 <h2 id="hello-world">Hello, world</h2>
-
 <p>Goのサンプルコードを動かしてみた。</p>
-
 <p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/sample-go.html">AWS Cloud9 の Go サンプル - AWS Cloud9</a></p>
-
 <p>.bashrcにパスを設定</p>
-
 <pre><code>GOPATH=$HOME/go
 PATH=&quot;/usr/local/go/bin:$GOPATH/bin:$PATH&quot;
 </code></pre>
-
 <p>.goファイルを開くと、エラーになる。</p>
-
-<p><img src="https://i.imgur.com/8wULySF.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/8wULySF.png" alt=""></p>
 <p>調べるとどうもgocodeが必要らしいので、gocodeをインストールした。</p>
-
 <pre><code>go get github.com/nsf/gocode
 </code></pre>
-
 <p>動いた。</p>
-
-<p><img src="https://i.imgur.com/ZvbCYS1.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/ZvbCYS1.png" alt=""></p>
 <p>補完はこんな感じ。</p>
-
-<p><img src="https://i.imgur.com/URWhhmC.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/URWhhmC.png" alt=""></p>
 <p>コードの補完にgocodeを使っているので、goのバージョンは1.9以下にしておいたほうが良いと思われる。goのコード補完はlspへの移行期なので、1.10以降はもう少し落ち着いてから使おう。mattnさんが以下の記事で経緯を説明してくれている。</p>
-
 <p><a href="https://mattn.kaoriya.net/software/lang/go/20181217000056.htm">Big Sky :: gocode やめます(そして Language Server へ)</a></p>
-
 <p>フォルダ階層はチュートリアルと違うけど、一般的な開発だとこんな感じになるかと思う。
-<img src="https://i.imgur.com/2lItmWT.png" alt="" /></p>
-
-<h2 id="vimキーバインド">Vimキーバインド</h2>
-
+<img src="https://i.imgur.com/2lItmWT.png" alt=""></p>
+<h2 id="vim">Vimキーバインド</h2>
 <p>普段良く使うキーはだいたい問題なかった。ウィンドウ操作系はやはり難しいようだった。</p>
-
-<h2 id="lambda-functionとの連携">Lambda Functionとの連携</h2>
-
+<h2 id="lambda-function">Lambda Functionとの連携</h2>
 <p><a href="https://koirand.github.io/blog/2019/slack-timeclock/">前回作ったLambda Function</a> をCloud9上で変更してみる。</p>
-
 <p>以下を参考にした。</p>
-
 <p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/lambda-functions.html">AWS Cloud9 Integrated Development Environment (IDE) で AWS Lambda 関数を操作する - AWS Cloud9</a></p>
-
 <p>Lambdaへのアクセス権限を持つcloud9用のIAMを作成して、aws-cliをインストールすると、Remote Functionsが見えるようになる。</p>
-
-<p><img src="https://i.imgur.com/h4QZbCR.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/h4QZbCR.png" alt=""></p>
 <p>関数をインポートしようとしたらエラーが。goのランタイムはサポートしてないっぽい。まあコンパイル言語だし無理か。残念。</p>
-
-<p><img src="https://i.imgur.com/mWFKmP4.png" alt="" /></p>
-
-<h2 id="感想">感想</h2>
-
+<p><img src="https://i.imgur.com/mWFKmP4.png" alt=""></p>
+<h2 id="heading-2">感想</h2>
 <p>好きな言語の好きなバージョンの仮想環境がサクッと立ち上がるのかなとか勝手に思ってたけど、そういうものではないらしい。クラウドIDEという名前の通りあくまでIDEなので、環境は自分で構築する必要がある。環境汚したくない場合はコンテナを使ったほうが良さそう。環境構築をサクッとやりたいのであればPiaza Cloudとかのほうが良いのかもしれない。とはいえ一度環境を作ってしまえば、どのPCでも開発できてしまうのは熱い。IDEとしては普通に使いやすい。</p>
 
   </div>

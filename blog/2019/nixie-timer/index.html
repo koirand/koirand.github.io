@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2019-04-06T23:39:26+09:00" />
 <meta itemprop="name" content="ニキシー管風のカウントダウンタイマーを作った">
 <meta itemprop="description" content="「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactのCo">
-
-
 <meta itemprop="datePublished" content="2019-04-06T23:39:26&#43;09:00" />
 <meta itemprop="dateModified" content="2019-04-06T23:39:26&#43;09:00" />
 <meta itemprop="wordCount" content="639">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ニキシー管風のカウントダウンタイマーを作った"/>
 <meta name="twitter:description" content="「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactのCo"/>
 
@@ -84,36 +81,23 @@ if (!doNotTrack) {
   <p class="date">April 6, 2019</p>
   
   <div id="contentBody">
-    
-
-<p>「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactのContextを使ってStateを簡単に管理できるモジュール。ソースコードは200行に満たないにも関わらずとても強力。</p>
-
+    <p>「今年はunstatedがくる」と同僚が言っていたのでunstatedを使ってなにか作ってみようと思った。unstatedはReactのContextを使ってStateを簡単に管理できるモジュール。ソースコードは200行に満たないにも関わらずとても強力。</p>
 <blockquote>
 <p><a href="https://github.com/jamiebuilds/unstated">jamiebuilds/unstated: State so simple, it goes without saying</a></p>
 </blockquote>
-
-<h2 id="作ったもの">作ったもの</h2>
-
+<h2 id="heading">作ったもの</h2>
 <p><a href="https://github.com/koirand/nixie-timer">koirand/nixie-timer: Nixie tube style count down timer.</a></p>
-
-<p><img src="https://user-images.githubusercontent.com/17229643/54739890-f4a7f300-4bfc-11e9-8d08-34c8e7e42893.png" alt="" /></p>
-
+<p><img src="https://user-images.githubusercontent.com/17229643/54739890-f4a7f300-4bfc-11e9-8d08-34c8e7e42893.png" alt=""></p>
 <p>デモは <a href="https://koirand.github.io/nixie-timer/">こちら</a> 。時間を設定して[Start]ボタンを押すとカウントダウンが始まる。カウントダウン中は時計以外が隠れるので、デザインスプリントやワークショップなどで、スクリーンとかモニタとかに映すと格好がよろしいかと。画像の素材は <a href="http://www.trismegistuslabo.com/blog/2010/04/29-1815.html">Photoshop ニキシー管風味カウンター素材 - trismegistuslabo トリメギ</a> から拝借させてもらった。</p>
-
-<h2 id="unstated使ってみた感想">unstated使ってみた感想</h2>
-
+<h2 id="unstated">unstated使ってみた感想</h2>
 <p>今いる会社はフロントエンドのエンジニアがそんなにいないのでReduxを社内で使っていくのは正直厳しいが、unstatedなら覚えることが少なくて大丈夫そうだと感じた。componentDidMountなどでStateを更新したい場合にHOCをかまさないといけないのが若干アレだけど慣れれば大したことない。</p>
-
 <h2 id="gh-pages">gh-pages</h2>
-
 <p>今回 <a href="https://www.npmjs.com/package/gh-pages">gh-pages - npm</a> を使ってデモページをデプロイしてみた。このモジュールもとてもお手軽で良かった。</p>
-
 <pre><code class="language-json">&quot;scripts&quot;: {
   &quot;predeploy&quot;: &quot;yarn build&quot;,
   &quot;deploy&quot;: &quot;gh-pages -d build -m \&quot;[ci skip]\&quot;&quot;
 }
 </code></pre>
-
 <p>package.jsonにこのようにscriptsを書いておけば、<code>yarn deploy</code>するとGitHub Pagesにデプロイできる。ちなみにCIをスキップするために、<code>-m</code>オプションでコミットメッセージに<code>[ci skip]</code>を入れるようにしている。</p>
 
   </div>

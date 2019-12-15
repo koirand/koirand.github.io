@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2018-10-08T00:00:00+00:00" />
 <meta itemprop="name" content="HUGOテーマ(pulp)に全文検索機能を付けた">
 <meta itemprop="description" content="先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしな">
-
-
 <meta itemprop="datePublished" content="2018-10-08T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-08T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="1227">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HUGOテーマ(pulp)に全文検索機能を付けた"/>
 <meta name="twitter:description" content="先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしな"/>
 
@@ -84,24 +81,15 @@ if (!doNotTrack) {
   <p class="date">October 8, 2018</p>
   
   <div id="contentBody">
-    
-
-<p>先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしなくても本文が検索できればいいなと思っていた。しっかり作るならElasticSearchや<a href="https://www.algolia.com/">Algolia</a>を使うんだろうけど、そうするとThemeとして配布しづらくなるし、個人用途としてはそこまでの機能はいらないのでフロントエンドだけで完結する方法を模索した。</p>
-
-<h2 id="デモ">デモ</h2>
-
-<p><img src="https://i.imgur.com/iEizGsk.gif" alt="" /></p>
-
-<h2 id="記事をjsonで取得できるようにする">記事をJSONで取得できるようにする</h2>
-
+    <p>先日作ったpulpというHUGOのテーマに全文検索機能を付けてみた。タグやカテゴリで分類するのが個人的に面倒臭いと思ってしまうので、何もしなくても本文が検索できればいいなと思っていた。しっかり作るならElasticSearchや<a href="https://www.algolia.com/">Algolia</a>を使うんだろうけど、そうするとThemeとして配布しづらくなるし、個人用途としてはそこまでの機能はいらないのでフロントエンドだけで完結する方法を模索した。</p>
+<h2 id="heading">デモ</h2>
+<p><img src="https://i.imgur.com/iEizGsk.gif" alt=""></p>
+<h2 id="json">記事をJSONで取得できるようにする</h2>
 <p>まずは、<a href="https://www.celeumu.com/articles/20171107023559/">HugoでJSONを出力 | Celeumu</a> を参考にしつつブログの記事をJSONで取得できるようにした。config.tomlに以下を追記すると、拡張子が.jsonのテンプレートをHUGOがテンプレートとして見てくれるようになった。</p>
-
 <pre><code class="language-toml">[outputs]
     section = [&quot;JSON&quot;, &quot;HTML&quot;]
 </code></pre>
-
-<p>その上で<code>layouts/_default/list.json</code> を作成すると、<a href="http://hostname/section/index.json">http://hostname/section/index.json</a> といったURLでいとも簡単にセクションのデータをJSONで引っこ抜くことができるようになる。このブログの場合だと、<a href="https://koirand.github.io/blog/index.json">https://koirand.github.io/blog/index.json</a> からデータが取得できる。</p>
-
+<p>その上で<code>layouts/_default/list.json</code> を作成すると、http://hostname/section/index.json といったURLでいとも簡単にセクションのデータをJSONで引っこ抜くことができるようになる。このブログの場合だと、<a href="https://koirand.github.io/blog/index.json">https://koirand.github.io/blog/index.json</a> からデータが取得できる。</p>
 <pre><code>[{{ range $index, $page := .Pages }}{{ if ne $index 0 }},{{ end }}
     {
         &quot;ref&quot;: &quot;{{ $page.Permalink }}&quot;,
@@ -112,35 +100,22 @@ if (!doNotTrack) {
     }
 {{ end }}]
 </code></pre>
-
-<h2 id="検索処理の実装">検索処理の実装</h2>
-
+<h2 id="heading-1">検索処理の実装</h2>
 <p>検索処理は <a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">hugo + gruntjs + lunrjs = search</a> にlunr.jsを使ったサンプルコードを掲載してくれている人がいて、ほぼこのままで動いた。このサンプルコードをベースに以下のカスタマイズを加えた。具体的な変更内容は <a href="https://github.com/koirand/pulp/pull/3/files">Add full-text search function by koirand · Pull Request #3 · koirand/pulp</a> を参照。</p>
-
 <ul>
 <li>検索結果に本文を表示</li>
 <li>日本語での検索対応</li>
 <li>キーワードのハイライト</li>
 </ul>
-
-<h2 id="検索結果に本文を表示">検索結果に本文を表示</h2>
-
+<h2 id="heading-2">検索結果に本文を表示</h2>
 <p>本文でキーワードにヒットした箇所の前後50文字を検索結果に表示した。複数のキーワードがスペース区切りで入力された場合は先頭のキーワードだけを使っている。また、タイトルのみにヒットした場合は、本文の先頭100文字を表示している。(恐らくもっと良いやり方がある)</p>
-
-<h2 id="日本語での検索対応">日本語での検索対応</h2>
-
+<h2 id="heading-3">日本語での検索対応</h2>
 <p>標準のlunr.jsだとスペースを単語の区切りとみなすのか日本語を検索できないので、<a href="https://github.com/MihaiValentin/lunr-languages">MihaiValentin/lunr-languages: A collection of languages stemmers and stopwords for Lunr Javascript library</a> を使う必要がある。READMEには書いてないが、日本語に対応させる場合は同封されているtinyseg.jsも読み込む必要があった。</p>
-
-<h2 id="キーワードのハイライト">キーワードのハイライト</h2>
-
+<h2 id="heading-4">キーワードのハイライト</h2>
 <p>キーワードのハイライトは <a href="https://markjs.io/">mark.js – JavaScript keyword highlight</a> を使うと簡単だった。</p>
-
-<h2 id="感想">感想</h2>
-
+<h2 id="heading-5">感想</h2>
 <p>たまに一部の単語が検索にヒットしないものの、概ねちゃんと検索できてるしサクサクで良い感じ。ページの数が増えてくるとパフォーマンス落ちたりするのかなと、試しに <a href="https://github.com/skycoin/blog">Skycoin社のブログデータ</a> のリポジトリをクローンしてこのテーマを適用してみたが普通にサクサク動いたので個人サイトであれば大丈夫だろう。</p>
-
-<h2 id="追記">追記</h2>
-
+<h2 id="heading-6">追記</h2>
 <p><a href="https://koirand.github.io/blog/2018/pulp-search2/">HUGOテーマ(pulp)の全文検索をあいまい検索に変更した - Kazuki Koide</a></p>
 
   </div>

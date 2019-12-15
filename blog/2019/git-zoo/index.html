@@ -31,16 +31,13 @@
 <meta property="article:modified_time" content="2019-04-06T21:14:24+09:00" />
 <meta itemprop="name" content="Gitのログを動物園にする">
 <meta itemprop="description" content="Gitのログに絵文字のプレフィックスを入れている人をたまに見かける。バグだったら :bug: とか、テストだったら :white_check_mark: とか。見やすくていいんだけど、なんか">
-
-
 <meta itemprop="datePublished" content="2019-04-06T21:14:24&#43;09:00" />
 <meta itemprop="dateModified" content="2019-04-06T21:14:24&#43;09:00" />
 <meta itemprop="wordCount" content="426">
 
 
 
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Gitのログを動物園にする"/>
 <meta name="twitter:description" content="Gitのログに絵文字のプレフィックスを入れている人をたまに見かける。バグだったら :bug: とか、テストだったら :white_check_mark: とか。見やすくていいんだけど、なんか"/>
 
@@ -85,23 +82,16 @@ if (!doNotTrack) {
   
   <div id="contentBody">
     <p>Gitのログに絵文字のプレフィックスを入れている人をたまに見かける。バグだったら :bug: とか、テストだったら :white_check_mark: とか。見やすくていいんだけど、なんか仕事のルールって感じがして、もっと自由で無意味で楽しく開発したいと思った。例えば動物の絵文字を追加するとか。</p>
-
 <p>自動で絵文字を追加できたりしないのかなと思って調べたら、Git hookというものがあることを知った。</p>
-
 <blockquote>
 <p><a href="https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA-Git-%E3%83%95%E3%83%83%E3%82%AF">Git - Git フック</a></p>
 </blockquote>
-
 <p><code>prepare-commit-msg</code>でゴニョゴニョすることで、コミットメッセージを書き換えられるらしいので、ランダムに動物の絵文字を追加するツールを作ってみた。</p>
-
 <ul>
 <li><a href="https://github.com/koirand/git-zoo">koirand/git-zoo: Add animals emoji to git commit message.</a></li>
 </ul>
-
 <p>使い方はREADMEにある通り、適用したいGitリポジトリの<code>.git/hooks/prepare-commit-msg</code>にシンボリックリンクを作成すると、コミット時にコミットメッセージの行頭にランダムな動物の絵文字が挿入されるようになる。</p>
-
-<p><img src="https://i.imgur.com/h5VGB47.png" alt="" /></p>
-
+<p><img src="https://i.imgur.com/h5VGB47.png" alt=""></p>
 <p>こんな風に楽しい感じになる。会社でやるとたぶんウザがられるのでオススメはしない。</p>
 
   </div>
