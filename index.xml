@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 29 Oct 2019 16:45:53 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2020 18:33:33 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BunsenLabsインストールメモ</title>
+      <link>https://koirand.github.io/blog/2020/bunsenlabs/</link>
+      <pubDate>Fri, 03 Jan 2020 18:33:33 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2020/bunsenlabs/</guid>
+      <description>10年以上前に買ったDEL Inspiron Mini9が押し入れで眠っていたので、超軽量LinuxのBunsenLabsをインストールしてみた。流石にスペッ</description>
+    </item>
     
     <item>
       <title>Vimでさっとメモを取る</title>
