@@ -34,7 +34,7 @@
 <meta itemprop="description" content="前々から触ってみたかったAWS IoTボタンをついに購入した。 Amazonで2500円で販売している。Dash buttonが500円だったので">
 <meta itemprop="datePublished" content="2019-05-01T23:04:33&#43;09:00" />
 <meta itemprop="dateModified" content="2019-05-01T23:04:33&#43;09:00" />
-<meta itemprop="wordCount" content="885">
+<meta itemprop="wordCount" content="955">
 <meta itemprop="image" content="https://i.imgur.com/yRsC5yS.jpg">
 
 
@@ -107,6 +107,7 @@ zip slack-timeclock.zip slack-timeclock
 <p>ボタンを押したときのアクションは、Eメールを送信、SMSを送信、Lambda関数を実行の３つから選べる。デバイスを登録してWifiに繋いだあと、プロジェクトを作成してLambda関数を選択すれば連携される。プレイスメントというところで、デバイスごとに異なる属性を設定することができる。今回は自分の名前を設定して、Slackのメッセージに名前が組み込まれるようにしてみた。</p>
 <p><img src="https://i.imgur.com/RzVRafG.png" alt=""></p>
 <p>こうすることで、他の人用にもう一つボタンを用意した際に、Lambda関数は同じものを使用して、属性だけ変えれば済む。</p>
+<p>ちなみに、このIoTボタンはAWSと8443ポートで通信するらしい。会社のFWでポートが閉じられている場合は穴あけしないと使えないので注意。</p>
 <h2 id="heading-1">シングルクリック、ダブルクリックの判別</h2>
 <p>シングルクリックかダブルクリックかの判別方法が公式のドキュメントを読んでも良くわからなかった。AWS難しい。試行錯誤の末、下記を参考にしてうまくいった。</p>
 <ul>
