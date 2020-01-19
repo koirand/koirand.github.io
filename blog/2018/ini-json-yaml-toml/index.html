@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -80,6 +80,12 @@ if (!doNotTrack) {
   
   <p class="date">November 19, 2018</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>設定ファイルの書式についてググることが多かったので自分用にチートシートを作成してみた。設定ファイルの規格で思いつくのは、INI、XML、JSON、YAML、TOMLの５種類。他にもあるだろうが私には接点がない。INIは物心ついたころには既にあった気がする。Windows 95のアプリケーションの設定ファイルがINIだった。それからphp.iniの印象が強い。今でも.gitconfigなどで触れる機会がある。XMLはJAVAのweb.xmlが最初の出会いだった。当時からなんでこんな扱いづらいフォーマットで書くのか理解できなかった。XMLが嫌でJAVAやApacheを使いたくないところがある。今でも古めのAPIはXMLだったりするし、SAMLなんかもXMLだ。JSONとの出会いは正直覚えていないが、何かしらのREST-APIだと思われる。Node.jsのpackage.jsonで良く触れる。YAMLはRubyを使ってこなかったのでこれまで接点が無かったが、最近Kubernetesを使い始めて良く触るようになった。TOMLはGolangを使った時に初めて触れた。Go言語界隈ではTOMLが良く使われている。HUGOの設定もTOMLだ。</p>
 <p>以上唐突な自分語り。何が言いたいのかというと、TPOに合わせて色々な規格を読み書きしないといけなくてややこしいと言うことだ。</p>
@@ -115,7 +121,7 @@ if (!doNotTrack) {
 </tbody>
 </table>
 <p>意外とYAMLが古い。INIは<a href="https://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">Wikipedia</a>によると規格化・標準化されていないらしい。今初めて知った。自然発生的に生まれたと言うことだろうか。不思議な書式だ。そういう意味ではTOMLはINIを規格化したものと言えるのだろうか。ちなみに各フォーマットをGoogleトレンドだと<a href="https://trends.google.co.jp/trends/explore?date=all&amp;geo=JP&amp;q=ini,xml,json,yaml,toml">こんな感じ</a>。</p>
-<h2 id="heading">チートシート</h2>
+<h2 id="チートシート">チートシート</h2>
 <p>というわけでチートシート。(XMLは書かない)</p>
 <h3 id="ini">INI</h3>
 <pre><code class="language-ini">; コメント

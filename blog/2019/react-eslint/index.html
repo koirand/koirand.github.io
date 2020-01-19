@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -80,10 +80,16 @@ if (!doNotTrack) {
   
   <p class="date">March 11, 2019</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p><a href="https://sider.review/dashboard">Sider</a> というGitHubのプルリクエストを自動でレビューしてくれるサービスがあり、これをちょっと使ってみようと思った。
 以前 <a href="https://koirand.github.io/blog/2018/create-react-app/">React開発環境構築(create-react-app利用)</a> に書いたとおり、ESLintの設定がダルいので普段はStandard Styleのモジュールを入れてLintの設定は簡単に済ましているが、このSiderがStandard Styleには対応してなくてJSHintかESLintにしか対応していないようなので、今回ESLintでLintしてみた。</p>
-<h2 id="heading">モジュールのインストール</h2>
+<h2 id="モジュールのインストール">モジュールのインストール</h2>
 <p>react-create-appにはReactをESLintするために必要なモジュールは同梱されている。なのでStandard Style用のプラグインだけ追加で入れる。</p>
 <pre><code class="language-shell">yarn add -D \
   eslint-config-standard \
@@ -99,7 +105,7 @@ if (!doNotTrack) {
 }
 </code></pre>
 <p>これで <code>yarn run eslint src/</code> などやればLintしてくれる。</p>
-<h2 id="vimale">Vimの設定(ALE)</h2>
+<h2 id="vimの設定ale">Vimの設定(ALE)</h2>
 <p>ALEはLintのモジュールを自動検知してくれるので、ESLintになっても設定は変更しなくても問題なかった。</p>
 <pre><code class="language-vim">let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_fix_on_save = 1
@@ -110,7 +116,7 @@ let g:ale_fix_on_save = 1
 <h2 id="vscode">VSCode</h2>
 <p><code>eslint</code>プラグインを入れればOK。
 設定をいじれば自動修正もしてくれる。</p>
-<h2 id="heading-1">まとめ</h2>
+<h2 id="まとめ">まとめ</h2>
 <p>思ったより設定項目少なくて楽だった。最初からこうすれば良かった感がある。</p>
 
   </div>

@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -84,11 +84,17 @@ if (!doNotTrack) {
   
   <p class="date">September 24, 2018</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>タイトルの通り、いわゆる「LINEでログイン」を試してみた時のメモ。</p>
-<h2 id="heading">ソースコード</h2>
+<h2 id="ソースコード">ソースコード</h2>
 <p><a href="https://github.com/koirand/springboot-line-login">koirand/springboot-line-login: LINE login with Springboot Sample</a></p>
-<h2 id="oauth2">OAuth2での認証方法</h2>
+<h2 id="oauth2での認証方法">OAuth2での認証方法</h2>
 <blockquote>
 <p><a href="https://qiita.com/kazuki43zoo/items/658eabbf0d6a60d3ed89">第1回：Spring Security 5でサポートされるOAuth 2.0 LoginをSpring Bootで使ってみる</a></p>
 </blockquote>
@@ -171,7 +177,7 @@ http://localhost:8080
 </code></pre>
 <p>なお、認証成功時のリダイレクト先のURLについては、LINE Developer画面上でホワイトリストに設定しておく必要がある。LINE以外の他のプロバイダでも同様。</p>
 <p><img src="https://i.imgur.com/WZLFaay.png" alt=""></p>
-<h2 id="heading-1">別の実装方法</h2>
+<h2 id="別の実装方法">別の実装方法</h2>
 <p>LINE Engieeringブログで、<code>spring-boot-starter-security</code>と<code>spring-security-oauth</code>を使った実現方法が紹介されていたが、この方法だとOAuth2プロバイダが１つしか指定できなかったので採用しなかった。実際はLINEだけでなくGoogleやFacebookと併用したいケースが多いのではないだろうか。</p>
 <blockquote>
 <p><a href="https://engineering.linecorp.com/ja/blog/detail/159">Spring Security + 設定ファイルで始める LINE との ID Federation : LINE Engineering Blog</a></p>

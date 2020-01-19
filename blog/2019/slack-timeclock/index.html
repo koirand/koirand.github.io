@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -84,13 +84,19 @@ if (!doNotTrack) {
   
   <p class="date">May 1, 2019</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>前々から触ってみたかったAWS IoTボタンをついに購入した。</p>
 <p><img src="https://i.imgur.com/yRsC5yS.jpg" alt=""></p>
 <p>Amazonで2500円で販売している。Dash buttonが500円だったので、やや割高に感じる。</p>
 <p><a href="https://www.amazon.co.jp/dp/B075FPHHGG">Amazon.co.jp： AWS IoT エンタープライズボタン – IoT をシンプルに。</a></p>
 <p><a href="https://koirand.github.io/blog/2019/slack-balance/">先日</a>Slack Incoming Webhookを使ってSlackに通知する技術を会得したので、今度は出勤・退勤時にこのボタンを押てSlackに通知するようにしたら、タイムカードみたいに使えて便利じゃないかな？と思って作ってみた。</p>
-<h2 id="heading">ソースコード</h2>
+<h2 id="ソースコード">ソースコード</h2>
 <p><a href="https://github.com/koirand/slack-timeclock">koirand/slack-timeclock: Using AWS IoT button, Notification to Slack that work start and end.</a></p>
 <p>ボタンをクリックすると出勤、ダブルクリックすると退勤の通知が飛ぶ。便利。</p>
 <p><img src="https://i.imgur.com/7VFqKKH.png" alt=""></p>
@@ -108,7 +114,7 @@ zip slack-timeclock.zip slack-timeclock
 <p><img src="https://i.imgur.com/RzVRafG.png" alt=""></p>
 <p>こうすることで、他の人用にもう一つボタンを用意した際に、Lambda関数は同じものを使用して、属性だけ変えれば済む。</p>
 <p>ちなみに、このIoTボタンはAWSと8443ポートで通信するらしい。会社のFWでポートが閉じられている場合は穴あけしないと使えないので注意。</p>
-<h2 id="heading-1">シングルクリック、ダブルクリックの判別</h2>
+<h2 id="シングルクリックダブルクリックの判別">シングルクリック、ダブルクリックの判別</h2>
 <p>シングルクリックかダブルクリックかの判別方法が公式のドキュメントを読んでも良くわからなかった。AWS難しい。試行錯誤の末、下記を参考にしてうまくいった。</p>
 <ul>
 <li><a href="https://muzigram.muzigen.net/2018/06/iotbutton-go-firebase-golang-lambda.html">IoTButton Go Firebaseで「イラッと」をロギングする。</a></li>

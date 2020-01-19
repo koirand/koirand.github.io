@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -84,11 +84,17 @@ if (!doNotTrack) {
   
   <p class="date">January 3, 2020</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>10年以上前に買ったDEL Inspiron Mini9が押し入れで眠っていたので、超軽量LinuxのBunsenLabsをインストールしてみた。流石にスペックが貧弱なので、とりあえずテキストエディタで日本語の文章が書けてChromeで何かしらに投稿できれば十分ということにした。</p>
-<h3 id="heading">インストール</h3>
+<h3 id="インストール">インストール</h3>
 <p><a href="https://www.bunsenlabs.org/installation.html">BunsenLabs Linux :: Installation</a> でisoファイルをダウンロードできるのでそれをUSBメモリに焼いてインストールした。今どきi386 no PAEをサポートしているのは凄い。タッチパネルや無線LANなどのハードも、何もせずにちゃんと認識された。</p>
-<h3 id="heading-1">初期セットアップ</h3>
+<h3 id="初期セットアップ">初期セットアップ</h3>
 <p>初回起動時には、自動的に <code>bl-welcome</code> が起動するので、ウィザードに従って進むと必要なソフトウェアがインストールされる。OSのバージョンは以下になった。</p>
 <pre><code>$ cat /etc/debian_version
 9.11
@@ -100,11 +106,11 @@ Disk info: Debian GNU/Linux 9.8 _Helium_ - Snapshot i386 LIVE/INSTALL Binary 201
 Install date: 2020-01-03T06:28:45
 Added bunsen-meta-all at 2020-01-03T07:42:05, version 9.0.2-1
 </code></pre>
-<h3 id="heading-2">パッケージ追加</h3>
+<h3 id="パッケージ追加">パッケージ追加</h3>
 <p>最低限のパッケージをインストール</p>
 <pre><code>$ sudo apt install git vim chromium fcitx-mozc
 </code></pre>
-<h3 id="dotfiles">Dotfiles追加</h3>
+<h3 id="dotfiles追加">Dotfiles追加</h3>
 <pre><code>$ mkdir ~/Projects
 $ git clone git@github.com:koirand/dotfiles.git ~/Projects/dotfiles
 $ ln -s ~/Projects/dotfiles/.gitconfig ~/.gitconfig
@@ -112,20 +118,20 @@ $ ln -s ~/Projects/dotfiles/.vimrc ~/.vimrc
 $ ln -s ~/Projects/dotfiles/.vim ~/.vim
 $ ln -s ~/Projects/dotfiles/.Xmodmap ~/.Xmodmap
 </code></pre>
-<h3 id="heading-3">デフォルトアプリ変更</h3>
+<h3 id="デフォルトアプリ変更">デフォルトアプリ変更</h3>
 <p>vimとChromeがデフォルトで起動するようにする。</p>
 <pre><code>$ update-alternatives --all
 </code></pre>
-<h3 id="openboxautostart">Openboxのautostart変更</h3>
+<h3 id="openboxのautostart変更">Openboxのautostart変更</h3>
 <p>CapsLockキーをCtrlキーとして使うための設定だけ。
 <code>~/.config/openbox/autostart</code> に追記</p>
 <pre><code>xmodmap ~/.Xmodmap
 </code></pre>
-<h3 id="fcitx">Fcitxの設定</h3>
+<h3 id="fcitxの設定">Fcitxの設定</h3>
 <p><code>Esc</code>キーと<code>Ctrl+[</code>でIMEを切る設定だけ。</p>
 <pre><code>sed -i -e 's/#InactivateKey=/InactivateKey=ESCAPE CTRL_[/' ~/.config/fcitx/config
 </code></pre>
-<h3 id="heading-4">終わり</h3>
+<h3 id="終わり">終わり</h3>
 <p>画面が9インチしかなくてとても小さいので、作業中は<code>Fn + F11</code>で最大化すると良いかと。</p>
 <p><img src="https://i.imgur.com/v6OYSbM.png" alt=""></p>
 

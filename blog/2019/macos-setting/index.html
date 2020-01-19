@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -80,10 +80,16 @@ if (!doNotTrack) {
   
   <p class="date">March 3, 2019</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>MacbookにMojaveをクリーンインストールしたのでその時の初期設定の記録。</p>
-<h2 id="heading">アプリインストール</h2>
-<h3 id="apple-store">Apple Storeから</h3>
+<h2 id="アプリインストール">アプリインストール</h2>
+<h3 id="apple-storeから">Apple Storeから</h3>
 <ul>
 <li>BetterSnapTool</li>
 <li>Slack</li>
@@ -91,7 +97,7 @@ if (!doNotTrack) {
 <li>BitWarden</li>
 <li>Skitch</li>
 </ul>
-<h3 id="web">Webからダウンロード</h3>
+<h3 id="webからダウンロード">Webからダウンロード</h3>
 <ul>
 <li>Google Chrome</li>
 <li>Google 日本語入力</li>
@@ -108,7 +114,7 @@ if (!doNotTrack) {
 <li>VLC</li>
 <li>Amazon WorkSpaces</li>
 </ul>
-<h3 id="homebrew">Homebrewから</h3>
+<h3 id="homebrewから">Homebrewから</h3>
 <pre><code>brew install \
  tmux \
  git \
@@ -125,7 +131,7 @@ if (!doNotTrack) {
  tree \
  tidy-html5
 </code></pre>
-<h2 id="terminfotmux">terminfoに設定を追加しておく(tmuxで斜体文字を使うため)</h2>
+<h2 id="terminfoに設定を追加しておくtmuxで斜体文字を使うため">terminfoに設定を追加しておく(tmuxで斜体文字を使うため)</h2>
 <p><a href="https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/">Italic fonts in iTerm2, tmux, and vim - Alex Pearce</a></p>
 <p><code>/tmp/xterm-256color-italic.terminfo</code> を作成</p>
 <pre><code># A xterm-256color based TERMINFO that adds the escape sequences for italic.
@@ -136,7 +142,7 @@ xterm-256color-italic|xterm with 256 colors and italic,
 <p>設定を読み込む</p>
 <pre><code>tic /tmp/xterm-256color-italic.terminfo
 </code></pre>
-<h2 id="macos">MacOS設定</h2>
+<h2 id="macos設定">MacOS設定</h2>
 <ul>
 <li>バッテリーアイコンを%表示に変更</li>
 <li>時計に日付を表示</li>
@@ -281,7 +287,7 @@ ln -s ~/Projects/dotfiles/.tmux.conf ~/.tmux.conf
 nodebrew install v12.14.0 
 brew install yarn --ignore-dependencies
 </code></pre>
-<h2 id="heading-1">設定後のスクリーンショット</h2>
+<h2 id="設定後のスクリーンショット">設定後のスクリーンショット</h2>
 <p><img src="https://i.imgur.com/OqQyHPU.png" alt=""></p>
 <h2 id="update-20191216">Update 2019.12.16</h2>
 <p>Catalina向けに修正</p>

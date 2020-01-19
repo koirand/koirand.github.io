@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -80,6 +80,12 @@ if (!doNotTrack) {
   
   <p class="date">October 31, 2018</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>前回の記事「<a href="https://koirand.github.io/blog/2018/pulp-search/">HUGOテーマ(pulp)に全文検索機能を付けた</a>」でブログのテーマに全文検索機能を追加したが、HUGOのテーマとして配布し辛いという課題があった。lunr.js単体だけだとスペースで単語を区切らない言語での検索ができない。日本語も然り。トークナイズ用のプラグインを使えば正しく分かち書きされて検索できるようになるが、基本的にプラグインは特定の言語に特化したものなので、不特定な言語に対応できない。</p>
 <p>この問題の解決方法としては以下２つが考えられる。</p>
@@ -109,7 +115,7 @@ idx.use(myNgramTokenizer)
 }
 </code></pre>
 <p>検索精度は上々、不特定な言語でも問題ないはず。しかもあいまい検索なので若干スペルを間違えても検索ができる。ただしインデックスを使っていないのでパフォーマンスは悪い。前回と同じく Skycoin社のブログデータを使って試してみたら約150件の記事でも結構検索がカクついた。一旦はこれで運用するが、N-gramをもう少し頑張ったほうが良さそうだ。全文検索の道のりは思ったより険しい。</p>
-<h2 id="2019-04-06-">2019-04-06 追記</h2>
+<h2 id="2019-04-06-追記">2019-04-06 追記</h2>
 <p>やっぱりFuse.jsでのあいまい検索はパフォーマンス面が心配だったので、lunr.jsに戻してN-gramを実装する方式に変更した。jsファイルはこちら。</p>
 <ul>
 <li><a href="https://github.com/koirand/pulp/blob/master/assets/js/search.js">pulp/search.js at master · koirand/pulp</a></li>

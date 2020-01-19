@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -80,11 +80,17 @@ if (!doNotTrack) {
   
   <p class="date">December 10, 2018</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>Reactアプリの開発環境を一から構築するのは中々辛いものがある。たくさんモジュールを入れないといけないし、それらのモジュールの依存関係にも気を配らないといけない。ビルドやlintの設定を書くのも面倒。しかし今は<code>create-react-app</code>という便利なコマンドがあるようなので使ってみた。</p>
-<h2 id="heading">公式ドキュメント</h2>
+<h2 id="公式ドキュメント">公式ドキュメント</h2>
 <p><a href="https://facebook.github.io/create-react-app/">Create React App · Set up a modern web app by running one command.</a></p>
-<h2 id="heading-1">アプリケーションの作成</h2>
+<h2 id="アプリケーションの作成">アプリケーションの作成</h2>
 <pre><code class="language-shell">$ yarn global add create-react-app
 $ create-react-app my-app
 
@@ -146,7 +152,7 @@ Inside that directory, you can run several commands:
 <pre><code class="language-shell">$ create-react-app my-app --typescript
 </code></pre>
 <p>と<code>--typescript</code>をつければ良いらしい。</p>
-<h2 id="heading-2">ファイル構成</h2>
+<h2 id="ファイル構成">ファイル構成</h2>
 <pre><code>my-app
 ├── .git
 ├── .gitignore
@@ -201,7 +207,7 @@ Inside that directory, you can run several commands:
   ]
 }
 </code></pre>
-<h2 id="create-react-app">create-react-appに含まれるもの</h2>
+<h2 id="create-react-appに含まれるもの">create-react-appに含まれるもの</h2>
 <pre><code class="language-shell">$ npm ls --depth=1
 my-app@0.1.0
 ├── node-pre-gyp@0.10.3 extraneous
@@ -279,7 +285,7 @@ my-app@0.1.0
 <p>Macで開発する場合、標準で入っているtidyのバージョンが古く、HTML5に対応していないので、tidy-html5を入れておくと良い。</p>
 <pre><code class="language-shell">$ brew install tidy-html5
 </code></pre>
-<h2 id="vim">Vimの設定</h2>
+<h2 id="vimの設定">Vimの設定</h2>
 <p>以下の設定にすると、保存時に自動的に修正されるようになる。楽チン。</p>
 <pre><code>let g:ale_fixers = {'javascript': ['prettier_standard']}
 let g:ale_fix_on_save = 1
@@ -292,7 +298,7 @@ let g:ale_fix_on_save = 1
 </ul>
 <h2 id="vscode">VSCode</h2>
 <p><code>StandardJS</code> プラグインを入れればOK</p>
-<h2 id="heading-3">まとめ</h2>
+<h2 id="まとめ">まとめ</h2>
 <p>思ったより使いやすくて気に入った。webpack.config.jsを書かなくて済むのは大変良い。facebookのオフィシャルツールなので安心感がある。同じようなコンセプトのモジュールに<a href="https://parceljs.org/">Parcel</a>というものもあるので、React以外の場合は使ってみると良いかもしれない。</p>
 
   </div>

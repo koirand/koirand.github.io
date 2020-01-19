@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.fa9adc71352e18497c5586863206c89ba474bc37bb749097f5d936ed9c671771.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -84,13 +84,19 @@ if (!doNotTrack) {
   
   <p class="date">March 2, 2019</p>
   
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
   <div id="contentBody">
     <p>以前、<a href="https://koirand.github.io/blog/2018/blog-auto-deploy/">ブログ(HUGO)のビルドとデプロイをCircleCIで自動化した</a> に書いた通り、ブログのリポジトリはBitbucketで管理して、ブログをビルドした結果生成されるhtmlファイルはGitHubにデプロイしていたが、先日GitHubのプライベートリポジトリが無料化されたのでGitHubだけで完結するようにリポジトリを移行してみた。</p>
 <h2 id="before">Before</h2>
 <p><img src="https://i.imgur.com/FFRPSaW.png" alt=""></p>
 <h2 id="after">After</h2>
 <p><img src="https://i.imgur.com/QQi0RoK.png" alt=""></p>
-<h2 id="circlecissh">CircleCIでのSSHキーの登録</h2>
+<h2 id="circleciでのsshキーの登録">CircleCIでのSSHキーの登録</h2>
 <p>特に難しいところはなかったが、SSHキーの登録だけ少しハマったのでメモ。
 CircleCIのプロジェクト設定にあるPERMISSIONS -&gt; Checkout SSH keys からSSHキーを登録する際、デプロイキーを追加する方法と、ユーザーキーを追加する方法の２種類がある。
 最初にデプロイキーを選択したがうまく動かなかった。デプロイキーだとブログ用のリポジトリ(図の左上のリポジトリ)のRead権限しか付与されないので、GitHub Pages用のリポジトリ(図の右上のリポジトリ)に対してデプロイできる権限を付与できなかった。
