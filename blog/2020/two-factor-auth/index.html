@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          二要素認証が面倒くさい - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kazuki Koide" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="二要素認証が面倒くさい" />
+<meta property="og:description" content="二要素認証を設定したクラウドサービスにログインする際にスマホアプリ(Google Authenticatorなど)を使うのが割と一般的だが、こ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2020/two-factor-auth/" />
+<meta property="article:published_time" content="2020-01-22T18:42:48+09:00" />
+<meta property="article:modified_time" content="2020-01-22T18:42:48+09:00" />
+<meta itemprop="name" content="二要素認証が面倒くさい">
+<meta itemprop="description" content="二要素認証を設定したクラウドサービスにログインする際にスマホアプリ(Google Authenticatorなど)を使うのが割と一般的だが、こ">
+<meta itemprop="datePublished" content="2020-01-22T18:42:48&#43;09:00" />
+<meta itemprop="dateModified" content="2020-01-22T18:42:48&#43;09:00" />
+<meta itemprop="wordCount" content="562">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="二要素認証が面倒くさい"/>
+<meta name="twitter:description" content="二要素認証を設定したクラウドサービスにログインする際にスマホアプリ(Google Authenticatorなど)を使うのが割と一般的だが、こ"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>二要素認証が面倒くさい</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io//img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io//img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
+</header>
+
+  
+  
+  <p class="date">January 22, 2020</p>
+  
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
+  <div id="contentBody">
+    <p>二要素認証を設定したクラウドサービスにログインする際にスマホアプリ(Google Authenticatorなど)を使うのが割と一般的だが、これがなかなか面倒くさい。</p>
+<ul>
+<li>スマホを取り出す</li>
+<li>スマホのロックを解除する</li>
+<li>Google Authenticatorを立ち上げる</li>
+<li>該当のアカウントを探す</li>
+<li>パスコードを見ながらPCで入力</li>
+</ul>
+<p>となかなか手数が多い。二要素認証のアカウントは増える一方だし、毎日ログインが必要なものもある。もっと楽したい。</p>
+<h3 id="パスワードマネージャーを使う">パスワードマネージャーを使う</h3>
+<p>意外と知られてないが最近のパスワードマネージャーはTOTPに対応している。自分はBitwardenを使っている。BitwardenでTOTP機能を使うには有料ライセンスを購入する必要があるが、年間1000円くらいで安い。Bitwardenの場合、ID/PASS認証後、自動的にクリップボードにパスコードがコピーされるのでペーストするだけで済む。とても楽ちん。</p>
+<h3 id="oathtoolを使う">oathtoolを使う</h3>
+<p>場合によってはコマンドラインツールを使ったほうが楽な場合もある。Macの場合は、</p>
+<pre><code>$ brew install oath-toolkit
+</code></pre>
+<p>でoauthtoolをインストールし、</p>
+<pre><code>$ oathtool --totp --base32 {シークレット文字列}
+</code></pre>
+<p>とやることでパスコードが出力される。</p>
+<pre><code>alias totp=&quot;oathtool --totp --base32 {シークレット文字列} | pbcopy&quot;
+</code></pre>
+<p>としておくと、コマンド一発でパスコードがクリップボードにコピーされる。とても楽ちん。</p>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>
