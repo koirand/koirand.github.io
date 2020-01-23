@@ -33,7 +33,7 @@
 <meta itemprop="description" content="二要素認証を設定したクラウドサービスにログインする際にスマホアプリ(Google Authenticatorなど)を使うのが割と一般的だが、こ">
 <meta itemprop="datePublished" content="2020-01-22T18:42:48&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-22T18:42:48&#43;09:00" />
-<meta itemprop="wordCount" content="560">
+<meta itemprop="wordCount" content="715">
 
 
 
@@ -108,7 +108,14 @@ if (!doNotTrack) {
 <p>とやることでパスコードが出力される。</p>
 <pre><code>alias totp=&quot;oathtool --totp --base32 {シークレット文字列} | pbcopy&quot;
 </code></pre>
-<p>としておくと、コマンド一発でパスコードがクリップボードにコピーされる。とても楽ちん。</p>
+<p>としておくと、totpコマンドでパスコードがクリップボードにコピーされる。</p>
+<h3 id="automatorを使う">Automatorを使う</h3>
+<p>更にAutomatorを使うと、キーボードショートカットにコマンドを割り当てられるようになる。</p>
+<p><img src="https://i.imgur.com/QbTG8dF.png" alt="">
+こんな感じでクイックアクションを作成して、</p>
+<p><img src="https://i.imgur.com/TCr64b9.png" alt="">
+システム環境設定 -&gt; キーボード -&gt; ショートカット で割当を行う。<br>
+こうすることで、ショートカットキーを押すだけでパスコードがクリップボードにコピーされる。とても楽ちん。</p>
 
   </div>
   <footer>
