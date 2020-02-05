@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 22 Jan 2020 18:42:48 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 05 Feb 2020 11:55:24 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker入門</title>
+      <link>https://koirand.github.io/blog/2020/getting-start-docker/</link>
+      <pubDate>Wed, 05 Feb 2020 11:55:24 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2020/getting-start-docker/</guid>
+      <description>社内でDocker入門講座を開催した時に作った資料。 公式ドキュメント Docker Documentation Docker ドキュメント日本語化プロジェクト Dockerとはなんぞや Docke</description>
+    </item>
     
     <item>
       <title>二要素認証が面倒くさい</title>
