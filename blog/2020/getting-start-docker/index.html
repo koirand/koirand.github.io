@@ -34,7 +34,7 @@
 <meta itemprop="description" content="社内でDocker入門講座を開催した時に作った資料。 公式ドキュメント Docker Documentation Docker ドキュメント日本語化プロジェクト Dockerとはなんぞや Docke">
 <meta itemprop="datePublished" content="2020-02-05T11:55:24&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-05T11:55:24&#43;09:00" />
-<meta itemprop="wordCount" content="7009">
+<meta itemprop="wordCount" content="7010">
 <meta itemprop="image" content="https://i.imgur.com/QXMlFGO.png">
 
 
@@ -490,7 +490,7 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 </code></pre>
-<p>というように、シェルから抜けるとコンテナが終了してしまいます。デタッチ/アタッチという仕組みもありますが、それをやるなら<code>-d</code>を使うほうが簡単です。</p>
+<p>というように、シェルから抜けるとコンテナが停止してしまいます。デタッチ/アタッチという仕組みもありますが、それをやるなら<code>-d</code>を使うほうが簡単です。</p>
 <pre><code>$ docker run -d -it --name mypython python:3.8.1-buster /bin/bash
 
 13b59f84fc3d68f53c244e0801c336f6f439dce75a359ac1b5f05e96753c1bd9
@@ -505,8 +505,8 @@ $ docker ps
 CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS               NAMES
 13b59f84fc3d        python:3.8.1-buster   &quot;/bin/bash&quot;         9 seconds ago       Up 7 seconds                            mypython
 </code></pre>
-<p>このように、コンテナのシェルには<code>docker exec</code>で接続します。この方法だとシェルを抜けてもコンテナは終了しません。終了したいときは<code>docker stop</code>で明示的に終了します。</p>
-<p><code>--rm</code>を付ける理由としては、コンテナを停止状態で置いておく必要がないからです。なのでコンテナを停止したら勝手に削除してくれたほうが、コンテナを削除する手間が省けます。コンテナの中で作成したファイルを消したくないというケースはあるかと思いますが、それであれば<code>docker run</code>時にホストOSのフォルダをマウントしてホストOS側に保存するか、もしくは<code>docker commit</code>でDockerイメージ化したほうが安全です。コンテナを誤って削除してしまったという事故を防げます。</p>
+<p>このように、コンテナのシェルには<code>docker exec</code>で接続します。この方法だとシェルを抜けてもコンテナは停止しません。停止したいときは<code>docker stop</code>で明示的に停止します。</p>
+<p><code>--rm</code>を付ける理由としては、コンテナを停止状態で置いておく必要がないからです。なのでコンテナを停止したら勝手に削除してくれたほうがコンテナを削除する手間が省けます。コンテナの中で作成したファイルを消したくないというケースはあるかと思いますが、それであれば<code>docker run</code>時にホストOSのフォルダをマウントしてホストOS側に保存するか、もしくは<code>docker commit</code>でDockerイメージ化したほうが安全です。「コンテナを誤って削除してしまった」という事故を防げます。</p>
 <p><code>--name</code>を付ける理由は、これをしないとDockerに割り当てられたランダムな単語を使ってコンテナの操作をしなければならなくなるからです。</p>
 <pre><code>$ docker run -d -it --rm python:3.8.1-buster /bin/bash
 783aab3c9c46dda9ad44e8289871f1ac0594698ef85799b93da43587b357f336
