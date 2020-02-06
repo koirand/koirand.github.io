@@ -34,7 +34,7 @@
 <meta itemprop="description" content="社内でDocker入門講座を開催した時に作った資料。 公式ドキュメント Docker Documentation Docker ドキュメント日本語化プロジェクト Dockerとはなんぞや Docke">
 <meta itemprop="datePublished" content="2020-02-05T11:55:24&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-05T11:55:24&#43;09:00" />
-<meta itemprop="wordCount" content="7010">
+<meta itemprop="wordCount" content="7033">
 <meta itemprop="image" content="https://i.imgur.com/QXMlFGO.png">
 
 
@@ -326,7 +326,7 @@ REPOSITORY        TAG        IMAGE ID      CREATED       SIZE
 <p>様々なタグがあることが確認できるかと思います。Pythonの場合、Python自体のバージョンと、OSのバージョンでタグが付けられているようです。ここでは<code>3.8.1-buster</code>を使うことにします。busterというのはDebianというOSのバージョン10のコードネームです。つまり、Debian10にpythonがインストールされた状態のDockerイメージということになります。</p>
 <h3 id="コンテナを起動">コンテナを起動</h3>
 <p><code>docker run</code>でコンテナを起動します。名前はmypythonにしました。Dockerイメージのサイズが大きいので割と時間がかかります。</p>
-<pre><code>$ docker run -d -it --name mypython python:3.8.1-buster /bin/bash
+<pre><code>$ docker run -d -it --name mypython python:3.8.1-buster
 
 Unable to find image 'python:3.8.1-buster' locally
 3.8.1-buster: Pulling from library/python
@@ -419,8 +419,6 @@ $ docker push xxxxx/mypython:3.8.1-buster
 <pre><code class="language-dockerfile">FROM python:3.8.1-buster
 
 RUN pip install pandas
-
-ENTRYPOINT /bin/bash
 </code></pre>
 <p>そして、Dockerfileのあるフォルダ上で、<code>docker build</code>コマンドを実行すると、xxxxx/mypythonという名前のDockerイメージが自動的に作成されます。</p>
 <pre><code>$ docker build -t xxxxx/mypython:3.8.1-buster .
@@ -490,8 +488,8 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 </code></pre>
-<p>というように、シェルから抜けるとコンテナが停止してしまいます。デタッチ/アタッチという仕組みもありますが、それをやるなら<code>-d</code>を使うほうが簡単です。</p>
-<pre><code>$ docker run -d -it --name mypython python:3.8.1-buster /bin/bash
+<p>というように、プロセスが終了するとコンテナが停止してしまいます。デタッチ/アタッチという仕組みもありますが、それをやるなら<code>-d</code>を使うほうが簡単です。</p>
+<pre><code>$ docker run -d -it --name mypython python:3.8.1-buster
 
 13b59f84fc3d68f53c244e0801c336f6f439dce75a359ac1b5f05e96753c1bd9
 
@@ -508,7 +506,7 @@ CONTAINER ID        IMAGE                 COMMAND             CREATED           
 <p>このように、コンテナのシェルには<code>docker exec</code>で接続します。この方法だとシェルを抜けてもコンテナは停止しません。停止したいときは<code>docker stop</code>で明示的に停止します。</p>
 <p><code>--rm</code>を付ける理由としては、コンテナを停止状態で置いておく必要がないからです。なのでコンテナを停止したら勝手に削除してくれたほうがコンテナを削除する手間が省けます。コンテナの中で作成したファイルを消したくないというケースはあるかと思いますが、それであれば<code>docker run</code>時にホストOSのフォルダをマウントしてホストOS側に保存するか、もしくは<code>docker commit</code>でDockerイメージ化したほうが安全です。「コンテナを誤って削除してしまった」という事故を防げます。</p>
 <p><code>--name</code>を付ける理由は、これをしないとDockerに割り当てられたランダムな単語を使ってコンテナの操作をしなければならなくなるからです。</p>
-<pre><code>$ docker run -d -it --rm python:3.8.1-buster /bin/bash
+<pre><code>$ docker run -d -it --rm python:3.8.1-buster
 783aab3c9c46dda9ad44e8289871f1ac0594698ef85799b93da43587b357f336
 d
 
@@ -526,11 +524,10 @@ CONTAINER ID        IMAGE                 COMMAND             CREATED           
     -it \
     --rm \
     --name mypython \
-    python:3.8.1-buster \
-    /bin/bash
+    python:3.8.1-buster
 </code></pre>
 <h3 id="dockerイメージのゴミを削除したい">Dockerイメージのゴミを削除したい</h3>
-<p>Dockerを使っていると、Dockerイメージのゴミが溜まってきます。そんなときは<code>docker system prune</code>とやると、使われていないDockerイメージが削除されます。たまに実行すると良いかと思います。</p>
+<p>Dockerを使っていると、Dockerイメージのゴミが溜まってきます。そんなときは<code>docker system prune</code>とやると掃除できます。たまに実行すると良いかと思います。</p>
 <pre><code>$ docker system prune
 
 WARNING! This will remove:
@@ -568,6 +565,10 @@ Total reclaimed space: 447.5MB
 <h4 id="remote---containers---visual-studio-marketplacehttpsmarketplacevisualstudiocomitemsitemnamems-vscode-remoteremote-containers"><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Remote - Containers - Visual Studio Marketplace</a></h4>
 <p>これはまだプレビューですが、VSCodeからコンテナに直接アクセスできる革命的な拡張機能です。</p>
 <p><img src="https://i.imgur.com/0AcI9pP.png" alt="vscode2"></p>
+<h3 id="エイリアス">エイリアス</h3>
+<p>毎回<code>docker</code>を打つのがダルいという人はエイリアスを設定すると良いかと思います。</p>
+<pre><code>alias d=&quot;docker&quot;
+</code></pre>
 <p>以上、Docker入門講座でした。お疲れさまでした。</p>
 
   </div>
