@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          .gitconfigの設定を棚卸しした - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kazuki Koide" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.a50e85be2191b7446e684667eb002377b10f833f329c30d9b701ea188a664750.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content=".gitconfigの設定を棚卸しした" />
+<meta property="og:description" content="先日久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？？」状態になったので、いったん設定見" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2020/gitconfig/" />
+<meta property="article:published_time" content="2020-02-11T20:47:01+09:00" />
+<meta property="article:modified_time" content="2020-02-11T20:47:01+09:00" />
+<meta itemprop="name" content=".gitconfigの設定を棚卸しした">
+<meta itemprop="description" content="先日久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？？」状態になったので、いったん設定見">
+<meta itemprop="datePublished" content="2020-02-11T20:47:01&#43;09:00" />
+<meta itemprop="dateModified" content="2020-02-11T20:47:01&#43;09:00" />
+<meta itemprop="wordCount" content="1476">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=".gitconfigの設定を棚卸しした"/>
+<meta name="twitter:description" content="先日久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？？」状態になったので、いったん設定見"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>.gitconfigの設定を棚卸しした</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io//img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io//img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
+</header>
+
+  
+  
+  <p class="date">February 11, 2020</p>
+  
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
+  <div id="contentBody">
+    <p>先日久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？？」状態になったので、いったん設定見直して棚卸ししてみた。
+.gitconfigの設定に自身がない人は参考になるかも。</p>
+<h2 id="見直した結果">見直した結果</h2>
+<p>こうなった</p>
+<pre><code class="language-ini">[core]
+	quotepath = false
+	whitespace = cr-at-eol
+	filemode = false
+	editor = vim
+[user]
+	name = koirand
+	email = koirand.jp@gmail.com
+[fetch]
+	prune = true
+[pull]
+	ff = only
+[merge]
+	ff = false
+[push]
+	default = current
+</code></pre>
+<p>ちなみに、この.gitconfigファイルは<a href="https://ja.wikipedia.org/wiki/INI%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB">INI形式</a>といわる形式なので、;でコメントが書けたりする。行頭のインデントはなくても動作するけど、git configコマンドで設定を行うとタブ文字でインデントされるので、それに習うのがいいかと思われる。</p>
+<h2 id="削除した設定">削除した設定</h2>
+<h4 id="colorui--true">color.ui = true</h4>
+<p><code>git diff</code>とかした時に色付けする設定。デフォルトtrueだったので削除。</p>
+<h4 id="coreignorecase--false">core.ignorecase = false</h4>
+<p>ファイル名の大文字小文字の差分を無視する設定。デフォルトfalseだったので削除。</p>
+<p>というか、<code>git init</code>をすると、リポジトリのローカル設定(.git/config)が<code>ignorecase = true</code>になる。グローバルの設定よりもローカルの設定が優先されるので、実はグローバルにtrueを設定しようがfalseを設定しようが、あまり意味がない。ファイル名の大文字小文字を無視したい場合は、リポジトリ個別に設定を変更しないといけない。なかなかの罠。</p>
+<pre><code>$ git config core.ignorecase false
+</code></pre>
+<h4 id="coreautocrlf--false">core.autocrlf = false</h4>
+<p>改行コードを自動的に変換しないようにする設定。デフォルトfalseだったので削除。</p>
+<h4 id="useruseconfigonly">user.useConfigOnly</h4>
+<p>user name、emailが指定されいないとコミットできないようにする設定。user name、emailともに設定ファイルで明示的に設定してあるので特に不要。</p>
+<h4 id="credentialhelper--cache---timeout86400">credential.helper = cache &ndash;timeout=86400</h4>
+<p>HTTPでの認証情報を記憶しておく時間の設定。SSHしか使っていないので削除。</p>
+<h2 id="残った設定">残った設定</h2>
+<h4 id="corequotepath--false">core.quotepath = false</h4>
+<p>日本語ファイル名の文字化けを防ぐ。日本人なので残す。</p>
+<h4 id="corewhitespace--cr-at-eol">core.whitespace = cr-at-eol</h4>
+<p>行末のCRを許容する。Windows端末で触る時のために残す。最近Windowsで開発することが殆どなくなってきたけど、一応。</p>
+<h4 id="filemode--false">filemode = false</h4>
+<p>ファイルのパーミッションの変更を無視する。Unix系の端末で作成したリポジトリをWindows端末で開いたりすると、ファイルのパーミッションが自動的に変更されて、それが差分として検知されてしまうことがあるので。</p>
+<p>ただこれをやると、いざシェルスクリプトなどに実行権限を付与したい時に困る。そんなときは、</p>
+<pre><code>$ git update-index --add --chmod=+x {ファイル名}
+</code></pre>
+<p>とやるといけるらしい。</p>
+<h4 id="coreeditor--vim">core.editor = vim</h4>
+<p>コミットやマージした時に起動するエディタ。Ubuntuとかでたまにnanoが起動してうざいので設定しておく。OSのデフォルトのエディタを変更したほうがいいかもだけど、コンテナとかで毎回やるの面倒くさいし。</p>
+<h3 id="username-useremail">user.name, user.email</h3>
+<p>まあこれは要るよね。</p>
+<h4 id="fetchprune--true">fetch.prune = true</h4>
+<p>リモートで削除されたブランチをローカルで自動的に削除する設定。プルリクがマージされた時、ローカルのブランチをいちいち削除しなくて良くて済む。普通に便利なので残す。</p>
+<h4 id="pullff--only">pull.ff = only</h4>
+<p><code>git pull --ff-only</code>をデフォルトにする設定。pull時に変なマージコミットを作りたくないので設定している。普通にやってたらマージコミットは発生しないはずだけど念の為。</p>
+<h4 id="mergeff--false">merge.ff = false</h4>
+<p><code>git merge --only-ff</code>をデフォルトにする設定。さっきのpull.ffとは逆に、マージする時はマージコミットを必ず作りたいマンなので設定している。そうすることで、コミットログのどこからどこまでがトピックのまとまりなのか分かりやすくなる。</p>
+<h4 id="pushdefault--current">push.default = current</h4>
+<p><code>git push origin HEAD</code>をデフォルトにする設定。カレントブランチと違う名前のリモートブランチにプッシュすることがこれまで無かったので問題なし。</p>
+<p>おわり。</p>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>

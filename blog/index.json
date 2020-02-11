@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2020/gitconfig/",
+        "title": ".gitconfigの設定を棚卸しした",
+        "section": "blog",
+        "tags": null,
+        "date" : "2020.02.11",
+        "body": "先日久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？？」状態になったので、いったん設定見直して棚卸ししてみた。 .gitconfigの設定に自身がない人は参考になるかも。\n見直した結果 こうなった\n[core] quotepath = false whitespace = cr-at-eol filemode = false editor = vim [user] name = koirand email = koirand.jp@gmail.com [fetch] prune = true [pull] ff = only [merge] ff = false [push] default = current  ちなみに、この.gitconfigファイルはINI形式といわる形式なので、;でコメントが書けたりする。行頭のインデントはなくても動作するけど、git configコマンドで設定を行うとタブ文字でインデントされるので、それに習うのがいいかと思われる。\n削除した設定 color.ui = true git diffとかした時に色付けする設定。デフォルトtrueだったので削除。\ncore.ignorecase = false ファイル名の大文字小文字の差分を無視する設定。デフォルトfalseだったので削除。\nというか、git initをすると、リポジトリのローカル設定(.git/config)がignorecase = trueになる。グローバルの設定よりもローカルの設定が優先されるので、実はグローバルにtrueを設定しようがfalseを設定しようが、あまり意味がない。ファイル名の大文字小文字を無視したい場合は、リポジトリ個別に設定を変更しないといけない。なかなかの罠。\n$ git config core.ignorecase false  core.autocrlf = false 改行コードを自動的に変換しないようにする設定。デフォルトfalseだったので削除。\nuser.useConfigOnly user name、emailが指定されいないとコミットできないようにする設定。user name、emailともに設定ファイルで明示的に設定してあるので特に不要。\ncredential.helper = cache \u0026ndash;timeout=86400 HTTPでの認証情報を記憶しておく時間の設定。SSHしか使っていないので削除。\n残った設定 core.quotepath = false 日本語ファイル名の文字化けを防ぐ。日本人なので残す。\ncore.whitespace = cr-at-eol 行末のCRを許容する。Windows端末で触る時のために残す。最近Windowsで開発することが殆どなくなってきたけど、一応。\nfilemode = false ファイルのパーミッションの変更を無視する。Unix系の端末で作成したリポジトリをWindows端末で開いたりすると、ファイルのパーミッションが自動的に変更されて、それが差分として検知されてしまうことがあるので。\nただこれをやると、いざシェルスクリプトなどに実行権限を付与したい時に困る。そんなときは、\n$ git update-index --add --chmod=+x {ファイル名}  とやるといけるらしい。\ncore.editor = vim コミットやマージした時に起動するエディタ。Ubuntuとかでたまにnanoが起動してうざいので設定しておく。OSのデフォルトのエディタを変更したほうがいいかもだけど、コンテナとかで毎回やるの面倒くさいし。\nuser.name, user.email まあこれは要るよね。\nfetch.prune = true リモートで削除されたブランチをローカルで自動的に削除する設定。プルリクがマージされた時、ローカルのブランチをいちいち削除しなくて良くて済む。普通に便利なので残す。\npull.ff = only git pull --ff-onlyをデフォルトにする設定。pull時に変なマージコミットを作りたくないので設定している。普通にやってたらマージコミットは発生しないはずだけど念の為。\nmerge.ff = false git merge --only-ffをデフォルトにする設定。さっきのpull.ffとは逆に、マージする時はマージコミットを必ず作りたいマンなので設定している。そうすることで、コミットログのどこからどこまでがトピックのまとまりなのか分かりやすくなる。\npush.default = current git push origin HEADをデフォルトにする設定。カレントブランチと違う名前のリモートブランチにプッシュすることがこれまで無かったので問題なし。\nおわり。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2020/getting-start-docker/",
         "title": "Docker入門",
         "section": "blog",
