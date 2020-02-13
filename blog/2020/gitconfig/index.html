@@ -17,7 +17,7 @@
   
   
   
-  <link rel="stylesheet" href="https://koirand.github.io/style.min.a50e85be2191b7446e684667eb002377b10f833f329c30d9b701ea188a664750.css">
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   
@@ -33,7 +33,7 @@
 <meta itemprop="description" content="みんな大好きGit。先日、久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？」状態になった">
 <meta itemprop="datePublished" content="2020-02-11T20:47:01&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-11T20:47:01&#43;09:00" />
-<meta itemprop="wordCount" content="1476">
+<meta itemprop="wordCount" content="1474">
 
 
 
@@ -142,7 +142,7 @@ if (!doNotTrack) {
 <h4 id="pullff--only">pull.ff = only</h4>
 <p><code>git pull --ff-only</code>をデフォルトにする設定。pull時に変なマージコミットを作りたくないので設定している。普通にやってたらマージコミットは発生しないはずだけど念の為。</p>
 <h4 id="mergeff--false">merge.ff = false</h4>
-<p><code>git merge --only-ff</code>をデフォルトにする設定。さっきのpull.ffとは逆に、マージする時はマージコミットを必ず作りたいマンなので設定している。そうすることで、コミットログのどこからどこまでがトピックのまとまりなのか分かりやすくなる。</p>
+<p><code>git merge --no-ff</code>をデフォルトにする設定。さっきのpull.ffとは逆に、マージする時はマージコミットを必ず作りたいマンなので設定している。そうすることで、コミットログのどこからどこまでがトピックのまとまりなのか分かりやすくなる。</p>
 <h4 id="pushdefault--current">push.default = current</h4>
 <p><code>git push origin HEAD</code>をデフォルトにする設定。カレントブランチと違う名前のリモートブランチにプッシュすることがこれまで無かったので問題なし。</p>
 <p>おわり。</p>
