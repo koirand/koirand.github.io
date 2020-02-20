@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          hostsファイルについて解説する - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kazuki Koide" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.4faeb6dd8b41b434ee06a4aa0aae28bc83a7f52af48fe3772ecadeaa0a466b87.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="hostsファイルについて解説する" />
+<meta property="og:description" content="hostsファイルとは ホスト名をIPアドレスに変換する際に参照する設定ファイルのこと。拡張子は無し。原始的にテキストエディタで編集するのが一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2020/hosts/" />
+<meta property="article:published_time" content="2020-02-20T11:25:38+09:00" />
+<meta property="article:modified_time" content="2020-02-20T11:25:38+09:00" />
+<meta itemprop="name" content="hostsファイルについて解説する">
+<meta itemprop="description" content="hostsファイルとは ホスト名をIPアドレスに変換する際に参照する設定ファイルのこと。拡張子は無し。原始的にテキストエディタで編集するのが一">
+<meta itemprop="datePublished" content="2020-02-20T11:25:38&#43;09:00" />
+<meta itemprop="dateModified" content="2020-02-20T11:25:38&#43;09:00" />
+<meta itemprop="wordCount" content="1302">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hostsファイルについて解説する"/>
+<meta name="twitter:description" content="hostsファイルとは ホスト名をIPアドレスに変換する際に参照する設定ファイルのこと。拡張子は無し。原始的にテキストエディタで編集するのが一"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>hostsファイルについて解説する</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io//img/avatar.jpg">
+    <a href="https://koirand.github.io/"><img src="https://koirand.github.io//img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io/">Kazuki Koide</a></h2>
+</header>
+
+  
+  
+  <p class="date">February 20, 2020</p>
+  
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
+  <div id="contentBody">
+    <h2 id="hostsファイルとは">hostsファイルとは</h2>
+<p>ホスト名をIPアドレスに変換する際に参照する設定ファイルのこと。拡張子は無し。原始的にテキストエディタで編集するのが一般的である。</p>
+<h2 id="hostsファイルの場所">hostsファイルの場所</h2>
+<p>hostsファイルが存在する位置はOSによって異なる。</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>場所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux, Mac</td>
+<td>/etc/hosts</td>
+</tr>
+<tr>
+<td>Windows(XP以降)</td>
+<td>C:\WINDOWS\system32\drivers\etc\hosts</td>
+</tr>
+<tr>
+<td>Windows(2000以前)</td>
+<td>C:\WINNT\system32\drivers\etc\hosts</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hostsファイルの働き">hostsファイルの働き</h2>
+<p>コンピュータが他のコンピュータにアクセスする際にはIPアドレスが必要になる。しかしIPアドレスというのは「216.239.33.100」のように記憶しづらい。
+じゃあIPアドレスに覚えやすい別名を付けて、その別名でアクセスできれば便利だよねということになった。実際コンピュータにはその仕組みが実装されていて、hostsファイルにホスト名とIPアドレスを書いておけば、自動的にホスト名をIPアドレスに変換してくれるようになっている。</p>
+<p>例えば自社のサーバの名前を「foo」とした場合、hostsファイルには以下のように記述する。</p>
+<pre><code>210.148.160.10 foo
+</code></pre>
+<p>こうしておくことで、fooという名前でサーバにアクセスできるので、fooというサーバ名だけを覚えておけば良いことになる。また、サーバのIPアドレスが変更になった場合も、hostsファイルだけを書き換えれば済むというメリットもある。ちなみに、ホスト名をIPアドレスに変換することを「名前を解決する」と言う。</p>
+<h2 id="hostsとdnsの違い">hostsとDNSの違い</h2>
+<p>DNSもhostsファイルと同じくホスト名とIPアドレスを変換するための仕組みである。hostsファイルだと設定を他のコンピュータと共有したい場合にファイルを配布が面倒くさいのでそれを簡単にするために生まれた。hostsファイルはコンピュータが自分でホスト名をIPアドレスに変換するのに対し、DNSでは専用のサーバを立てて、コンピュータがDNSに問い合わせてIPアドレスを取得する仕組みになっている。コンピュータの台数が10台程度の小さなLANであればhostsで十分運用できるが、大規模のWANやインターネットでは一般的にDNSが使われている(といいつつも自分は昔3000台近い数のPCにhostsファイルを配信していたことがある。かなり大変だが無理ではない模様)。</p>
+<p>DNSはhostsファイルと比較して配布が簡単である一方で、みんながDNSを参照しているため自分の都合で気軽に変更しづらいというデメリットもある。なので例えば「ちょっとテストのために自分だけ一時的にサーバの向き先を変えたい」みたいなケースであれば、hostsファイルに記載してサーバーの向き先を変えるのが良い。コンピュータはhosts→DNSの順番で名前解決を試みるため、hostsファイルとDNSに同じホスト名の設定があった場合はhostsファイルの設定が優先される。</p>
+<h2 id="hostsファイルの書き方">hostsファイルの書き方</h2>
+<p>hostsファイルには以下のように１つのホストに対して1行で記載する。</p>
+<pre><code>192.168.3.1 foo
+192.168.1.1 bar
+192.168.3.2 baz
+</code></pre>
+<h2 id="余談">余談</h2>
+<p>ちなみに、hostsファイルを改変して不正なサイトへ誘導するのはマルウェアの常套手段である。もしhostsファイルに覚えのない記述があればウィルスチェックをしたほうがいいかも？</p>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>
