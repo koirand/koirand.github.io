@@ -4,16 +4,21 @@
   
   <url>
     <loc>https://koirand.github.io/blog/</loc>
-    <lastmod>2020-02-20T11:25:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://koirand.github.io/blog/2020/hosts/</loc>
-    <lastmod>2020-02-20T11:25:38+09:00</lastmod>
+    <lastmod>2020-02-25T14:15:30+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://koirand.github.io/</loc>
+    <lastmod>2020-02-25T14:15:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/blog/2020/spark-on-k8s/</loc>
+    <lastmod>2020-02-25T14:15:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://koirand.github.io/blog/2020/hosts/</loc>
     <lastmod>2020-02-20T11:25:38+09:00</lastmod>
   </url>
   

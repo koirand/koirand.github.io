@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2020/spark-on-k8s/",
+        "title": "PySpark on k8s (with Jupyter Notebook)",
+        "section": "blog",
+        "tags": null,
+        "date" : "2020.02.25",
+        "body": "Spark 2.4からサポートされた、Kubernetes上でのPySpark実行をやってみた。\n環境  MacOS 10.15.3 Docker Desktop 2.2.0.0  ※ Minikubeは未検証\n動作イメージ ソースコード koirand/spark-notebook-on-k8s-example\nk8sマニフェストとJupyter NotebookのExampleを格納してある。\nk8sクラスタへのデプロイ k8sマニフェストを作成してあるので、applyすれば動くはず。 メモリを結構食うので、事前にDocker Desktopの設定を変更してメモリのリソースを増やしておいたほうが無難。(4GBくらいあれば十分なはず)\n$ kubectl apply -f manifest.yaml  spark-exampleのネームスペースにもろもろリソースが作成される。 Jupyter Notebookから実行したかったので、Driver PodにはPySparkが同梱された jupyter/pyspark-notebook - Docker Hub を使用している。 また、Executor Podの自動生成に使用するサービスアカウントも作成している。\nJupyter Notebookのアクセストークンを確認\nkubectl get pods --namespace=spark-example -o name | xargs kubectl logs --namespace=spark-example  Jupyter Notebookにポートフォワードで接続\nkubectl port-forward svc/jupyter-svc --namespace=spark-example 8888  http://localhost:8888 にブラウザでアクセスすればJupyter Notebookが使える。\nPySparkの実行方法 example.ipynbをアップロードしてそのまま動かせば動くはず。\n後片付け kubectl delete -f manifest.yaml  ハマりどころ バージョンの不一致 Driver PodとExecutor PodでPythonとSparkのバージョンを完全に一致させないと動かない。Driver Podに使用した jupyter/pyspark-notebook - Docker Hub はPython3.7.4だが、SparkのソースコードからビルドしたExecutor甩のDockerイメージはPython3.7.3になってしまいバージョンが一致しない。\n結局、SparkのソースコードからビルドしたDockerイメージにPython3.7.4をインストールしたものを用意した。\nkoirand/spark-py: The patch for spark-py docker image.\nこれをExecutorに使うことでDriverとバージョンが一致する。\nDriver podの名前解決 Executor podからDriver podへのアクセスにjupyter-svc.spark-example.svc.cluster.localという名前を使用している\nconf.set(\u0026quot;spark.driver.host\u0026quot;, \u0026quot;jupyter-svc.spark-example.svc.cluster.local\u0026quot;)  DriverのサービスをHeadless Serviceで作成した場合はクラスタの内部DNSで名前解決できたが、Headless以外の場合はなぜか名前解決できなかった。(k8sの仕様なのか何なのか不明)\n参考サイト  Running Spark on Kubernetes - Spark 2.4.5 Documentation Running Spark with Jupyter Notebook \u0026amp; HDFS on Kubernetes Bernd\u0026rsquo;s Memory Leaks  "
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2020/hosts/",
         "title": "hostsファイルについて解説する",
         "section": "blog",
