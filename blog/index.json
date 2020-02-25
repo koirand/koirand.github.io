@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2020/vimmer-ahk/",
+        "title": "WindowsのVimでEscキー押下時にIMEをオフにする",
+        "section": "blog",
+        "tags": null,
+        "date" : "2020.02.25",
+        "body": "VimでEscキーやCtrl+[キーを押してノーマルモードに戻ったときはIMEはオフになってほしいというのが、全Vimmerの願いだと思う。MacOSだと Karabiner-Elements を使う方法が有名だが、Windowsでのいいやり方がぱっとググっても見つからなかったので、専用のツールを作った。\nソースコード koirand/vimmer-ahk: Esc, Ctrl+[ キー押下時にIMEをオフにします\n使い方 Releases ページにあるvimmer-akh.exeを実行すると常駐するので、その状態でVimを使うと幸せになれる。\nexeファイルを以下のフォルダに配置しておくと、Windows起動時に自動起動する。\n%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup  仕組み AutoHotkey を使って作成した。AutoHotkeyはキーバインドを自在にカスタムできるスクリプト言語で。スクリプトファイルをコンパイルしてexeファイルにすることもできる。AutoHotkeyでIMEを制御できる関数が提供されていたので有り難く拝借した。\n IME制御 - eamat @Cabinet - アットウィキ\n 拝借した関数を除くと、自分で書いたコードは下記の5行だけ。\n$Esc:: $^[:: Send,{Esc} IME_SET(0) Return  $Esc::のように先頭に$を書かないと、Send,{Esc}のキーイベントも拾って無限ループになってしまうので、そこだけ注意。\n似た事例として、Altキー単体でIMEをオン/オフするツールを見つけた。併用すると便利かも。\n karakaram/alt-ime-ahk\n "
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2020/spark-on-k8s/",
         "title": "PySpark on k8s (with Jupyter Notebook)",
         "section": "blog",
