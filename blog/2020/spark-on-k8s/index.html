@@ -33,7 +33,7 @@
 <meta itemprop="description" content="Spark 2.4からサポートされた、Kubernetes上でのPySpark実行をやってみた。 環境 MacOS 10.15.3 Docker Desktop 2.2.0.0 ※ Minikubeは未検証 動作イメージ ソ">
 <meta itemprop="datePublished" content="2020-02-25T14:15:30&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-25T14:15:30&#43;09:00" />
-<meta itemprop="wordCount" content="1007">
+<meta itemprop="wordCount" content="1008">
 
 
 
@@ -120,9 +120,9 @@ Jupyter Notebookから実行したかったので、Driver PodにはPySparkが�
 <h2 id="後片付け">後片付け</h2>
 <pre><code>kubectl delete -f manifest.yaml
 </code></pre>
-<h2 id="ハマりどころ">ハマりどころ</h2>
+<h2 id="ハマったところ">ハマったところ</h2>
 <h4 id="バージョンの不一致">バージョンの不一致</h4>
-<p>Driver PodとExecutor PodでPythonとSparkのバージョンを完全に一致させないと動かない。Driver Podに使用した <a href="https://hub.docker.com/r/jupyter/pyspark-notebook">jupyter/pyspark-notebook - Docker Hub</a> はPython3.7.4だが、SparkのソースコードからビルドしたExecutor甩のDockerイメージはPython3.7.3になってしまいバージョンが一致しない。</p>
+<p>Driver PodとExecutor PodでPythonとSparkのバージョンを完全に一致させないと動かない。Driver Podに使用した <a href="https://hub.docker.com/r/jupyter/pyspark-notebook">jupyter/pyspark-notebook - Docker Hub</a> はPython3.7.4だが、SparkのソースコードからビルドしたExecutor用のDockerイメージはPython3.7.3になってしまいバージョンが一致しない。</p>
 <p>結局、SparkのソースコードからビルドしたDockerイメージにPython3.7.4をインストールしたものを用意した。</p>
 <p><a href="https://github.com/koirand/spark-py">koirand/spark-py: The patch for spark-py docker image.</a></p>
 <p>これをExecutorに使うことでDriverとバージョンが一致する。</p>
