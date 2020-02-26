@@ -33,7 +33,7 @@
 <meta itemprop="description" content="VimでEscキーやCtrl&#43;[キーを押してノーマルモードに戻ったときはIMEはオフになってほしいというのが、全Vimmerの願いだと思う。">
 <meta itemprop="datePublished" content="2020-02-25T19:27:45&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-25T19:27:45&#43;09:00" />
-<meta itemprop="wordCount" content="563">
+<meta itemprop="wordCount" content="510">
 
 
 
@@ -104,14 +104,10 @@ AutoHotkeyはキーバインドを自在にカスタムできるスクリプト�
 <blockquote>
 <p><a href="https://w.atwiki.jp/eamat/pages/17.html">IME制御 - eamat @Cabinet - アットウィキ</a></p>
 </blockquote>
-<p>拝借した関数を除くと、自分で書いたコードは下記の5行だけ。</p>
-<pre><code class="language-ahk">$Esc::
-$^[::
-    Send,{Esc}
-    IME_SET(0)
-Return
+<p>拝借した関数を除くと、自分で書いたコードは下記の2行だけなので大したことはしていない。</p>
+<pre><code class="language-ahk">~Esc::IME_SET(0)
+~^[::IME_SET(0)
 </code></pre>
-<p><code>$Esc::</code>のように先頭に$を書かないと、<code>Send,{Esc}</code>のキーイベントも拾って無限ループになってしまうので、そこだけ注意。</p>
 <p>似た事例として、Altキー単体でIMEをオン/オフするツールを見つけた。併用すると便利かも。</p>
 <blockquote>
 <p><a href="https://github.com/karakaram/alt-ime-ahk">karakaram/alt-ime-ahk</a></p>
