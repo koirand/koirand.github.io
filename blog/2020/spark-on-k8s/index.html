@@ -33,7 +33,7 @@
 <meta itemprop="description" content="Spark 2.4からサポートされた、Kubernetes上でのPySpark実行をやってみた。 環境 MacOS 10.15.3 Docker Desktop 2.2.0.0 ※ Minikubeは未検証 動作イメージ ソ">
 <meta itemprop="datePublished" content="2020-02-25T14:15:30&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-25T14:15:30&#43;09:00" />
-<meta itemprop="wordCount" content="1008">
+<meta itemprop="wordCount" content="1034">
 
 
 
@@ -126,11 +126,11 @@ Jupyter Notebookから実行したかったので、Driver PodにはPySparkが�
 <p>結局、SparkのソースコードからビルドしたDockerイメージにPython3.7.4をインストールしたものを用意した。</p>
 <p><a href="https://github.com/koirand/spark-py">koirand/spark-py: The patch for spark-py docker image.</a></p>
 <p>これをExecutorに使うことでDriverとバージョンが一致する。</p>
-<h4 id="driver-podの名前解決">Driver podの名前解決</h4>
-<p>Executor podからDriver podへのアクセスに<code>jupyter-svc.spark-example.svc.cluster.local</code>という名前を使用している</p>
+<h4 id="driver-podとexecutor-pod間の通信">Driver podとExecutor pod間の通信</h4>
+<p>Executor podからDriver podへのアクセスに<code>jupyter-svc.spark-example.svc.cluster.local</code>という名前を使用している。</p>
 <pre><code>conf.set(&quot;spark.driver.host&quot;, &quot;jupyter-svc.spark-example.svc.cluster.local&quot;)
 </code></pre>
-<p>DriverのサービスをHeadless Serviceで作成した場合はクラスタの内部DNSで名前解決できたが、Headless以外の場合はなぜか名前解決できなかった。(k8sの仕様なのか何なのか不明)</p>
+<p>DriverのサービスがHeadlessの場合はDriverとExecutor間でうまく通信ができたが、Headlessでない場合はなぜか通信ができなかった。ポートを開けてみたり色々試行錯誤してみたものの、うまくいかず原因不明。</p>
 <h2 id="参考サイト">参考サイト</h2>
 <ul>
 <li><a href="https://spark.apache.org/docs/latest/running-on-kubernetes.html">Running Spark on Kubernetes - Spark 2.4.5 Documentation</a></li>
