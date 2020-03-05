@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          ブロックチェーンの概要 - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kazuki Koide" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.a50e85be2191b7446e684667eb002377b10f833f329c30d9b701ea188a664750.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="ブロックチェーンの概要" />
+<meta property="og:description" content="ブロックチェーン説明用のメモ。 ブロックチェーンとは データが地理的に離れたサーバーに分散保持され、記録されたデータがなくならない（改竄不可能性" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2020/about-blockchain/" />
+<meta property="article:published_time" content="2020-03-05T12:37:30+09:00" />
+<meta property="article:modified_time" content="2020-03-05T12:37:30+09:00" />
+<meta itemprop="name" content="ブロックチェーンの概要">
+<meta itemprop="description" content="ブロックチェーン説明用のメモ。 ブロックチェーンとは データが地理的に離れたサーバーに分散保持され、記録されたデータがなくならない（改竄不可能性">
+<meta itemprop="datePublished" content="2020-03-05T12:37:30&#43;09:00" />
+<meta itemprop="dateModified" content="2020-03-05T12:37:30&#43;09:00" />
+<meta itemprop="wordCount" content="750">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:image" content="https://koirand.github.io/img/avatar.jpg"/>
+<meta name="twitter:title" content="ブロックチェーンの概要"/>
+<meta name="twitter:description" content="ブロックチェーン説明用のメモ。 ブロックチェーンとは データが地理的に離れたサーバーに分散保持され、記録されたデータがなくならない（改竄不可能性"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>ブロックチェーンの概要</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.jpg">
+    <a href="https://koirand.github.io"><img src="https://koirand.github.io/img/avatar-border.svg"></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io">Kazuki Koide</a></h2>
+</header>
+
+  
+  
+  <p class="date">March 5, 2020</p>
+  
+  <div id="tags">
+    <ul>
+      
+    </ul>
+  </div>
+  
+  <div id="contentBody">
+    <p>ブロックチェーン説明用のメモ。</p>
+<h2 id="ブロックチェーンとは">ブロックチェーンとは</h2>
+<blockquote>
+<p>データが地理的に離れたサーバーに分散保持され、記録されたデータがなくならない（改竄不可能性）、
+また一部のサーバーが不正侵入されても動き続ける（ビザンチン耐性）という特長を備えた全く新しいデータベースです。</p>
+<p><a href="https://bitflyer.com/ja-jp/miyabi-blockchain">ブロックチェーンとは - bitFlyer</a> より</p>
+</blockquote>
+<p>要するに、ブロックチェーンはデータベースの一種であるということ。</p>
+<h2 id="ブロックチェーンの特徴">ブロックチェーンの特徴</h2>
+<p>ブロックチェーンは以下の特徴を持ったデータベースである。</p>
+<blockquote>
+<ul>
+<li>改竄不可能性（Immutability）
+<ul>
+<li>各トランザクション（データ）は連続したブロックに格納されます。そのブロックに依存関係があるので、過去の一部を改竄した場合は、それ以降のトランザクションをすべて整合性がある形で改竄する必要があり、事実上不可能です。</li>
+</ul>
+</li>
+<li>ビザンチン耐性（Byzantine Fault Tolerance: BFT）
+<ul>
+<li>ビザンチンノード（嘘つきまたは故障したコンピューター）が一定数存在しても、ブロックチェーンは正しく動き続けます。</li>
+</ul>
+</li>
+<li>単一障害点（Single Point of Failure: SPOF）の排除
+<ul>
+<li>単一箇所が動かないと、システム全体が障害となる箇所。従来型のシステムではマスター、コントローラーや認証局等が単一障害点となります。ブロックチェーンに単一障害点はありません。</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://bitflyer.com/ja-jp/miyabi-blockchain">ブロックチェーンとは - bitFlyer</a> より</p>
+</blockquote>
+<h2 id="ブロックチェーンの仕組み">ブロックチェーンの仕組み</h2>
+<p><a href="https://andersbrownworth.com/blockchain/">Blockchain Demo</a> このサイトがとても分かりやすい。</p>
+<p>このサイトを使って日本語で解説している動画もある。</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/4PoYVlOFri8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>ブロックチェーンが改竄できない理由</p>
+<ul>
+<li>ひとつひとつのブロックにNonceが埋め込まれていて、そのNonceを計算するのが割と大変</li>
+<li>ブロックがチェーンになっているので、一つのブロックを改竄すると後続のすべてのブロックのNonceを計算しないといけなくなる</li>
+<li>多数決になっているので、自分のノードだけを更新しても認められない</li>
+</ul>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>

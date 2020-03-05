@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 25 Feb 2020 19:27:45 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 05 Mar 2020 12:37:30 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ブロックチェーンの概要</title>
+      <link>https://koirand.github.io/blog/2020/about-blockchain/</link>
+      <pubDate>Thu, 05 Mar 2020 12:37:30 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2020/about-blockchain/</guid>
+      <description>ブロックチェーン説明用のメモ。 ブロックチェーンとは データが地理的に離れたサーバーに分散保持され、記録されたデータがなくならない（改竄不可能性</description>
+    </item>
     
     <item>
       <title>WindowsのVimでEscキー押下時にIMEをオフにする</title>
