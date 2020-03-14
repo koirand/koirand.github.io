@@ -33,7 +33,7 @@
 <meta itemprop="description" content="MacbookにMojaveをクリーンインストールしたのでその時の初期設定の記録。 アプリインストール Apple Storeから BetterSnapTool Slack LINE BitWarden Skitch Webからダウ">
 <meta itemprop="datePublished" content="2019-03-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1013">
+<meta itemprop="wordCount" content="998">
 
 
 
@@ -114,20 +114,18 @@ if (!doNotTrack) {
 <li>PokerStars</li>
 <li>VLC</li>
 <li>Amazon WorkSpaces</li>
+<li>Node.js</li>
 </ul>
 <h3 id="homebrewから">Homebrewから</h3>
 <pre><code>brew install \
  tmux \
  git \
  hub \
- vim \
  fish \
  htop \
  screenfetch \
  go \
- nodebrew \
  hugo \
- gibo \
  wget \
  tree \
  tidy-html5
@@ -283,11 +281,6 @@ ln -s ~/Projects/dotfiles/.tmux.conf ~/.tmux.conf
 <li>コマンドの色が見辛いので <code>~/.config/fish/fish_variables</code> を変更</li>
 </ul>
 <pre><code>SETUVAR fish_color_command:normal
-</code></pre>
-<h2 id="node">Node</h2>
-<pre><code>nodebrew setup
-nodebrew install v12.14.0 
-brew install yarn --ignore-dependencies
 </code></pre>
 <h2 id="設定後のスクリーンショット">設定後のスクリーンショット</h2>
 <p><img src="https://i.imgur.com/OqQyHPU.png" alt=""></p>
