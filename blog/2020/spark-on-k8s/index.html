@@ -34,7 +34,7 @@
 <meta itemprop="description" content="Spark 2.4からサポートされた、Kubernetes上でのPySpark実行をやってみた。 環境 MacOS 10.15.3 Docker Desktop 2.2.0.0 ※ Minikubeは未検証 動作イメージ ソ">
 <meta itemprop="datePublished" content="2020-02-25T14:15:30&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-25T14:15:30&#43;09:00" />
-<meta itemprop="wordCount" content="1182">
+<meta itemprop="wordCount" content="1165">
 <meta itemprop="image" content="https://koirand.github.io/img/2020/spark-on-k8s.png">
 
 
@@ -108,14 +108,14 @@ if (!doNotTrack) {
 メモリを結構食うので、事前にDocker Desktopの設定を変更してメモリのリソースを増やしておいたほうが無難。(4GBくらいあれば十分なはず)</p>
 <pre><code>$ kubectl apply -f manifest.yaml
 </code></pre>
-<p><code>spark-example</code>のネームスペースにもろもろリソースが作成される。
+<p><code>spark-ns</code>のネームスペースにもろもろリソースが作成される。
 Jupyter Notebookから実行したかったので、Driver PodにはPySparkが同梱された <a href="https://hub.docker.com/r/jupyter/pyspark-notebook">jupyter/pyspark-notebook - Docker Hub</a> を使用している。
 また、Executor Podの自動生成に使用するサービスアカウントも作成している。</p>
 <p>Jupyter Notebookのアクセストークンを確認</p>
-<pre><code>kubectl get pods --namespace=spark-example -o name | xargs kubectl logs --namespace=spark-example
+<pre><code>kubectl logs jupyter --namespace=spark-ns
 </code></pre>
 <p>Jupyter Notebookにポートフォワードで接続</p>
-<pre><code>kubectl port-forward svc/jupyter-svc --namespace=spark-example 8888
+<pre><code>kubectl port-forward jupyter --namespace=spark-ns 8888
 </code></pre>
 <p>http://localhost:8888 にブラウザでアクセスすればJupyter Notebookが使える。</p>
 <h2 id="pysparkの実行方法">PySparkの実行方法</h2>
@@ -130,8 +130,8 @@ Jupyter Notebookから実行したかったので、Driver PodにはPySparkが�
 <p><a href="https://github.com/koirand/spark-py">koirand/spark-py: The patch for spark-py docker image.</a></p>
 <p>これをExecutorに使うことでDriverとバージョンが一致する。</p>
 <h4 id="driver-podとexecutor-pod間の通信">Driver podとExecutor pod間の通信</h4>
-<p>Executor podからDriver podへのアクセスに<code>jupyter-svc.spark-example.svc.cluster.local</code>という名前を使用している。</p>
-<pre><code>conf.set(&quot;spark.driver.host&quot;, &quot;jupyter-svc.spark-example.svc.cluster.local&quot;)
+<p>Executor podからDriver podへのアクセスに<code>jupyter-svc.spark-ns.svc.cluster.local</code>という名前を使用している。</p>
+<pre><code>conf.set(&quot;spark.driver.host&quot;, &quot;jupyter-svc.spark-ns.svc.cluster.local&quot;)
 </code></pre>
 <p>DriverのサービスがHeadlessの場合はDriverとExecutor間でうまく通信ができたが、Headlessでない場合はなぜか通信ができなかった。ポートを開けてみたり色々試行錯誤してみたものの、うまくいかず原因不明。</p>
 <h4 id="serviceaccount">ServiceAccount</h4>
