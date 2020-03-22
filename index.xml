@@ -169,7 +169,7 @@
       <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2019/macos-setting/</guid>
-      <description>MacbookにMojaveをクリーンインストールしたのでその時の初期設定の記録。 アプリインストール Apple Storeから BetterSnapTool Slack LINE BitWarden Skitch Webからダウ</description>
+      <description>dotfiles 事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。 $ git clone git@github.com:koirand/dotfiles.git ~/dotfiles $ cd ~/dotfiles $ make install Homebrew $ /bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&amp;quot; $ brew bundle --global fish shell</description>
     </item>
     
     <item>
