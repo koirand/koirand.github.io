@@ -169,7 +169,7 @@
       <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2019/macos-setting/</guid>
-      <description>dotfiles 事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。 $ git clone git@github.com:koirand/dotfiles.git ~/dotfiles $ cd ~/dotfiles $ make install Homebrew $ /bin/bash -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&amp;quot; $ brew bundle --global fish shell</description>
+      <description>MacOS設定 バッテリーアイコンを%表示に変更 時計に日付を表示 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェッ</description>
     </item>
     
     <item>

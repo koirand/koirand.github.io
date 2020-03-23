@@ -28,23 +28,23 @@
   
 
   <meta property="og:title" content="Mac初期設定メモ" />
-<meta property="og:description" content="dotfiles 事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。 $ git clone git@github.com:koirand/dotfiles.git ~/dotfiles $ cd ~/dotfiles $ make install Homebrew $ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot; $ brew bundle --global fish shell" />
+<meta property="og:description" content="MacOS設定 バッテリーアイコンを%表示に変更 時計に日付を表示 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェッ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/macos-setting/" />
 <meta property="article:published_time" content="2019-03-03T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-03T00:00:00+00:00" />
 <meta itemprop="name" content="Mac初期設定メモ">
-<meta itemprop="description" content="dotfiles 事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。 $ git clone git@github.com:koirand/dotfiles.git ~/dotfiles $ cd ~/dotfiles $ make install Homebrew $ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot; $ brew bundle --global fish shell">
+<meta itemprop="description" content="MacOS設定 バッテリーアイコンを%表示に変更 時計に日付を表示 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェッ">
 <meta itemprop="datePublished" content="2019-03-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-03-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="834">
+<meta itemprop="wordCount" content="664">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:image" content="https://koirand.github.io/img/avatar.jpg"/>
 <meta name="twitter:title" content="Mac初期設定メモ"/>
-<meta name="twitter:description" content="dotfiles 事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。 $ git clone git@github.com:koirand/dotfiles.git ~/dotfiles $ cd ~/dotfiles $ make install Homebrew $ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot; $ brew bundle --global fish shell"/>
+<meta name="twitter:description" content="MacOS設定 バッテリーアイコンを%表示に変更 時計に日付を表示 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェッ"/>
 
   <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -90,63 +90,7 @@ if (!doNotTrack) {
   
   
   <div id="contentBody">
-    <h2 id="dotfiles">dotfiles</h2>
-<p>事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。</p>
-<pre><code>$ git clone git@github.com:koirand/dotfiles.git ~/dotfiles
-$ cd ~/dotfiles
-$ make install
-</code></pre>
-<h2 id="homebrew">Homebrew</h2>
-<pre><code>$ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;
-$ brew bundle --global
-</code></pre>
-<h2 id="fish-shell">fish shell</h2>
-<pre><code>$ sudo sh -c &quot;echo /usr/local/bin/fish &gt;&gt; /etc/shells&quot;
-$ chsh -s /usr/local/bin/fish
-</code></pre>
-<h2 id="terminfo">terminfo</h2>
-<pre><code>$ cat &lt;&lt;EOF &gt;&gt;/tmp/xterm-256color-italic.terminfo
-# A xterm-256color based TERMINFO that adds the escape sequences for italic.
-xterm-256color-italic|xterm with 256 colors and italic,
-  sitm=\E[3m, ritm=\E[23m,
-  use=xterm-256color,
-EOF
-$ tic /tmp/xterm-256color-italic.terminfo
-</code></pre>
-<blockquote>
-<p><a href="https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/">Italic fonts in iTerm2, tmux, and vim - Alex Pearce</a></p>
-</blockquote>
-<h2 id="cheetsheet">cheetsheet</h2>
-<pre><code>$ mkdir -p ~/src
-$ git clone git@gist.github.com:07d9a3195a38d5a14e636bdbec0e0862.git ~/src/cheetsheet
-</code></pre>
-<h2 id="guiアプリインストール">GUIアプリインストール</h2>
-<h3 id="apple-storeから">Apple Storeから</h3>
-<ul>
-<li>BetterSnapTool</li>
-<li>Slack</li>
-<li>LINE</li>
-<li>BitWarden</li>
-<li>Skitch</li>
-</ul>
-<h3 id="webサイトから">Webサイトから</h3>
-<ul>
-<li>Google Chrome</li>
-<li>Google 日本語入力</li>
-<li>Karabiner</li>
-<li>Clipy</li>
-<li>LICEcap</li>
-<li>AppCleaner</li>
-<li>iTerm2</li>
-<li>VS Code</li>
-<li>Docker</li>
-<li>Adobe Creative Cloud</li>
-<li>Spotify</li>
-<li>PokerStars</li>
-<li>VLC</li>
-<li>Amazon WorkSpaces</li>
-</ul>
-<h2 id="macos設定">MacOS設定</h2>
+    <h2 id="macos設定">MacOS設定</h2>
 <ul>
 <li>バッテリーアイコンを%表示に変更</li>
 <li>時計に日付を表示</li>
@@ -228,41 +172,75 @@ $ git clone git@gist.github.com:07d9a3195a38d5a14e636bdbec0e0862.git ~/src/cheet
 </li>
 </ul>
 </li>
-<li>Karabiner
-<ul>
-<li>Simple Modification でCaps LockをCtrlに変更</li>
-<li>Complex Modification の Add rule の import more &hellip; の For Japanese の設定をインポート
-<ul>
-<li>コマンドキーを単体で押したときに、英数・かなキーを送信する</li>
-<li>escキーを押したときに、英数キーも送信する</li>
-<li>Ctrl+[ を押したときに、英数キーも送信する</li>
 </ul>
-</li>
-</ul>
-</li>
+<h2 id="dotfiles">dotfiles</h2>
+<p>事前にGoogle DriveからSSH鍵をダウンロードして.sshディレクトにいれておく。</p>
+<pre><code>$ git clone git@github.com:koirand/dotfiles.git ~/dotfiles
+$ cd ~/dotfiles
+$ make install
+</code></pre>
+<h2 id="homebrew">Homebrew</h2>
+<pre><code>$ /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;
+$ brew bundle --global
+</code></pre>
+<h2 id="fish-shell">fish shell</h2>
+<pre><code>$ sudo sh -c &quot;echo /usr/local/bin/fish &gt;&gt; /etc/shells&quot;
+$ chsh -s /usr/local/bin/fish
+</code></pre>
+<h2 id="terminfo">terminfo</h2>
+<pre><code>$ cat &lt;&lt;EOF &gt;&gt;/tmp/xterm-256color-italic.terminfo
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+xterm-256color-italic|xterm with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,
+EOF
+$ tic /tmp/xterm-256color-italic.terminfo
+</code></pre>
+<blockquote>
+<p><a href="https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/">Italic fonts in iTerm2, tmux, and vim - Alex Pearce</a></p>
+</blockquote>
+<h2 id="cheetsheet">cheetsheet</h2>
+<pre><code>$ mkdir -p ~/src
+$ git clone git@gist.github.com:07d9a3195a38d5a14e636bdbec0e0862.git ~/src/cheetsheet
+</code></pre>
+<h2 id="アプリインストール">アプリインストール</h2>
+<h3 id="apple-storeから">Apple Storeから</h3>
+<ul>
+<li>BitWarden</li>
+<li>Slack</li>
+<li>Skitch</li>
 <li>BetterSnapTool
 <ul>
 <li>Mac起動時に自動起動</li>
-<li>Keyboard Shortcuts</li>
-<li><img src="https://i.imgur.com/wtlouxB.png" alt=""></li>
+<li>Keyboard Shortcuts
+<img src="https://i.imgur.com/wtlouxB.png" alt=""></li>
 </ul>
 </li>
+</ul>
+<h3 id="webサイトから">Webサイトから</h3>
+<ul>
+<li>Google Chrome</li>
+<li>Google 日本語入力</li>
+<li>Karabiner</li>
+<li>Clipy</li>
+<li>LICEcap</li>
+<li>AppCleaner</li>
 <li>iTerm2
 <ul>
-<li>Plofiles
+<li>General -&gt; Preferences
 <ul>
-<li>Colors -&gt; <a href="https://gist.github.com/koirand/1522cbff9f89c86be99e04c8c709ab0d">テーマ</a> をインポート</li>
-<li>Text -&gt; Blinking cursorにチェック、フォントを14pt Monacoに変更</li>
-<li>Teminal
-<ul>
-<li>Silence bellにチェック</li>
-<li>Report Terminal Type を xterm-256color-italic に変更</li>
+<li><code>~/dotfiles/.iterm2</code> を読み込む`</li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
+<li>VS Code</li>
+<li>Docker</li>
+<li>Adobe Creative Cloud</li>
+<li>Spotify</li>
+<li>PokerStars</li>
+<li>VLC</li>
+<li>Amazon WorkSpaces</li>
 </ul>
 <h2 id="update-20191216">Update 2019.12.16</h2>
 <p>Catalina向けに修正</p>
