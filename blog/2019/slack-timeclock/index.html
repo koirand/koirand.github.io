@@ -3,7 +3,7 @@
   <head>
   <title>
       
-          AWS IoTボタンで遊ぶ - Kazuki Koide
+          AWS IoTボタンで作る出退勤ボタン - Kazuki Koide
       
   </title>
   <meta charset="utf-8">
@@ -27,18 +27,18 @@
   
   
 
-  <meta property="og:title" content="AWS IoTボタンで遊ぶ" />
+  <meta property="og:title" content="AWS IoTボタンで作る出退勤ボタン" />
 <meta property="og:description" content="前々から触ってみたかったAWS IoTボタンをついに購入した。 Amazonで2500円で販売している。Dash buttonが500円だったので" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://koirand.github.io/blog/2019/slack-timeclock/" />
 <meta property="og:image" content="https://i.imgur.com/yRsC5yS.jpg" />
 <meta property="article:published_time" content="2019-05-01T23:04:33+09:00" />
 <meta property="article:modified_time" content="2019-05-01T23:04:33+09:00" />
-<meta itemprop="name" content="AWS IoTボタンで遊ぶ">
+<meta itemprop="name" content="AWS IoTボタンで作る出退勤ボタン">
 <meta itemprop="description" content="前々から触ってみたかったAWS IoTボタンをついに購入した。 Amazonで2500円で販売している。Dash buttonが500円だったので">
 <meta itemprop="datePublished" content="2019-05-01T23:04:33&#43;09:00" />
 <meta itemprop="dateModified" content="2019-05-01T23:04:33&#43;09:00" />
-<meta itemprop="wordCount" content="955">
+<meta itemprop="wordCount" content="1300">
 <meta itemprop="image" content="https://i.imgur.com/yRsC5yS.jpg">
 
 
@@ -46,7 +46,7 @@
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://i.imgur.com/yRsC5yS.jpg"/>
 
-<meta name="twitter:title" content="AWS IoTボタンで遊ぶ"/>
+<meta name="twitter:title" content="AWS IoTボタンで作る出退勤ボタン"/>
 <meta name="twitter:description" content="前々から触ってみたかったAWS IoTボタンをついに購入した。 Amazonで2500円で販売している。Dash buttonが500円だったので"/>
 
   <!--[if lte IE 9]>
@@ -73,7 +73,7 @@ if (!doNotTrack) {
 
   <body>
     
-  <h1>AWS IoTボタンで遊ぶ</h1>
+  <h1>AWS IoTボタンで作る出退勤ボタン</h1>
   <header>
   
   <div class="avatar">
@@ -122,6 +122,13 @@ zip slack-timeclock.zip slack-timeclock
 <li><a href="https://muzigram.muzigen.net/2018/06/iotbutton-go-firebase-golang-lambda.html">IoTButton Go Firebaseで「イラッと」をロギングする。</a></li>
 <li><a href="https://github.com/slay-t/merry">slay-t/merry</a></li>
 </ul>
+<h2 id="追記-20200426">追記 2020/04/26</h2>
+<p>その後少し改良して、アプリからではなくて自分のアカウントから出退勤のメッセージが投稿されるようにした。こんなかんじ。</p>
+<p><img src="https://i.imgur.com/hVdauOI.png" alt=""></p>
+<p>自分のアカウントからメッセージを投稿するためには、Webhook URLを叩くだけのアプリではなくて、OAuthに対応したアプリを作らないといけないのでやや面倒くさいが、既存のアプリのトークンを使い回すことで楽ができる。</p>
+<p>自分は、<a href="https://github.com/bcicen/slackcat">slackcat</a> というアプリを使った。
+slackcatはターミナルなどからSlackに投稿できるCLIツール。
+このアプリをPCにインストール後、<code>slackcat --configure</code>を実行してSlackのワークスペースで認可すると、<code>~/.slackcat</code>にトークンが保管されるのでそのトークンを使って、メッセージを投稿するコードを書けばOK。</p>
 
   </div>
   <footer>
