@@ -37,7 +37,7 @@
 <meta itemprop="description" content="みんな大好きGit。先日、久々に自分の.gitconfigを見たら若干秘伝のタレ化していて、「なんでこの設定にしたんだっけ？？」状態になった">
 <meta itemprop="datePublished" content="2020-02-11T20:47:01&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-11T20:47:01&#43;09:00" />
-<meta itemprop="wordCount" content="1474">
+<meta itemprop="wordCount" content="1641">
 
 
 
@@ -96,7 +96,6 @@ if (!doNotTrack) {
 <pre><code class="language-ini">[core]
 	quotepath = false
 	whitespace = cr-at-eol
-	filemode = false
 	editor = vim
 [user]
 	name = koirand
@@ -116,9 +115,20 @@ if (!doNotTrack) {
 <p><code>git diff</code>とかした時に色付けする設定。デフォルトtrueだったので削除。</p>
 <h4 id="coreignorecase--false">core.ignorecase = false</h4>
 <p>ファイル名の大文字小文字の差分を無視する設定。デフォルトfalseだったので削除。</p>
-<p>というか、<code>git init</code>をすると、リポジトリのローカル設定(.git/config)が<code>ignorecase = true</code>になる。グローバルの設定よりもローカルの設定が優先されるので、実はグローバルにtrueを設定しようがfalseを設定しようが、あまり意味がない。ファイル名の大文字小文字を無視したい場合は、リポジトリ個別に設定を変更しないといけない。なかなかの罠。</p>
+<p>というか、<code>git init</code>をすると、リポジトリのローカル設定(.git/config)が<code>ignorecase = true</code>になる(MacOS)。グローバルの設定よりもローカルの設定が優先されるので、実はグローバルにtrueを設定しようがfalseを設定しようが、あまり意味がない。ファイル名の大文字小文字を無視したい場合は、リポジトリ個別に設定を変更しないといけない。なかなかの罠。</p>
 <pre><code>$ git config core.ignorecase false
 </code></pre>
+<h4 id="filemode--false">filemode = false</h4>
+<p>ファイルのパーミッションの変更を無視する設定。
+これもignorecaseと同じく、<code>git init</code>をすると、リポジトリのローカル設定(.git/config)が<code>filemode = true</code>になる(MacOS)。なのでグローバルに設定してもあまり意味がないので消した。
+Unix系の端末で作成したリポジトリをWindows端末で開いたりなどすると、ファイルのパーミッションが自動的に変更されて、それが差分として検知されてしまうことがあるらしいので、その場合はWindows端末上で、</p>
+<pre><code>$ git config core.filemode true
+</code></pre>
+<p>とやるとパーミッションの変更がGit上で検出されなくなる。
+ただこれをやると、いざシェルスクリプトなどに実行権限を付与したい時に困る。そんなときは、</p>
+<pre><code>$ git update-index --add --chmod=+x {ファイル名}
+</code></pre>
+<p>とやるといける。</p>
 <h4 id="coreautocrlf--false">core.autocrlf = false</h4>
 <p>改行コードを自動的に変換しないようにする設定。デフォルトfalseだったので削除。</p>
 <h4 id="useruseconfigonly">user.useConfigOnly</h4>
@@ -130,12 +140,6 @@ if (!doNotTrack) {
 <p>日本語ファイル名の文字化けを防ぐ。日本人なので残す。</p>
 <h4 id="corewhitespace--cr-at-eol">core.whitespace = cr-at-eol</h4>
 <p>行末のCRを許容する。Windows端末で触る時のために残す。最近Windowsで開発することが殆どなくなってきたけど、一応。</p>
-<h4 id="filemode--false">filemode = false</h4>
-<p>ファイルのパーミッションの変更を無視する。Unix系の端末で作成したリポジトリをWindows端末で開いたりすると、ファイルのパーミッションが自動的に変更されて、それが差分として検知されてしまうことがあるので。</p>
-<p>ただこれをやると、いざシェルスクリプトなどに実行権限を付与したい時に困る。そんなときは、</p>
-<pre><code>$ git update-index --add --chmod=+x {ファイル名}
-</code></pre>
-<p>とやるといけるらしい。</p>
 <h4 id="coreeditor--vim">core.editor = vim</h4>
 <p>コミットやマージした時に起動するエディタ。Ubuntuとかでたまにnanoが起動してうざいので設定しておく。OSのデフォルトのエディタを変更したほうがいいかもだけど、コンテナとかで毎回やるの面倒くさいし。</p>
 <h4 id="username-useremail">user.name, user.email</h4>
