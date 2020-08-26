@@ -12,10 +12,10 @@
     
     <item>
       <title>Spark Thrift Server起動手順メモ</title>
-      <link>https://koirand.github.io/blog/2020/hive/</link>
+      <link>https://koirand.github.io/blog/2020/thrift-server/</link>
       <pubDate>Wed, 26 Aug 2020 11:46:06 +0900</pubDate>
       
-      <guid>https://koirand.github.io/blog/2020/hive/</guid>
+      <guid>https://koirand.github.io/blog/2020/thrift-server/</guid>
       <description>Sparkに組み込まれているThrift Serverを起動した時の手順のメモ。 環境 Spark3.0.0 (Pre-build for Apache Hadoop 3.2 and later) MySQL 5.7.24 (Hiveメタストアとして利用) MyS</description>
     </item>
     
