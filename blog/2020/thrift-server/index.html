@@ -37,7 +37,7 @@
 <meta itemprop="description" content="Sparkに組み込まれているThrift Serverを起動した時の手順のメモ。 環境 Spark3.0.0 (Pre-build for Apache Hadoop 3.2 and later) MySQL 5.7.24 (Hiveメタストアとして利用) MyS">
 <meta itemprop="datePublished" content="2020-08-26T11:46:06+09:00" />
 <meta itemprop="dateModified" content="2020-08-26T11:46:06+09:00" />
-<meta itemprop="wordCount" content="888">
+<meta itemprop="wordCount" content="998">
 
 
 
@@ -98,15 +98,15 @@ if (!doNotTrack) {
 <li>MySQL 5.7.24 (Hiveメタストアとして利用)</li>
 </ul>
 <h2 id="mysqlユーザーデータベース作成">MySQLユーザー、データベース作成</h2>
-<p>MySQL側でhiveユーザーとmetastoreデータベースを作成する。Hive側でデータベースを自動生成する方法もあるが、そうすると文字コードがlatin1になってしまうので手で作成している。</p>
+<p>MySQL側でhiveユーザーとmetastoreデータベースを作成する。Hiveにはデータベースを自動作成する機能があるが、それを使うとデータベースの文字コードがlatin1になってしまったので、マルチバイトユーザーは手で作成したほうが良いと思われる。</p>
 <pre><code class="language-sql">CREATE USER 'hive'@'%' IDENTIFIED BY 'hivepass';
 CREATE DATABASE metastore DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 GRANT ALL ON metastore.* TO 'hive'@'%';
 </code></pre>
 <h2 id="mysql-テーブル作成">MySQL テーブル作成</h2>
-<p>Sparkに組み込まれているHiveのバージョンが2.3.7だったので、GitHubの以下からDDLをダウンロードしてMySQL上で実行する。</p>
+<p>これもデータベースと同様、Hiveにはテーブルを自動作成する機能があるのだが、バグっているのかうまく動かないためこれも手で作成した。Spark組み込みのHiveのバージョンが2.3.7だったため、GitHubの以下からDDLをダウンロードしてMySQL上で実行した。</p>
 <p><a href="https://github.com/apache/hive/blob/master/metastore/scripts/upgrade/mysql/hive-schema-2.3.0.mysql.sql">hive/hive-schema-2.3.0.mysql.sql at master · apache/hive</a></p>
-<p><code>latin1</code>は<code>utf8</code>、<code>latin1_bin</code>は<code>utf8_general_ci</code>にそれぞれ置換して実行した。また、utf8の場合インデックスに指定できるカラムの最大長は255バイトであるため、<code>varchar(767)</code>を<code>varchar(255)</code>に置換した。</p>
+<p>実行する前に<code>latin1</code>を<code>utf8</code>に、<code>latin1_bin</code>を<code>utf8_general_ci</code>にそれぞれ置換した。また、utf8の場合インデックスに指定できるカラムの最大長が256バイトであるため、<code>varchar(767)</code>を<code>varchar(256)</code>に置換した。</p>
 <h2 id="mysqlドライバのインストール">MySQLドライバのインストール</h2>
 <p>Mavenのリポジトリからダウンロードして所定の場所に置く。</p>
 <pre><code>curl -o ${SPARK_HOME}/jars/mysql-connector-java-8.0.21.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar
@@ -137,14 +137,14 @@ GRANT ALL ON metastore.* TO 'hive'@'%';
 &lt;/configuration&gt;
 </code></pre>
 <h2 id="thrift-serverを起動">Thrift serverを起動</h2>
-<p>下記スクリプトを実行してThrift serverを起動する。</p>
+<p>下記スクリプトを実行してThrift serverを起動する。(オプション省略)</p>
 <pre><code class="language-sh">${SPARK_HOME}/sbin/start-thriftserver.sh \
   --name spark-thrift-server \
   --master &lt;master-uri&gt;  \
   ...
 </code></pre>
 <h2 id="懸念点１">懸念点１</h2>
-<p><code>hive.metastore.schema.verification</code> オプションをfalseにしないと現状起動しない。falseにしてもログファイルに以下のログが出力される。恐らくメタストアのバージョンが取得できていないことが原因と思われるが、なぜ取得できないのかが不明。</p>
+<p><code>hive.metastore.schema.verification</code> オプションをfalseにしないと現状起動しない。falseにしてもログファイルに以下のログが出力される。恐らくメタストアのバージョンが取得できていないことが原因と思われるが、なぜ取得できないのかが不明。(情報求む)</p>
 <pre><code>WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
 </code></pre>
 <h2 id="懸念点２">懸念点２</h2>
