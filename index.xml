@@ -5,10 +5,19 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 05 Mar 2020 12:37:30 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 11:46:06 +0900</lastBuildDate>
     
 	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spark Thrift Server起動手順メモ</title>
+      <link>https://koirand.github.io/blog/2020/hive/</link>
+      <pubDate>Wed, 26 Aug 2020 11:46:06 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2020/hive/</guid>
+      <description>Sparkに組み込まれているThrift Serverを起動した時の手順のメモ。 環境 Spark3.0.0 (Pre-build for Apache Hadoop 3.2 and later) MySQL 5.7.24 (Hiveメタストアとして利用) MyS</description>
+    </item>
     
     <item>
       <title>ブロックチェーンの概要</title>
