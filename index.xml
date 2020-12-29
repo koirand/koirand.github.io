@@ -5,11 +5,7 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Aug 2020 11:46:06 +0900</lastBuildDate>
-    
-	<atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 26 Aug 2020 11:46:06 +0900</lastBuildDate><atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spark Thrift Server起動手順メモ</title>
       <link>https://koirand.github.io/blog/2020/thrift-server/</link>
@@ -178,7 +174,7 @@
       <pubDate>Sun, 03 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://koirand.github.io/blog/2019/macos-setting/</guid>
-      <description>MacOS設定 バッテリーアイコンを%表示に変更 時計に日付を表示 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェッ</description>
+      <description>MacOS設定 システム環境設定 一般 書類を閉じるときに変更内容を保持するかどうかを確認 にチェック Dockとメニューバー Dockを左に表示 「最近</description>
     </item>
     
     <item>
