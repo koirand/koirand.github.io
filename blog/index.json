@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2021/keycloak-federation/",
+        "title": "KeycloakでLDAP認証する",
+        "section": "blog",
+        "tags": null,
+        "date" : "2021.01.18",
+        "body": "KeycloakでLDAP認証をしてみたときのメモ。\n環境  Kubernetes v1.17.16 (minikube) Keycloak v11.0.2 がクラスタ上で稼働済み  OpenLDAPとphpLDAPadminを起動 以下のコンテナイメージを使用した。\n osixia/openldap - Docker Hub osixia/phpldapadmin - Docker Hub  Kubernetesマニフェストは以下。\napiVersion: v1 kind: Namespace metadata: name: ldap --- apiVersion: v1 kind: Service metadata: labels: app: openldap name: openldap namespace: ldap spec: ports: - name: ldap1 port: 389 - name: ldap2 port: 636 selector: app: openldap type: ClusterIP --- apiVersion: v1 kind: Service metadata: labels: app: phpldapadmin name: phpldapadmin namespace: ldap spec: ports: - name: https port: 443 selector: app: phpldapadmin type: ClusterIP --- apiVersion: apps/v1 kind: Deployment metadata: labels: app: openldap name: openldap namespace: ldap spec: replicas: 1 selector: matchLabels: app: openldap template: metadata: labels: app: openldap spec: containers: - image: osixia/openldap:1.4.0 name: openldap --- apiVersion: apps/v1 kind: Deployment metadata: labels: app: phpldapadmin name: phpldapadmin namespace: ldap spec: replicas: 1 selector: matchLabels: app: phpldapadmin template: metadata: labels: app: phpldapadmin spec: containers: - env: - name: PHPLDAPADMIN_LDAP_HOSTS value: openldap.ldap.svc.cluster.local image: osixia/phpldapadmin:0.9.0 name: phpldapadmin  ユーザー登録 登録例\n kubectl port-forward を使ってphpLDAPadminの画面にアクセス Login DN: cn=admin,dc=example,dc=org / Password: admin でログイン Generic: Organisational Unit を作成 (Unit name: People) Generic: Posix Group を作成 作成したOrganisational Unit(People)の子Entryとして、Generic: User Account を作成  KeycloakでのFederation設定 設定例 動作確認  phpLDAPadminで作成したユーザーを使ってログインできる Keycloakに同期されたユーザーは、Keycloak管理画面のManage =\u0026gt; Usersから確認できる  後片付け $ kubectl delete ns ldap  "
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2020/thrift-server/",
         "title": "Spark Thrift Server起動手順メモ",
         "section": "blog",

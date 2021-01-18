@@ -5,7 +5,16 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Aug 2020 11:46:06 +0900</lastBuildDate><atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2021 16:30:34 +0900</lastBuildDate><atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KeycloakでLDAP認証する</title>
+      <link>https://koirand.github.io/blog/2021/keycloak-federation/</link>
+      <pubDate>Mon, 18 Jan 2021 16:30:34 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2021/keycloak-federation/</guid>
+      <description>KeycloakでLDAP認証をしてみたときのメモ。 環境 Kubernetes v1.17.16 (minikube) Keycloak v11.0.2 がクラスタ上で稼働済み OpenLDAPとphpLDAPadminを起動 以下</description>
+    </item>
+    
     <item>
       <title>Spark Thrift Server起動手順メモ</title>
       <link>https://koirand.github.io/blog/2020/thrift-server/</link>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+      
+          KeycloakでLDAP認証する - Kazuki Koide
+      
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kazuki Koide" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://koirand.github.io/img/favicon.ico">
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style.min.6f642c5866835106e8a19b94463576436c99be9e41a8714ab3df3daa95f6bf90.css" integrity="sha256-b2QsWGaDUQbooZuURjV2Q2yZvp5BqHFKs989qpX2v5A=">
+  
+  
+  
+  <link rel="stylesheet" href="https://koirand.github.io/style-dark.min.0a647fb6c07e04b77b54fa0515d0a683d39ecdb251dba960fe1f966f7ff36fc2.css" media="(prefers-color-scheme: dark)" integrity="sha256-CmR/tsB&#43;BLd7VPoFFdCmg9OezbJR26lg/h&#43;Wb3/zb8I=">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  
+  
+
+  <meta property="og:title" content="KeycloakでLDAP認証する" />
+<meta property="og:description" content="KeycloakでLDAP認証をしてみたときのメモ。 環境 Kubernetes v1.17.16 (minikube) Keycloak v11.0.2 がクラスタ上で稼働済み OpenLDAPとphpLDAPadminを起動 以下" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://koirand.github.io/blog/2021/keycloak-federation/" />
+<meta property="og:image" content="https://i.imgur.com/HjwPzsr.png" />
+<meta property="article:published_time" content="2021-01-18T16:30:34+09:00" />
+<meta property="article:modified_time" content="2021-01-18T16:30:34+09:00" />
+<meta itemprop="name" content="KeycloakでLDAP認証する">
+<meta itemprop="description" content="KeycloakでLDAP認証をしてみたときのメモ。 環境 Kubernetes v1.17.16 (minikube) Keycloak v11.0.2 がクラスタ上で稼働済み OpenLDAPとphpLDAPadminを起動 以下">
+<meta itemprop="datePublished" content="2021-01-18T16:30:34+09:00" />
+<meta itemprop="dateModified" content="2021-01-18T16:30:34+09:00" />
+<meta itemprop="wordCount" content="482">
+<meta itemprop="image" content="https://i.imgur.com/HjwPzsr.png">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://i.imgur.com/HjwPzsr.png"/>
+
+<meta name="twitter:title" content="KeycloakでLDAP認証する"/>
+<meta name="twitter:description" content="KeycloakでLDAP認証をしてみたときのメモ。 環境 Kubernetes v1.17.16 (minikube) Keycloak v11.0.2 がクラスタ上で稼働済み OpenLDAPとphpLDAPadminを起動 以下"/>
+
+  <!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <![endif]-->
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126342153-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</head>
+
+  <body>
+    
+  <h1>KeycloakでLDAP認証する</h1>
+  <header>
+  
+  <div class="avatar">
+    <img class="avatarMask" src="https://koirand.github.io/img/avatar.png" alt="">
+    <a href="https://koirand.github.io"><img class="avatar-border" src="https://koirand.github.io/img/avatar-border.svg" alt=""></a>
+  </div>
+  
+  <h2><a class="author" href="https://koirand.github.io">Kazuki Koide</a></h2>
+</header>
+
+  
+  
+  
+  <p class="date">January 18, 2021</p>
+  
+  
+  
+  
+  <div id="contentBody">
+    <p>KeycloakでLDAP認証をしてみたときのメモ。</p>
+<h2 id="環境">環境</h2>
+<ul>
+<li>Kubernetes v1.17.16 (minikube)</li>
+<li>Keycloak v11.0.2 がクラスタ上で稼働済み</li>
+</ul>
+<h2 id="openldapとphpldapadminを起動">OpenLDAPとphpLDAPadminを起動</h2>
+<p>以下のコンテナイメージを使用した。</p>
+<ul>
+<li><a href="https://hub.docker.com/r/osixia/openldap">osixia/openldap - Docker Hub</a></li>
+<li><a href="https://hub.docker.com/r/osixia/phpldapadmin">osixia/phpldapadmin - Docker Hub</a></li>
+</ul>
+<p>Kubernetesマニフェストは以下。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Namespace
+metadata:
+  name: ldap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: openldap
+  name: openldap
+  namespace: ldap
+spec:
+  ports:
+  - name: ldap1
+    port: 389
+  - name: ldap2
+    port: 636
+  selector:
+    app: openldap
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: phpldapadmin
+  name: phpldapadmin
+  namespace: ldap
+spec:
+  ports:
+  - name: https
+    port: 443
+  selector:
+    app: phpldapadmin
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: openldap
+  name: openldap
+  namespace: ldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldap
+  template:
+    metadata:
+      labels:
+        app: openldap
+    spec:
+      containers:
+      - image: osixia/openldap:1.4.0
+        name: openldap
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: phpldapadmin
+  name: phpldapadmin
+  namespace: ldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpldapadmin
+  template:
+    metadata:
+      labels:
+        app: phpldapadmin
+    spec:
+      containers:
+      - env:
+        - name: PHPLDAPADMIN_LDAP_HOSTS
+          value: openldap.ldap.svc.cluster.local
+        image: osixia/phpldapadmin:0.9.0
+        name: phpldapadmin
+</code></pre>
+<h2 id="ユーザー登録">ユーザー登録</h2>
+<p>登録例</p>
+<ul>
+<li><code>kubectl port-forward</code> を使ってphpLDAPadminの画面にアクセス</li>
+<li><code>Login DN: cn=admin,dc=example,dc=org</code> / <code>Password: admin</code> でログイン</li>
+<li><code>Generic: Organisational Unit</code> を作成 (Unit name: People)</li>
+<li><code>Generic: Posix Group</code> を作成</li>
+<li>作成したOrganisational Unit(People)の子Entryとして、<code>Generic: User Account</code> を作成</li>
+</ul>
+<h2 id="keycloakでのfederation設定">KeycloakでのFederation設定</h2>
+<p>設定例
+<img src="https://i.imgur.com/io5zOja.png" alt="Federation"></p>
+<h2 id="動作確認">動作確認</h2>
+<ul>
+<li>phpLDAPadminで作成したユーザーを使ってログインできる</li>
+<li>Keycloakに同期されたユーザーは、Keycloak管理画面のManage =&gt; Usersから確認できる</li>
+</ul>
+<h2 id="後片付け">後片付け</h2>
+<pre><code class="language-sh">$ kubectl delete ns ldap
+</code></pre>
+
+  </div>
+  <footer>
+  <p>
+  &copy; 2018 Kazuki Koide.
+  Powered by <a href="https://gohugo.io/">Hugo</a>
+  using the <a href="https://github.com/koirand/pulp/">pulp</a> theme.
+  </p>
+</footer>
+
+
+  </body>
+</html>
