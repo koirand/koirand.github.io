@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2021/kubernetes-tools/",
+        "title": "Kubernetesの運用で普段使っているツール",
+        "section": "blog",
+        "tags": null,
+        "date" : "2021.01.23",
+        "body": "k9s https://github.com/derailed/k9s\nクラスタ管理用のTUIツール。UIがとても使いやすく、表示するリソースの種類やNamespaceの切り替えが簡単に素早くできる。Podのイベントやログの確認、ポートフォワードも簡単。さらにはマニフェストの定義を直接書き換えたり、ReplicaSetの数を変更したりといったことまでできる。正直これに慣れるとkubectlコマンドを打つのが苦痛になってくる。なくてはならないツール。\nkubectx https://github.com/ahmetb/kubectx\nKubernetesクラスタのコンテキストの切り替えが簡単になるツール。kubectl config get-contextや、kubectl config use-contextコマンドをわざわざ打たなくて良くなる。fzfコマンドとの連携がサポートされていて、fzfがインストールされているとコンテキストをインタラクティブに選択できるのだが、自分はfzfではなくpecoを使っているので、シェルに以下のエイリアスを追加して使っている。\n# kubectx alias kc=\u0026quot;kubectx | peco | xargs kubectx\u0026quot;  こうしておくとkcコマンドでpecoを使ったコンテキストの切り替えができる。\nkustomize https://kustomize.io/\nKubernetesのマニフェストの構成管理をするツール。Staging環境とProduction環境の環境差異などをこれで吸収できる。現在kustomizeコマンドはkubectlコマンドに組み込まれていて、kubectl apply -kで使えるようになっているが、実際に使ってみたところオリジナルのkustomizeコマンドよりもバージョンが低く使えない機能があったので、今の所オリジナルの方を使っている。\n似た用途として、Helmというツールもある。Helmを動かすにはtillerをクラスタにインストールする必要があり、それが面倒でkustomizeを使っていたのだが、最近リリースされたHelm v3ではtillerが廃止されて使いやすくなったので、kustomizeからHelmに乗り換えようかなと考えていたりする。\nRancher https://www.rancher.co.jp/\nクラスタ管理用のWebアプリ。とても使いやすいし、Kubernetesのリソースを作成する際に、マニフェストを書かなくてもフォームの要な箇所を埋めて登録するだけで作成できてしまうのが非常に簡単で便利。Kubernetesを一般の企業で普及させていくには、どうしてもハードルが高い場合があるが、Rancherを使うとそのハードルをいくらか下げることができると思う。SSO機能もあるのでユーザー管理も楽。\nPrometheus, Grafana https://prometheus.io/\nhttps://grafana.com/\nPrometheusとGrafanaをインストールするとKubernetesクラスタの利用状況がいい感じのダッシュボードで監視できるようになる。KubernetesにPrometheusをインストールするのはやや難しいので、kube-prometheusを使うのがおすすめ。kube-prometheusという名前だがGrafanaも一緒にインストールされる。もしくは、RancherにPrometheusとGrafanaをインストールする機能があるので、それを使ってインストールするのもあり。\nVerelo https://velero.io/\nKubernetesのメタデータやPersistent Volumeのバックアップ・リストアツール。運用の面倒臭いところがこのツールを使うことが圧倒的に楽になるのでとてもおすすめ。うっかりコンテキストを間違えてデプロイしてしまったり、Namespaceを削除してしまっても安心。Producton環境でKuberentesを使うなら必須だと思う。\nTrivy https://github.com/aquasecurity/trivy\nコンテナイメージの脆弱性チェックツール。UIが使いやすく、Go言語製で環境依存が小さくCIに組み込みやすいので使っている。\n"
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2021/keycloak-federation/",
         "title": "KeycloakでLDAP認証する",
         "section": "blog",

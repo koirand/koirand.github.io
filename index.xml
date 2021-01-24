@@ -5,7 +5,16 @@
     <link>https://koirand.github.io/</link>
     <description>Recent content on Kazuki Koide</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 18 Jan 2021 16:30:34 +0900</lastBuildDate><atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Jan 2021 21:52:30 +0900</lastBuildDate><atom:link href="https://koirand.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetesの運用で普段使っているツール</title>
+      <link>https://koirand.github.io/blog/2021/kubernetes-tools/</link>
+      <pubDate>Sat, 23 Jan 2021 21:52:30 +0900</pubDate>
+      
+      <guid>https://koirand.github.io/blog/2021/kubernetes-tools/</guid>
+      <description>k9s https://github.com/derailed/k9s クラスタ管理用のTUIツール。UIがとても使いやすく、表示するリソースの種類やNamespaceの切り替えが簡単に素早くできる。Podの</description>
+    </item>
+    
     <item>
       <title>KeycloakでLDAP認証する</title>
       <link>https://koirand.github.io/blog/2021/keycloak-federation/</link>
