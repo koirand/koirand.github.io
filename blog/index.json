@@ -1,5 +1,14 @@
 [
     {
+        "ref": "https://koirand.github.io/blog/2021/airflow-oauth/",
+        "title": "Apache AirflowでOAuth認証する",
+        "section": "blog",
+        "tags": null,
+        "date" : "2021.02.17",
+        "body": "Apache Airflowの認証時にKeyCloakを使ってOAuth認証する方法のメモ。\n環境  Keycloak v11.0.2 Airflow v2.0.0  authlibパッケージのインストール OAuth認証に必要なのでインストールする。コンテナで運用する場合はコンテナイメージをカスタムする必要がある。\npip install authlib  Airflow webserverの設定 ログインユーザーの情報を取得する際に、KeyCloakで保持している項目名とAirflowで保持している項目名に乖離があるため、マッピングしてやる必要がある。webserver_config.py で以下を設定する。\n# ${AIRFLOW_HOME}/webserver_config.py from airflow.www.security import AirflowSecurityManager from flask_appbuilder.security.manager import AUTH_OAUT class KeycloakSecurityManager(AirflowSecurityManager): def oauth_user_info(self, provider, response=None): if provider == 'keycloak': me = self.appbuilder.sm.oauth_remotes[provider].get('userinfo') return { 'username': me.json().get('preferred_username'), 'email': me.json().get('email'), 'first_name': me.json().get('given_name'), 'last_name': me.json().get('family_name') } else: return {} AUTH_TYPE = AUTH_OAUTH AUTH_USER_REGISTRATION = True AUTH_USER_REGISTRATION_ROLE = \u0026quot;Admin\u0026quot; keycloak_host = (your keycloak host) keycloak_relm_id = (your keycloak relm id) keycloak_client_id = (your keycloak client id) OAUTH_PROVIDERS = [{ 'name':'keycloak', 'token_key':'access_token', 'icon': 'fa-key', 'remote_app': { 'api_base_url': f'http://{keycloak_host}/auth/realms/{keycloak_relm_id}/protocol/openid-connect/', 'request_token_params': { 'scope': 'email profile' }, 'request_token_url': None, 'access_token_url': f'http://{keycloak_host}/auth/realms/{keycloak_relm_id}/protocol/openid-connect/token', 'authorize_url': f'http://{keycloak_host}/auth/realms/{keycloak_relm_id}/protocol/openid-connect/auth', 'client_id': keycloak_client_id, } }] SECURITY_MANAGER_CLASS = KeycloakSecurityManager  AirflowではSECURITY_MANAGER_CLASS でセキュリティマネージャーを指定できるようになっている1。\nデフォルトではFlask-AppBuilderのSecurityManagerを継承したAirflowSecurityManagerが使用される2。したがって更にそれを継承したKeycloakSecurityManagerを作成して、oauth_user_info関数を上書きすることで任意のマッピング処理を実装できる。\nAirflowではユーザー作成時にusername、email、first_name、last_nameの4つが必要なのでそれぞれ指定してやる。KeyCloak側でこれらの項目の値がNullだとログイン時にエラーになるので注意。\n  airflow/init_appbuilder.py at 2.0.0 · apache/airflow \u0026#x21a9;\u0026#xfe0e;\n airflow/security.py at 2.0.0 · apache/airflow \u0026#x21a9;\u0026#xfe0e;\n   "
+    }
+,
+    {
         "ref": "https://koirand.github.io/blog/2021/vpn-traffic-setting/",
         "title": "すべてのトラフィックをVPN経由にするかどうかの設定",
         "section": "blog",
