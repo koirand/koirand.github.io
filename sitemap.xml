@@ -1,208 +1,126 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://koirand.github.io/blog/2021/airflow-oauth/</loc>
     <lastmod>2021-02-17T18:59:47+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/</loc>
     <lastmod>2021-02-17T18:59:47+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/</loc>
     <lastmod>2021-02-17T18:59:47+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2021/vpn-traffic-setting/</loc>
     <lastmod>2021-01-26T11:20:34+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2021/kubernetes-tools/</loc>
     <lastmod>2021-01-23T21:52:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2021/keycloak-federation/</loc>
     <lastmod>2021-01-18T16:30:34+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/thrift-server/</loc>
     <lastmod>2020-08-26T11:46:06+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/about-blockchain/</loc>
     <lastmod>2020-03-05T12:37:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/vimmer-ahk/</loc>
     <lastmod>2020-02-25T19:27:45+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/spark-on-k8s/</loc>
     <lastmod>2020-02-25T14:15:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/hosts/</loc>
     <lastmod>2020-02-20T11:25:38+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/gitconfig/</loc>
     <lastmod>2020-02-11T20:47:01+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/getting-start-docker/</loc>
     <lastmod>2020-02-05T11:55:24+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/two-factor-auth/</loc>
     <lastmod>2020-01-22T18:42:48+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2020/bunsenlabs/</loc>
     <lastmod>2020-01-03T18:33:33+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/vim-memo/</loc>
     <lastmod>2019-10-29T16:45:53+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/create-react-app-v3/</loc>
     <lastmod>2019-05-18T23:16:07+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/about/aboutme/</loc>
     <lastmod>2019-05-07T12:17:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/about/</loc>
     <lastmod>2019-05-07T12:17:54+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/cloud9/</loc>
     <lastmod>2019-05-02T19:24:22+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/slack-timeclock/</loc>
     <lastmod>2019-05-01T23:04:33+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/slack-balance/</loc>
     <lastmod>2019-04-30T21:55:59+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/nixie-timer/</loc>
     <lastmod>2019-04-06T23:39:26+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/git-zoo/</loc>
     <lastmod>2019-04-06T21:14:24+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/react-eslint/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/macos-setting/</loc>
     <lastmod>2019-03-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2019/bitbucket-to-github/</loc>
     <lastmod>2019-03-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/create-react-app/</loc>
     <lastmod>2018-12-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/package-manager/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/ini-json-yaml-toml/</loc>
     <lastmod>2018-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/textlint/</loc>
     <lastmod>2018-11-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/pulp-search2/</loc>
     <lastmod>2018-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/pulp-search/</loc>
     <lastmod>2018-10-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/async-await/</loc>
     <lastmod>2018-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/blog-auto-deploy/</loc>
     <lastmod>2018-09-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/pulp/</loc>
     <lastmod>2018-09-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/line-login-with-springboot/</loc>
     <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/tokyo-metro-vim/</loc>
     <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/blog/2018/post-test/</loc>
     <lastmod>2018-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://koirand.github.io/tags/</loc>
   </url>
-  
 </urlset>
